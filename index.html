@@ -117,7 +117,76 @@
             .quote-text {
                 font-size: 1em;
             }
-        }
+        }.playlist-section {
+  max-width: 560px;
+  margin: 2rem auto;
+  padding: 1.75rem;
+  background: #1e3448;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.playlist-section h2 {
+  margin: 0 0 0.2rem;
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+.subhead {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  margin: 0 0 1.4rem;
+}
+.song-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+.song-form input {
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+}
+.song-form input::placeholder { color: rgba(255,255,255,0.38); }
+.song-form button {
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: none;
+  background: #f4a261;
+  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.song-submit-msg { font-size: 0.85rem; color: #6ee7b7; min-height: 1.2em; }
+.playlist-divider {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 0.75rem;
+}
+.playlist-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.playlist-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.65rem 0.9rem;
+  background: rgba(255,255,255,0.07);
+  border-radius: 10px;
+  color: #ffffff;
+}
+.song-icon { font-size: 1.1rem; flex-shrink: 0; }
+.song-info { flex: 1; }
+.song-title { font-weight: 600; font-size: 0.95rem; color: #ffffff; }
+.song-artist { font-size: 0.8rem; color: rgba(255,255,255,0.55); margin-top: 1px; }
+.song-by { font-size: 0.75rem; color: rgba(255,255,255,0.3); white-space: nowrap; }
+.playlist-empty { font-size: 0.875rem; color: rgba(255,255,255,0.4); text-align: center; padding: 1.25rem 0; list-style: none; }
+
     </style>
 </head>
 <body>
