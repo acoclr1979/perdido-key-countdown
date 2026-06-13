@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perdido Key Countdown</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -36,7 +32,6 @@
             width: 100%;
             height: 280px;
             overflow: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .carousel-slide {
@@ -48,9 +43,7 @@
             transition: opacity 1s ease-in-out;
         }
 
-        .carousel-slide.active {
-            opacity: 1;
-        }
+        .carousel-slide.active { opacity: 1; }
 
         .carousel-slide img {
             width: 100%;
@@ -77,26 +70,12 @@
             transition: background 0.3s;
         }
 
-        .carousel-dot.active {
-            background: #ffffff;
-        }
+        .carousel-dot.active { background: #ffffff; }
 
-        .card-body {
-            padding: 40px 40px 50px;
-        }
+        .card-body { padding: 40px 40px 50px; }
 
-        h1 {
-            font-size: 2.5em;
-            color: #667eea;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .subtitle {
-            font-size: 1.1em;
-            color: #666;
-            margin-bottom: 40px;
-        }
+        h1 { font-size: 2.5em; color: #667eea; margin-bottom: 10px; letter-spacing: 1px; }
+        .subtitle { font-size: 1.1em; color: #666; margin-bottom: 40px; }
 
         .countdown {
             display: grid;
@@ -112,19 +91,8 @@
             color: white;
         }
 
-        .countdown-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .countdown-label {
-            font-size: 0.9em;
-            opacity: 0.9;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .countdown-number { font-size: 2.5em; font-weight: bold; display: block; margin-bottom: 5px; }
+        .countdown-label { font-size: 0.9em; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
 
         .quote-container {
             background: #f8f9fa;
@@ -134,18 +102,8 @@
             margin-top: 30px;
         }
 
-        .quote-text {
-            font-size: 1.3em;
-            color: #333;
-            font-style: italic;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .quote-emoji {
-            font-size: 2em;
-            margin: 10px 0;
-        }
+        .quote-text { font-size: 1.3em; color: #333; font-style: italic; line-height: 1.6; margin-bottom: 10px; }
+        .quote-emoji { font-size: 2em; margin: 10px 0; }
 
         @media (max-width: 600px) {
             .card-body { padding: 25px 20px 35px; }
@@ -163,7 +121,24 @@
     <div class="container">
 
         <div class="carousel" id="carousel">
-            <div class="carousel-dots" id="carouselDots"></div>
+            <div class="carousel-slide active">
+                <img src="./IMG_1144.jpeg" alt="Group photo 1">
+            </div>
+            <div class="carousel-slide">
+                <img src="./Photo-1-PKC.jpeg" alt="Group photo 2">
+            </div>
+            <div class="carousel-slide">
+                <img src="./Photo-2-PKC.jpeg" alt="Group photo 3">
+            </div>
+            <div class="carousel-slide">
+                <img src="./Photo-3-PKC.jpeg" alt="Group photo 4">
+            </div>
+            <div class="carousel-dots">
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+            </div>
         </div>
 
         <div class="card-body">
@@ -197,35 +172,12 @@
     </div>
 
     <script>
-        // ─── PHOTOS ─────────────────────────────────────
-        // These filenames must match exactly what's in your repo
-        const photos = [
-
-            './Photo-1-PKC.jpeg',
-            './Photo-2-PKC.jpeg',
-            './Photo-3-PKC.jpeg',
-        ];
-        const ROTATE_EVERY_MS = 4000; // 4 seconds per photo
-        // ─────────────────────────────────────────────────
-
-        const carousel = document.getElementById('carousel');
-        const dotsContainer = document.getElementById('carouselDots');
+        // Carousel
         let currentSlide = 0;
-
-        photos.forEach((src, i) => {
-            const slide = document.createElement('div');
-            slide.className = 'carousel-slide' + (i === 0 ? ' active' : '');
-            slide.innerHTML = `<img src="${src}" alt="Group photo ${i+1}" onerror="this.parentElement.style.display='none'">`;
-            carousel.insertBefore(slide, dotsContainer);
-
-            const dot = document.createElement('div');
-            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-            dotsContainer.appendChild(dot);
-        });
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
 
         function goToSlide(n) {
-            const slides = carousel.querySelectorAll('.carousel-slide');
-            const dots = dotsContainer.querySelectorAll('.carousel-dot');
             slides[currentSlide].classList.remove('active');
             dots[currentSlide].classList.remove('active');
             currentSlide = (n + slides.length) % slides.length;
@@ -233,9 +185,9 @@
             dots[currentSlide].classList.add('active');
         }
 
-        setInterval(() => goToSlide(currentSlide + 1), ROTATE_EVERY_MS);
+        setInterval(() => goToSlide(currentSlide + 1), 4000);
 
-        // ─── COUNTDOWN ───────────────────────────────────
+        // Countdown
         const quotes = [
             { text: "Florida: where the sun never stops shining and the fun never ends.", emoji: "☀️" },
             { text: "Friends who vacation together, stay together.", emoji: "👯" },
@@ -250,13 +202,11 @@
         ];
 
         function updateCountdown() {
-            const targetDate = new Date("July 11, 2026 00:00:00").getTime();
-            const now = new Date().getTime();
-            const difference = targetDate - now;
-            document.getElementById("days").textContent = Math.floor(difference / (1000 * 60 * 60 * 24));
-            document.getElementById("hours").textContent = String(Math.floor((difference / (1000 * 60 * 60)) % 24)).padStart(2, '0');
-            document.getElementById("minutes").textContent = String(Math.floor((difference / 1000 / 60) % 60)).padStart(2, '0');
-            document.getElementById("seconds").textContent = String(Math.floor((difference / 1000) % 60)).padStart(2, '0');
+            const diff = new Date("July 11, 2026 00:00:00").getTime() - new Date().getTime();
+            document.getElementById("days").textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").textContent = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+            document.getElementById("minutes").textContent = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
+            document.getElementById("seconds").textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
         }
 
         function displayQuote() {
@@ -272,8 +222,3 @@
 
 </body>
 </html>
-
-
-
-
-
