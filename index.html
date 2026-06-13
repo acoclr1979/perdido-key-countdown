@@ -265,6 +265,21 @@
 
         // Update countdown every second
         setInterval(updateCountdown, 1000);
-    </script>
+    </script><section class="playlist-section">
+  <h2>🎵 Vacation Playlist</h2>
+  <p class="subhead">Suggest a song for the trip. We'll add it to the list.</p>
+  <div class="song-form">
+    <input type="text" id="songTitle" placeholder="Song title" maxlength="80" />
+    <input type="text" id="songArtist" placeholder="Artist" maxlength="80" />
+    <input type="text" id="songSubmitter" placeholder="Your name (optional)" maxlength="40" />
+    <button onclick="submitSong()">Add to Playlist</button>
+    <div class="song-submit-msg" id="songMsg"></div>
+  </div>
+  <div class="playlist-divider">The List So Far</div>
+  <ul class="playlist-list" id="playlistList">
+    <li class="playlist-empty">Loading songs...</li>
+  </ul>
+</section>
+
 </body>
 </html>
