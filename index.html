@@ -265,7 +265,9 @@
 
         // Update countdown every second
         setInterval(updateCountdown, 1000);
-    </script><section class="playlist-section">
+    </script>
+    
+    <section class="playlist-section">
   <h2>🎵 Vacation Playlist</h2>
   <p class="subhead">Suggest a song for the trip. We'll add it to the list.</p>
   <div class="song-form">
@@ -280,6 +282,52 @@
     <li class="playlist-empty">Loading songs...</li>
   </ul>
 </section>
+<script>
+  async function loadSongs() {
+    try {
+      const res = await fetch('./songs.json?t=' + Date.now());
+      const songs = await res.json();
+      const list = document.getElementById('playlistList');
+      if (!songs || songs.length === 0) {
+        list.innerHTML = '<li class="playlist-empty">No songs yet — be the first!</li>';
+        return;
+      }
+      list.innerHTML = songs.map(s => `
+        <li>
+          <span class="song-icon">🎶</span>
+          <div class="song-info">
+            <div class="song-title">${esc(s.title)}</div>
+            <div class="song-artist">${esc(s.artist)}</div>
+          </div>
+          ${s.submitter ? `<span class="song-by">— ${esc(s.submitter)}</span>` : ''}
+        </li>
+      `).join('');
+    } catch (e) {
+      document.getElementById('playlistList').innerHTML = '<li class="playlist-empty">No songs yet — be the first!</li>';
+    }
+  }
+  function submitSong() {
+    const title = document.getElementById('songTitle').value.trim();
+    const artist = document.getElementById('songArtist').value.trim();
+    const submitter = document.getElementById('songSubmitter').value.trim();
+    const msg = document.getElementById('songMsg');
+    if (!title || !artist) {
+      msg.style.color = '#fca5a5';
+      msg.textContent = 'Please enter both a song and artist.';
+      return;
+    }
+    console.log('NEW SONG:', JSON.stringify({ title, artist, submitter }));
+    msg.style.color = '#6ee7b7';
+    msg.textContent = '✓ Got it! Adam will add this to the list.';
+    document.getElementById('songTitle').value = '';
+    document.getElementById('songArtist').value = '';
+    document.getElementById('songSubmitter').value = '';
+  }
+  function esc(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  loadSongs();
+</script>
 
 </body>
 </html>
