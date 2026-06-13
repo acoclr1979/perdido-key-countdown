@@ -31,29 +31,54 @@
             overflow: hidden;
         }
 
-        /* GROUP PHOTO */
-        .group-photo {
+        .carousel {
+            position: relative;
             width: 100%;
-            height: 260px;
+            height: 280px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             display: block;
         }
 
-        .group-photo-placeholder {
-            width: 100%;
-            height: 260px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.9rem;
-            gap: 0.5rem;
+            gap: 6px;
+            z-index: 10;
         }
 
-        .group-photo-placeholder .photo-icon {
-            font-size: 2.5rem;
+        .carousel-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transition: background 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: #ffffff;
         }
 
         .card-body {
@@ -123,35 +148,13 @@
         }
 
         @media (max-width: 600px) {
-            .card-body {
-                padding: 25px 20px 35px;
-            }
-
-            h1 {
-                font-size: 1.8em;
-            }
-
-            .countdown {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            .countdown-item {
-                padding: 15px;
-            }
-
-            .countdown-number {
-                font-size: 1.8em;
-            }
-
-            .quote-text {
-                font-size: 1em;
-            }
-
-            .group-photo,
-            .group-photo-placeholder {
-                height: 200px;
-            }
+            .card-body { padding: 25px 20px 35px; }
+            h1 { font-size: 1.8em; }
+            .countdown { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .countdown-item { padding: 15px; }
+            .countdown-number { font-size: 1.8em; }
+            .quote-text { font-size: 1em; }
+            .carousel { height: 220px; }
         }
     </style>
 </head>
@@ -159,20 +162,8 @@
 
     <div class="container">
 
-        <!-- 
-            PHOTO: Upload a file named "group-photo.jpg" to your GitHub repo.
-            It will appear here automatically. 
-            Supported: group-photo.jpg, group-photo.png, group-photo.jpeg
-        -->
-        <img 
-            class="group-photo" 
-            src="./IMG_1144.jpeg" 
-            alt="The crew" 
-            onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';"
-        />
-        <div class="group-photo-placeholder" id="photo-placeholder" style="display:none;">
-            <span class="photo-icon">📸</span>
-            <span>Upload group-photo.jpg to your repo</span>
+        <div class="carousel" id="carousel">
+            <div class="carousel-dots" id="carouselDots"></div>
         </div>
 
         <div class="card-body">
@@ -206,6 +197,52 @@
     </div>
 
     <script>
+        // ─── PHOTOS ─────────────────────────────────────
+        // These filenames must match exactly what's in your repo
+        const photos = [
+
+            './Photo-1-PKC.jpeg',
+            './Photo-2-PKC.jpeg',
+            './Photo-3-PKC.jpeg',
+            './Photo-4-PKC.jpeg',
+            './Photo-5-PKC.jpeg',
+            './Photo-6-PKC.jpeg',
+            './Photo-7-PKC.jpeg',
+            './Photo-8-PKC.jpeg',
+            './Photo-9-PKC.jpeg',
+            './Photo-10-PKC.jpeg',
+        ];
+        const ROTATE_EVERY_MS = 4000; // 4 seconds per photo
+        // ─────────────────────────────────────────────────
+
+        const carousel = document.getElementById('carousel');
+        const dotsContainer = document.getElementById('carouselDots');
+        let currentSlide = 0;
+
+        photos.forEach((src, i) => {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide' + (i === 0 ? ' active' : '');
+            slide.innerHTML = `<img src="${src}" alt="Group photo ${i+1}" onerror="this.parentElement.style.display='none'">`;
+            carousel.insertBefore(slide, dotsContainer);
+
+            const dot = document.createElement('div');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dotsContainer.appendChild(dot);
+        });
+
+        function goToSlide(n) {
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        setInterval(() => goToSlide(currentSlide + 1), ROTATE_EVERY_MS);
+
+        // ─── COUNTDOWN ───────────────────────────────────
         const quotes = [
             { text: "Florida: where the sun never stops shining and the fun never ends.", emoji: "☀️" },
             { text: "Friends who vacation together, stay together.", emoji: "👯" },
@@ -219,30 +256,20 @@
             { text: "Making a splash with your favorite people.", emoji: "💦" }
         ];
 
-        function getRandomQuote() {
-            return quotes[Math.floor(Math.random() * quotes.length)];
-        }
-
         function updateCountdown() {
             const targetDate = new Date("July 11, 2026 00:00:00").getTime();
             const now = new Date().getTime();
             const difference = targetDate - now;
-
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((difference / 1000 / 60) % 60);
-            const seconds = Math.floor((difference / 1000) % 60);
-
-            document.getElementById("days").textContent = days;
-            document.getElementById("hours").textContent = String(hours).padStart(2, '0');
-            document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
-            document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+            document.getElementById("days").textContent = Math.floor(difference / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").textContent = String(Math.floor((difference / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+            document.getElementById("minutes").textContent = String(Math.floor((difference / 1000 / 60) % 60)).padStart(2, '0');
+            document.getElementById("seconds").textContent = String(Math.floor((difference / 1000) % 60)).padStart(2, '0');
         }
 
         function displayQuote() {
-            const quote = getRandomQuote();
-            document.getElementById("quote").textContent = quote.text;
-            document.getElementById("emoji").textContent = quote.emoji;
+            const q = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById("quote").textContent = q.text;
+            document.getElementById("emoji").textContent = q.emoji;
         }
 
         updateCountdown();
