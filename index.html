@@ -28,7 +28,6 @@
             flex-direction: column;
         }
 
-        /* CAROUSEL */
         .carousel {
             position: relative;
             width: 100%;
@@ -76,7 +75,6 @@
 
         .carousel-dot.active { background: #ffffff; }
 
-        /* CARD BODY */
         .card-body {
             padding: 40px 40px 50px;
             flex: 1;
@@ -88,149 +86,4 @@
         .countdown {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .countdown-item {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 25px;
-            border-radius: 12px;
-            color: white;
-        }
-
-        .countdown-number { font-size: 2.5em; font-weight: bold; display: block; margin-bottom: 5px; }
-        .countdown-label { font-size: 0.9em; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
-
-        .quote-container {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 12px;
-            border-left: 4px solid #667eea;
-            margin-top: 30px;
-        }
-
-        .quote-text { font-size: 1.3em; color: #333; font-style: italic; line-height: 1.6; margin-bottom: 10px; }
-        .quote-emoji { font-size: 2em; margin: 10px 0; }
-
-        @media (max-width: 600px) {
-            body { padding: 20px 15px; align-items: flex-start; }
-            .card-body { padding: 25px 20px 35px; }
-            h1 { font-size: 1.8em; }
-            .countdown { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .countdown-item { padding: 15px; }
-            .countdown-number { font-size: 1.8em; }
-            .quote-text { font-size: 1em; }
-            .carousel { height: 220px; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-
-        <div class="carousel" id="carousel">
-            <div class="carousel-slide active">
-                <img src="./IMG_1144.jpeg" alt="Group photo 1">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-1-PKC.jpeg" alt="Group photo 2">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-2-PKC.jpeg" alt="Group photo 3">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-3-PKC.jpeg" alt="Group photo 4">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-4-PKC.jpeg" alt="Group photo 5">
-            </div>
-            <div class="carousel-dots">
-                <div class="carousel-dot active"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-                <div class="carousel-dot"></div>
-            </div>
-        </div>
-
-        <div class="card-body">
-            <h1>🏖️ Perdido Key</h1>
-            <p class="subtitle">July 11 – 18, 2026</p>
-
-            <div class="countdown">
-                <div class="countdown-item">
-                    <span class="countdown-number" id="days">0</span>
-                    <span class="countdown-label">Days</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="hours">0</span>
-                    <span class="countdown-label">Hours</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="minutes">0</span>
-                    <span class="countdown-label">Minutes</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="seconds">0</span>
-                    <span class="countdown-label">Seconds</span>
-                </div>
-            </div>
-
-            <div class="quote-container">
-                <div class="quote-emoji" id="emoji">🎉</div>
-                <p class="quote-text" id="quote">Loading the good vibes...</p>
-            </div>
-        </div>
-
-    </div>
-
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.carousel-dot');
-
-        function goToSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
-            currentSlide = (n + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-        }
-
-        setInterval(() => goToSlide(currentSlide + 1), 4000);
-
-        const quotes = [
-            { text: "Florida: where the sun never stops shining and the fun never ends.", emoji: "☀️" },
-            { text: "Friends who vacation together, stay together.", emoji: "👯" },
-            { text: "Life is better in flip-flops and with friends by your side.", emoji: "🩴" },
-            { text: "Salty air, sandy hair, and friends everywhere.", emoji: "🌊" },
-            { text: "A vacation without friends is just a trip. With friends? It's a memory.", emoji: "📸" },
-            { text: "Florida: bringing people together one beach day at a time.", emoji: "🏝️" },
-            { text: "Good times + crazy friends = amazing memories.", emoji: "✨" },
-            { text: "The beach is calling and we must go... together.", emoji: "🐚" },
-            { text: "Vitamin Sea and friendship—the best remedy.", emoji: "💙" },
-            { text: "Making a splash with your favorite people.", emoji: "💦" }
-        ];
-
-        function updateCountdown() {
-            const diff = new Date("July 11, 2026 00:00:00").getTime() - new Date().getTime();
-            document.getElementById("days").textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById("hours").textContent = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
-            document.getElementById("minutes").textContent = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
-            document.getElementById("seconds").textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
-        }
-
-        function displayQuote() {
-            const q = quotes[Math.floor(Math.random() * quotes.length)];
-            document.getElementById("quote").textContent = q.text;
-            document.getElementById("emoji").textContent = q.emoji;
-        }
-
-        updateCountdown();
-        displayQuote();
-        setInterval(updateCountdown, 1000);
-    </script>
-
-</body>
-</html>
+            gap
