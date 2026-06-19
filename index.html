@@ -147,6 +147,86 @@
             font-size: 1.1em;
         }
 
+        /* ===== VREI: Vacation Rick Energy Index ===== */
+        .vrei-container {
+            margin-top: 25px;
+            padding: 25px 30px 30px;
+            background: linear-gradient(135deg, #fff7eb 0%, #ffe9d6 100%);
+            border-radius: 12px;
+            border: 1px solid #ffd9b3;
+            text-align: left;
+        }
+
+        .vrei-label {
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #b3672e;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .vrei-meter-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .vrei-bar-track {
+            flex: 1;
+            height: 16px;
+            background: rgba(0,0,0,0.08);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .vrei-bar-fill {
+            height: 100%;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #ffb347 0%, #ff5e62 100%);
+            transition: width 1s ease-in-out;
+            width: 0%;
+        }
+
+        .vrei-score {
+            font-weight: 800;
+            font-size: 1.3em;
+            color: #d9480f;
+            min-width: 48px;
+            text-align: right;
+        }
+
+        .vrei-tier {
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.95em;
+            color: #d9480f;
+            margin-bottom: 16px;
+        }
+
+        .vrei-quote-box {
+            background: rgba(255,255,255,0.6);
+            border-radius: 10px;
+            padding: 16px 18px;
+            font-style: italic;
+            color: #5a3a1e;
+            line-height: 1.5;
+            font-size: 1.02em;
+        }
+
+        .vrei-quote-attribution {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            color: #b3672e;
+        }
+
         @media (max-width: 600px) {
             body { padding: 20px 15px; align-items: flex-start; }
             .card-body { padding: 25px 20px 35px; }
@@ -156,6 +236,7 @@
             .countdown-number { font-size: 1.8em; }
             .quote-text { font-size: 1em; }
             .carousel { height: 220px; }
+            .vrei-container { padding: 20px 18px 24px; }
         }
     </style>
 </head>
@@ -259,6 +340,22 @@
                 </a>
             </div>
 
+            <!-- ===== VREI: Vacation Rick Energy Index ===== -->
+            <div class="vrei-container">
+                <p class="vrei-label">📈 Vacation Rick Energy Index</p>
+                <div class="vrei-meter-row">
+                    <div class="vrei-bar-track">
+                        <div class="vrei-bar-fill" id="vreiBarFill"></div>
+                    </div>
+                    <div class="vrei-score" id="vreiScore">0</div>
+                </div>
+                <div class="vrei-tier" id="vreiTier">SIMMERING</div>
+                <div class="vrei-quote-box">
+                    <span id="vreiQuote">Loading Rick wisdom...</span>
+                    <span class="vrei-quote-attribution">— Vacation Rick</span>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -304,6 +401,7 @@
             document.getElementById("hours").textContent = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
             document.getElementById("minutes").textContent = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
             document.getElementById("seconds").textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+            return diff;
         }
 
         function displayQuote() {
@@ -312,9 +410,88 @@
             document.getElementById("emoji").textContent = q.emoji;
         }
 
-        updateCountdown();
+        // ===== VREI: Vacation Rick Energy Index =====
+        // Score climbs from 0 -> 100 as days-left shrinks.
+        // Tiers mirror the daily-bot logic: 15+ days = Simmering, 4-14 = Building, 0-3 (or trip started) = Full Send.
+        // Jokes live in vrei-jokes.json so they can be edited without touching this file.
+
+        let vreiJokes = null;
+
+        async function loadVreiJokes() {
+            try {
+                const res = await fetch('./vrei-jokes.json');
+                vreiJokes = await res.json();
+            } catch (err) {
+                console.error('Could not load vrei-jokes.json, falling back to placeholder.', err);
+                vreiJokes = {
+                    simmering: ["Vacation Rick is currently loading his wisdom. Please stand by."],
+                    building: ["Vacation Rick is currently loading his wisdom. Please stand by."],
+                    fullSend: ["Vacation Rick is currently loading his wisdom. Please stand by."]
+                };
+            }
+        }
+
+        function getVreiTier(daysLeft) {
+            if (daysLeft > 15) return 'simmering';
+            if (daysLeft >= 4) return 'building';
+            return 'fullSend'; // covers 0-3 days and negative (trip started)
+        }
+
+        function getVreiScore(daysLeft) {
+            // Scale: 21 days out (page baseline) -> low score. 0 days -> 100.
+            // Clamp so far-out days don't go below a small idle hum, and past trip-start it pins at 100.
+            const maxDays = 21; // matches the trip's typical "far out" window
+            const clamped = Math.max(0, Math.min(maxDays, daysLeft));
+            const score = Math.round(100 - (clamped / maxDays) * 100);
+            return Math.max(5, score); // never show a dead-zero, Rick is never truly at 0
+        }
+
+        function updateVrei(diffMs) {
+            const daysLeft = diffMs / (1000 * 60 * 60 * 24); // fractional, for smoother climb
+            const tier = getVreiTier(daysLeft);
+            const score = getVreiScore(daysLeft);
+
+            const tierLabels = {
+                simmering: 'SIMMERING',
+                building: 'BUILDING',
+                fullSend: 'FULL SEND'
+            };
+
+            document.getElementById('vreiBarFill').style.width = score + '%';
+            document.getElementById('vreiScore').textContent = score;
+            document.getElementById('vreiTier').textContent = tierLabels[tier];
+
+            return tier;
+        }
+
+        function displayVreiQuote(tier) {
+            if (!vreiJokes) return; // jokes haven't loaded yet, skip this tick
+            const bank = vreiJokes[tier];
+            const quote = bank[Math.floor(Math.random() * bank.length)];
+            document.getElementById('vreiQuote').textContent = quote;
+        }
+
+        let lastVreiTier = null;
+
+        function refreshVrei() {
+            const diff = updateCountdown();
+            const tier = updateVrei(diff);
+            // Only re-roll the quote when the tier changes, or on first load,
+            // so it doesn't shuffle every second while the bar just ticks.
+            if (tier !== lastVreiTier) {
+                displayVreiQuote(tier);
+                lastVreiTier = tier;
+            }
+        }
+
+        async function startVrei() {
+            await loadVreiJokes();
+            refreshVrei();
+        }
+
+        startVrei();
         displayQuote();
-        setInterval(updateCountdown, 1000);
+        setInterval(refreshVrei, 1000);
     </script>
 
 </body>
