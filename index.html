@@ -147,96 +147,6 @@
             font-size: 1.1em;
         }
 
-        /* ===== Executive Communiqué (press release banner) ===== */
-        .exec-banner {
-            background: #1a1a2e;
-            color: #f5f5f5;
-            text-align: left;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-
-        .exec-banner-tape {
-            background: #d9480f;
-            color: #fff;
-            font-size: 0.7em;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 6px 20px;
-        }
-
-        .exec-banner-inner {
-            padding: 18px 22px 20px;
-        }
-
-        .exec-banner-kicker {
-            font-size: 0.68em;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #9a9ac0;
-            margin-bottom: 8px;
-        }
-
-        .exec-banner-headline {
-            font-size: 1.05em;
-            font-weight: 800;
-            letter-spacing: 0.3px;
-            color: #ffffff;
-            margin-bottom: 10px;
-            line-height: 1.3;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-            padding-bottom: 12px;
-        }
-
-        .exec-banner-body {
-            font-size: 0.95em;
-            line-height: 1.55;
-            color: #d8d8e8;
-        }
-
-        .exec-banner-stamp {
-            display: block;
-            margin-top: 12px;
-            font-size: 0.72em;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: #ff8c5a;
-        }
-
-        .exec-banner-exhibit {
-            margin-top: 14px;
-            border: 1px solid rgba(255,255,255,0.18);
-            border-radius: 8px;
-            overflow: hidden;
-            background: rgba(255,255,255,0.04);
-        }
-
-        .exec-banner-exhibit img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .exec-banner-exhibit-caption {
-            font-size: 0.65em;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #9a9ac0;
-            padding: 6px 10px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        @media (max-width: 600px) {
-            .exec-banner-inner { padding: 16px 18px 18px; }
-            .exec-banner-headline { font-size: 0.95em; }
-            .exec-banner-body { font-size: 0.9em; }
-        }
-
         /* ===== VREI: Vacation Rick Energy Index ===== */
         .vrei-container {
             margin-top: 25px;
@@ -387,22 +297,6 @@
         </div>
 
         <div class="card-body">
-
-            <!-- ===== Executive Communiqué ===== -->
-            <div class="exec-banner">
-                <div class="exec-banner-tape">FOR IMMEDIATE RELEASE</div>
-                <div class="exec-banner-inner">
-                    <div class="exec-banner-kicker">Office of the Perdido Key Executive Committee</div>
-                    <div class="exec-banner-headline" id="execHeadline">Committee Convenes to Codify Guiding Principles for the Week</div>
-                    <div class="exec-banner-body" id="execBody">Loading communiqué...</div>
-                    <span class="exec-banner-stamp">— Ratified Unanimously, Effective Immediately</span>
-                    <div class="exec-banner-exhibit">
-                        <img src="./Photo-15-PKC.jpeg" alt="Exhibit A">
-                        <div class="exec-banner-exhibit-caption">Exhibit A — Supporting Documentation</div>
-                    </div>
-                </div>
-            </div>
-
             <h1>🏖️ Perdido Key</h1>
             <p class="subtitle">July 11 – 18, 2026</p>
 
@@ -501,49 +395,6 @@
             { text: "Making a splash with your favorite people.", emoji: "💦" }
         ];
 
-        // ===== Executive Communiqué =====
-        // Mock corporate-governance press releases. Rotates on load, same cadence as the main quote.
-        const execMemos = [
-            {
-                headline: "Committee Convenes, Ratifies Club Coleman as Sole Venue for Major Decisions",
-                body: "The Executive Committee held its inaugural session this week, with Exhibit A (below) entered into the official record as proof of quorum. Following extensive deliberation, the Committee has ratified a standing resolution that all major decisions shall henceforth be made exclusively at Club Coleman, every Sunday, until further notice. Attendance is not mandatory. Attendance is, however, noted."
-            },
-            {
-                headline: "Board Approves Cross-Functional Sunscreen Compliance Initiative",
-                body: "Effective immediately, the Board has ratified a Sunscreen Compliance Initiative designed to mitigate downstream sunburn liability across all guest verticals. Reapplication checkpoints will occur at regular intervals; non-compliance may result in a mandatory hat."
-            },
-            {
-                headline: "'Vacation Mode' Officially Rebranded as Strategic Leisure Deployment",
-                body: "Per unanimous committee vote, the legacy term 'vacation mode' has been retired and replaced with 'Strategic Leisure Deployment' to more accurately reflect the operational intensity of the week ahead. Org chart updates to follow."
-            },
-            {
-                headline: "Committee Flags Cooler Restocking SLA Breach",
-                body: "The Committee regrets to inform stakeholders that the cooler restocking Service Level Agreement was breached on two separate occasions this fiscal week. A root-cause analysis is underway. No further escalation is anticipated at this time."
-            },
-            {
-                headline: "Rick Energy Formally Adopted as Key Performance Indicator",
-                body: "Following a rigorous offsite, leadership has voted to codify Rick Energy as an official KPI for the remainder of the sprint. The Vacation Rick Energy Index dashboard, found below, will serve as the single source of truth."
-            },
-            {
-                headline: "Committee Issues Guidance on Beach Chair Allocation Framework",
-                body: "In the interest of operational transparency, the Committee has issued updated guidance on beach chair allocation. First-come, first-served remains the governing principle, with an informal exception carved out for anyone holding a cooler."
-            },
-            {
-                headline: "Synergy Achieved: Nap Schedule and Tide Chart Now Fully Aligned",
-                body: "The Committee is pleased to report that this week's nap schedule has reached full alignment with the local tide chart, representing a major cross-functional win. Leadership extends its thanks to all stakeholders for their continued bandwidth."
-            },
-            {
-                headline: "Notice: Mandatory Fun Quota Tracking Now in Effect",
-                body: "Per Committee directive, all guests are now subject to Mandatory Fun Quota Tracking for the duration of the trip. Underperformance against quota may trigger a follow-up beach activity. This is not a drill."
-            }
-        ];
-
-        function displayExecMemo() {
-            const m = execMemos[Math.floor(Math.random() * execMemos.length)];
-            document.getElementById("execHeadline").textContent = m.headline;
-            document.getElementById("execBody").textContent = m.body;
-        }
-
         function updateCountdown() {
             const diff = new Date("July 11, 2026 00:00:00").getTime() - new Date().getTime();
             document.getElementById("days").textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -640,7 +491,6 @@
 
         startVrei();
         displayQuote();
-        displayExecMemo();
         setInterval(refreshVrei, 1000);
     </script>
 
