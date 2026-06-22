@@ -31,6 +31,86 @@
             flex-direction: column;
         }
 
+        /* ===== Culinary Spotlight ===== */
+        .spotlight-container {
+            margin: 25px 25px 0;
+            padding: 25px 30px 28px;
+            background: linear-gradient(135deg, #eef6ff 0%, #e0eeff 100%);
+            border-radius: 12px;
+            border: 1px solid #c9deff;
+            text-align: left;
+        }
+
+        .spotlight-label {
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #2a5fa8;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .spotlight-name {
+            font-size: 1.6em;
+            font-weight: 800;
+            color: #1d3f73;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .spotlight-tagline {
+            text-align: center;
+            font-style: italic;
+            color: #4a6f9e;
+            margin-bottom: 16px;
+            font-size: 0.95em;
+        }
+
+        .spotlight-rating {
+            text-align: center;
+            font-weight: 700;
+            color: #2a5fa8;
+            margin-bottom: 16px;
+            font-size: 0.95em;
+        }
+
+        .spotlight-body {
+            color: #2c3e50;
+            line-height: 1.6;
+            font-size: 0.98em;
+        }
+
+        .spotlight-body p { margin-bottom: 12px; }
+
+        .spotlight-must-try {
+            background: rgba(255,255,255,0.7);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-top: 14px;
+        }
+
+        .spotlight-must-try-label {
+            font-weight: 700;
+            color: #2a5fa8;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .spotlight-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #2a5fa8;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 14px;
+            font-size: 0.95em;
+        }
+
+        .spotlight-link:hover { color: #1d3f73; }
+
         .carousel {
             position: relative;
             width: 100%;
@@ -237,12 +317,41 @@
             .quote-text { font-size: 1em; }
             .carousel { height: 220px; }
             .vrei-container { padding: 20px 18px 24px; }
+            .spotlight-container { margin: 20px 18px 0; padding: 20px 18px 22px; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
+
+        <div class="spotlight-container">
+            <p class="spotlight-label">🍴 Culinary Spotlight</p>
+            <p class="spotlight-name">Cobalt, The Restaurant</p>
+            <p class="spotlight-tagline">Waterfront Gulf-to-table dining under the Perdido Pass Bridge</p>
+            <p class="spotlight-rating">★ 4.3/5 on Tripadvisor &nbsp;·&nbsp; #13 of 117 Orange Beach restaurants &nbsp;·&nbsp; 94% recommend on Facebook</p>
+            <div class="spotlight-body">
+                <p>Tucked under the Perdido Pass Bridge next to Caribe Resort, Cobalt has built a loyal following on two things: the view and the grouper. Floor-to-ceiling windows and a sprawling patio put nearly every table on the bay, and regulars say it's genuinely one of the best water views on the island — dolphins included, on a good day. If you're coming by boat instead of car, there are slips for both small boats and yachts right out back.</p>
+                <p>The kitchen leans into contemporary Gulf Coast comfort food: think shrimp and grits, bronzed grouper, crab and shrimp dip, and a gluten-free menu that reviewers consistently call one of the most thorough on the island. Happy hour (daily, 3–5pm) is a certified crowd favorite for appetizers and drink specials on the patio.</p>
+                <p>The honest caveat: this is a popular, often loud spot, and service reviews are a mixed bag — some nights it's "best meal of the trip," other nights people report long waits and inattentive servers. Go in expecting a wait at peak lunch/dinner, and you'll likely come out a fan.</p>
+            </div>
+            <div class="spotlight-must-try">
+                <p class="spotlight-must-try-label">Must-Try</p>
+                <p>Bronzed Gulf Grouper · Shrimp &amp; Grits · BBQ Gulf Shrimp · Crab &amp; Shrimp Dip · Creole Cheesecake</p>
+            </div>
+            <p class="spotlight-must-try-label" style="margin-top:14px;">📍 ~10 min from Sandy Key 628</p>
+            <p style="font-size:0.9em; color:#4a6f9e; margin-top:2px;">For a group of 25, call ahead — peak lunch/dinner waits can run long without a reservation.</p>
+            <div style="display:flex; gap:18px; flex-wrap:wrap; margin-top:14px;">
+                <a class="spotlight-link" href="https://cobaltrestaurant.net/" target="_blank" style="margin-top:0;">
+                    Visit Website
+                    <span class="food-link-arrow">→</span>
+                </a>
+                <a class="spotlight-link" href="https://www.tripadvisor.com/Restaurant_Review-g30753-d1450955-Reviews-Cobalt_The_Restaurant-Orange_Beach_Alabama.html" target="_blank" style="margin-top:0;">
+                    Reserve / Reviews
+                    <span class="food-link-arrow">→</span>
+                </a>
+            </div>
+        </div>
 
         <div class="carousel" id="carousel">
             <div class="carousel-slide active">
