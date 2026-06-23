@@ -31,31 +31,148 @@
             flex-direction: column;
         }
 
+        /* ===== Breaking News Ticker ===== */
+        .ticker-wrap {
+            margin: 25px 25px 0;
+            background: #b30000;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(179,0,0,0.35);
+        }
+
+        .ticker-badge {
+            flex-shrink: 0;
+            background: #ffffff;
+            color: #b30000;
+            font-weight: 800;
+            font-size: 0.75em;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .ticker-badge::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #b30000;
+            animation: ticker-blink 1.2s infinite;
+        }
+
+        @keyframes ticker-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        .ticker-track {
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            height: 38px;
+        }
+
+        .ticker-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            color: #fff;
+            font-size: 0.88em;
+            font-weight: 600;
+            padding-left: 100%;
+            animation: ticker-scroll 32s linear infinite;
+        }
+
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-200%); }
+        }
+
+        @media (max-width: 600px) {
+            .ticker-wrap { margin: 20px 18px 0; }
+            .ticker-text { font-size: 0.8em; }
+        }
+
         /* ===== Culinary Spotlight ===== */
         .spotlight-container {
             margin: 25px 25px 0;
-            padding: 25px 30px 28px;
+            padding: 0;
             background: linear-gradient(135deg, #eef6ff 0%, #e0eeff 100%);
             border-radius: 12px;
             border: 1px solid #c9deff;
             text-align: left;
+            overflow: hidden;
+        }
+
+        .spotlight-toggle {
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-family: inherit;
+            text-align: left;
+        }
+
+        .spotlight-toggle-left {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
         }
 
         .spotlight-label {
-            font-size: 0.85em;
+            font-size: 0.78em;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #2a5fa8;
-            margin-bottom: 10px;
-            text-align: center;
+            margin: 0;
         }
 
         .spotlight-name {
-            font-size: 1.6em;
+            font-size: 1.25em;
             font-weight: 800;
             color: #1d3f73;
-            text-align: center;
-            margin-bottom: 4px;
+            margin: 0;
+        }
+
+        .spotlight-chevron {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            color: #2a5fa8;
+            transition: transform 0.3s ease;
+        }
+
+        .spotlight-container.expanded .spotlight-chevron {
+            transform: rotate(180deg);
+        }
+
+        .spotlight-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .spotlight-container.expanded .spotlight-panel {
+            max-height: 1400px;
+        }
+
+        .spotlight-panel-inner {
+            padding: 0 30px 28px;
         }
 
         .spotlight-tagline {
@@ -317,7 +434,8 @@
             .quote-text { font-size: 1em; }
             .carousel { height: 220px; }
             .vrei-container { padding: 20px 18px 24px; }
-            .spotlight-container { margin: 20px 18px 0; padding: 20px 18px 22px; }
+            .spotlight-toggle { padding: 16px 18px; }
+            .spotlight-panel-inner { padding: 0 18px 22px; }
         }
     </style>
 </head>
@@ -325,31 +443,51 @@
 
     <div class="container">
 
-        <div class="spotlight-container">
-            <p class="spotlight-label">🍴 Culinary Spotlight</p>
-            <p class="spotlight-name">Cobalt, The Restaurant</p>
-            <p class="spotlight-tagline">Waterfront Gulf-to-table dining under the Perdido Pass Bridge</p>
-            <p class="spotlight-rating">★ 4.3/5 on Tripadvisor &nbsp;·&nbsp; #13 of 117 Orange Beach restaurants &nbsp;·&nbsp; 94% recommend on Facebook</p>
-            <div class="spotlight-body">
-                <p>Tucked under the Perdido Pass Bridge next to Caribe Resort, Cobalt has built a loyal following on two things: the view and the grouper. Floor-to-ceiling windows and a sprawling patio put nearly every table on the bay, and regulars say it's genuinely one of the best water views on the island — dolphins included, on a good day. If you're coming by boat instead of car, there are slips for both small boats and yachts right out back.</p>
-                <p>The kitchen leans into contemporary Gulf Coast comfort food: think shrimp and grits, bronzed grouper, crab and shrimp dip, and a gluten-free menu that reviewers consistently call one of the most thorough on the island. Happy hour (daily, 3–5pm) is a certified crowd favorite for appetizers and drink specials on the patio.</p>
-                <p>The honest caveat: this is a popular, often loud spot, and service reviews are a mixed bag — some nights it's "best meal of the trip," other nights people report long waits and inattentive servers. Go in expecting a wait at peak lunch/dinner, and you'll likely come out a fan.</p>
+        <!-- ===== Breaking News Ticker ===== -->
+        <div class="ticker-wrap">
+            <div class="ticker-badge">🚨 VREI Alert</div>
+            <div class="ticker-track">
+                <div class="ticker-text">BREAKING: VREI elevates Vacation Rick Energy Index following newly surfaced, source-verified photographic evidence — image appears to show mood-lifting equipment of unknown origin, now under independent review by multiple analysts &nbsp;·&nbsp; full story developing &nbsp;·&nbsp;</div>
             </div>
-            <div class="spotlight-must-try">
-                <p class="spotlight-must-try-label">Must-Try</p>
-                <p>Bronzed Gulf Grouper · Shrimp &amp; Grits · BBQ Gulf Shrimp · Crab &amp; Shrimp Dip · Creole Cheesecake</p>
-            </div>
-            <p class="spotlight-must-try-label" style="margin-top:14px;">📍 ~10 min from Sandy Key 628</p>
-            <p style="font-size:0.9em; color:#4a6f9e; margin-top:2px;">For a group of 25, call ahead — peak lunch/dinner waits can run long without a reservation.</p>
-            <div style="display:flex; gap:18px; flex-wrap:wrap; margin-top:14px;">
-                <a class="spotlight-link" href="https://cobaltrestaurant.net/" target="_blank" style="margin-top:0;">
-                    Visit Website
-                    <span class="food-link-arrow">→</span>
-                </a>
-                <a class="spotlight-link" href="https://www.tripadvisor.com/Restaurant_Review-g30753-d1450955-Reviews-Cobalt_The_Restaurant-Orange_Beach_Alabama.html" target="_blank" style="margin-top:0;">
-                    Reserve / Reviews
-                    <span class="food-link-arrow">→</span>
-                </a>
+        </div>
+
+        <!-- ===== Culinary Spotlight (collapsible) ===== -->
+        <div class="spotlight-container" id="spotlightContainer">
+            <button class="spotlight-toggle" id="spotlightToggle" aria-expanded="false">
+                <div class="spotlight-toggle-left">
+                    <p class="spotlight-label">🍴 Culinary Spotlight (Archived)</p>
+                    <p class="spotlight-name">Cobalt, The Restaurant</p>
+                </div>
+                <svg class="spotlight-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </button>
+            <div class="spotlight-panel" id="spotlightPanel">
+                <div class="spotlight-panel-inner">
+                    <p class="spotlight-tagline">Waterfront Gulf-to-table dining under the Perdido Pass Bridge</p>
+                    <p class="spotlight-rating">★ 4.3/5 on Tripadvisor &nbsp;·&nbsp; #13 of 117 Orange Beach restaurants &nbsp;·&nbsp; 94% recommend on Facebook</p>
+                    <div class="spotlight-body">
+                        <p>Tucked under the Perdido Pass Bridge next to Caribe Resort, Cobalt has built a loyal following on two things: the view and the grouper. Floor-to-ceiling windows and a sprawling patio put nearly every table on the bay, and regulars say it's genuinely one of the best water views on the island — dolphins included, on a good day. If you're coming by boat instead of car, there are slips for both small boats and yachts right out back.</p>
+                        <p>The kitchen leans into contemporary Gulf Coast comfort food: think shrimp and grits, bronzed grouper, crab and shrimp dip, and a gluten-free menu that reviewers consistently call one of the most thorough on the island. Happy hour (daily, 3–5pm) is a certified crowd favorite for appetizers and drink specials on the patio.</p>
+                        <p>The honest caveat: this is a popular, often loud spot, and service reviews are a mixed bag — some nights it's "best meal of the trip," other nights people report long waits and inattentive servers. Go in expecting a wait at peak lunch/dinner, and you'll likely come out a fan.</p>
+                    </div>
+                    <div class="spotlight-must-try">
+                        <p class="spotlight-must-try-label">Must-Try</p>
+                        <p>Bronzed Gulf Grouper · Shrimp &amp; Grits · BBQ Gulf Shrimp · Crab &amp; Shrimp Dip · Creole Cheesecake</p>
+                    </div>
+                    <p class="spotlight-must-try-label" style="margin-top:14px;">📍 ~10 min from Sandy Key 628</p>
+                    <p style="font-size:0.9em; color:#4a6f9e; margin-top:2px;">For a group of 25, call ahead — peak lunch/dinner waits can run long without a reservation.</p>
+                    <div style="display:flex; gap:18px; flex-wrap:wrap; margin-top:14px;">
+                        <a class="spotlight-link" href="https://cobaltrestaurant.net/" target="_blank" style="margin-top:0;">
+                            Visit Website
+                            <span class="food-link-arrow">→</span>
+                        </a>
+                        <a class="spotlight-link" href="https://www.tripadvisor.com/Restaurant_Review-g30753-d1450955-Reviews-Cobalt_The_Restaurant-Orange_Beach_Alabama.html" target="_blank" style="margin-top:0;">
+                            Reserve / Reviews
+                            <span class="food-link-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -491,6 +629,15 @@
 
         setInterval(() => goToSlide(currentSlide + 1), 4000);
 
+        // ===== Culinary Spotlight collapsible toggle =====
+        const spotlightContainer = document.getElementById('spotlightContainer');
+        const spotlightToggle = document.getElementById('spotlightToggle');
+
+        spotlightToggle.addEventListener('click', () => {
+            const isExpanded = spotlightContainer.classList.toggle('expanded');
+            spotlightToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        });
+
         const quotes = [
             { text: "Florida: where the sun never stops shining and the fun never ends.", emoji: "☀️" },
             { text: "Friends who vacation together, stay together.", emoji: "👯" },
@@ -523,6 +670,10 @@
         // Score climbs from 0 -> 100 as days-left shrinks.
         // Tiers mirror the daily-bot logic: 15+ days = Simmering, 4-14 = Building, 0-3 (or trip started) = Full Send.
         // Jokes live in vrei-jokes.json so they can be edited without touching this file.
+        //
+        // MANUAL OVERRIDE: set to a number to pin the score (e.g. for a "breaking news" spike).
+        // Set to null to return to the normal days-based calculation.
+        const VREI_SCORE_OVERRIDE = 22;
 
         let vreiJokes = null;
 
@@ -547,6 +698,7 @@
         }
 
         function getVreiScore(daysLeft) {
+            if (VREI_SCORE_OVERRIDE !== null) return VREI_SCORE_OVERRIDE;
             // Scale: 21 days out (page baseline) -> low score. 0 days -> 100.
             // Clamp so far-out days don't go below a small idle hum, and past trip-start it pins at 100.
             const maxDays = 21; // matches the trip's typical "far out" window
@@ -605,3 +757,4 @@
 
 </body>
 </html>
+
