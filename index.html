@@ -11,13 +11,26 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-color: #4a3a7a;
+            background-image:
+                linear-gradient(135deg, rgba(102,126,234,0.55) 0%, rgba(118,75,162,0.55) 100%),
+                url('./Photo-18-PKC.jpg');
+            background-blend-mode: normal;
+            background-repeat: repeat;
+            background-size: 340px auto;
+            background-attachment: fixed;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             padding: 30px 20px;
+            animation: bgScroll 60s linear infinite;
+        }
+
+        @keyframes bgScroll {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 0 0, 340px 340px; }
         }
 
         .container {
@@ -425,7 +438,12 @@
         }
 
         @media (max-width: 600px) {
-            body { padding: 20px 15px; align-items: flex-start; }
+            body {
+                padding: 20px 15px;
+                align-items: flex-start;
+                background-attachment: scroll;
+                background-size: 220px auto;
+            }
             .card-body { padding: 25px 20px 35px; }
             h1 { font-size: 1.8em; }
             .countdown { grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -437,17 +455,21 @@
             .spotlight-toggle { padding: 16px 18px; }
             .spotlight-panel-inner { padding: 0 18px 22px; }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            body { animation: none; }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
 
-        <!-- ===== Breaking News Ticker ===== -->
+        <!-- ===== Breaking News Ticker (days-left) ===== -->
         <div class="ticker-wrap">
-            <div class="ticker-badge">🚨 VREI Alert</div>
+            <div class="ticker-badge">🏖️ Countdown</div>
             <div class="ticker-track">
-                <div class="ticker-text">BREAKING: VREI elevates Vacation Rick Energy Index following newly surfaced, source-verified photographic evidence — image appears to show mood-lifting equipment of unknown origin, now under independent review by multiple analysts &nbsp;·&nbsp; full story developing &nbsp;·&nbsp;</div>
+                <div class="ticker-text" id="tickerText">BREAKING: Calculating days remaining until Perdido Key takeoff &nbsp;·&nbsp;</div>
             </div>
         </div>
 
@@ -455,8 +477,8 @@
         <div class="spotlight-container" id="spotlightContainer">
             <button class="spotlight-toggle" id="spotlightToggle" aria-expanded="false">
                 <div class="spotlight-toggle-left">
-                    <p class="spotlight-label">🍴 Culinary Spotlight (Archived)</p>
-                    <p class="spotlight-name">Cobalt, The Restaurant</p>
+                    <p class="spotlight-label">🍴 Culinary Spotlight</p>
+                    <p class="spotlight-name">Pedro's Tacos &amp; Tequila Bar</p>
                 </div>
                 <svg class="spotlight-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="6 9 12 15 18 9"></polyline>
@@ -464,26 +486,26 @@
             </button>
             <div class="spotlight-panel" id="spotlightPanel">
                 <div class="spotlight-panel-inner">
-                    <p class="spotlight-tagline">Waterfront Gulf-to-table dining under the Perdido Pass Bridge</p>
-                    <p class="spotlight-rating">★ 4.3/5 on Tripadvisor &nbsp;·&nbsp; #13 of 117 Orange Beach restaurants &nbsp;·&nbsp; 94% recommend on Facebook</p>
+                    <p class="spotlight-tagline">Tex-Mex, margaritas, and a patio made for a group of 25</p>
+                    <p class="spotlight-rating">★ 3.7/5 on Tripadvisor &nbsp;·&nbsp; 94% recommend on Facebook &nbsp;·&nbsp; Est. 2018</p>
                     <div class="spotlight-body">
-                        <p>Tucked under the Perdido Pass Bridge next to Caribe Resort, Cobalt has built a loyal following on two things: the view and the grouper. Floor-to-ceiling windows and a sprawling patio put nearly every table on the bay, and regulars say it's genuinely one of the best water views on the island — dolphins included, on a good day. If you're coming by boat instead of car, there are slips for both small boats and yachts right out back.</p>
-                        <p>The kitchen leans into contemporary Gulf Coast comfort food: think shrimp and grits, bronzed grouper, crab and shrimp dip, and a gluten-free menu that reviewers consistently call one of the most thorough on the island. Happy hour (daily, 3–5pm) is a certified crowd favorite for appetizers and drink specials on the patio.</p>
-                        <p>The honest caveat: this is a popular, often loud spot, and service reviews are a mixed bag — some nights it's "best meal of the trip," other nights people report long waits and inattentive servers. Go in expecting a wait at peak lunch/dinner, and you'll likely come out a fan.</p>
+                        <p>Pedro's sits right on Perdido Key Drive and leans into the laid-back, lively side of Tex-Mex — tableside guacamole, a deep tequila list, and a patio that's built for groups. Reviewers consistently call out the al pastor tacos, the rice (one reviewer begged for the recipe), and a happy hour that locals describe as genuinely extensive, especially on Thursdays.</p>
+                        <p>It's known as a reliable Taco Tuesday spot, and the daily food and drink specials are part of the draw — though the exact nightly lineup shifts, so it's worth a quick call or a peek at their Facebook page before locking in plans for the group.</p>
+                        <p>Like most lively, popular spots, consistency can vary night to night — some visits are five-star, others land more in "kitchen was having an off night" territory. Worth going in with that expectation and an easy attitude.</p>
                     </div>
                     <div class="spotlight-must-try">
                         <p class="spotlight-must-try-label">Must-Try</p>
-                        <p>Bronzed Gulf Grouper · Shrimp &amp; Grits · BBQ Gulf Shrimp · Crab &amp; Shrimp Dip · Creole Cheesecake</p>
+                        <p>Al Pastor Tacos · Tableside Guacamole · Chicken Fajitas · Carne Asada Burrito · Don Julio 1942 Margarita</p>
                     </div>
-                    <p class="spotlight-must-try-label" style="margin-top:14px;">📍 ~10 min from Sandy Key 628</p>
-                    <p style="font-size:0.9em; color:#4a6f9e; margin-top:2px;">For a group of 25, call ahead — peak lunch/dinner waits can run long without a reservation.</p>
+                    <p class="spotlight-must-try-label" style="margin-top:14px;">📍 13584 Perdido Key Dr, Pensacola, FL</p>
+                    <p style="font-size:0.9em; color:#4a6f9e; margin-top:2px;">For a group of 25, call ahead — (850) 492-1701 — and ask what tonight's specials actually are.</p>
                     <div style="display:flex; gap:18px; flex-wrap:wrap; margin-top:14px;">
-                        <a class="spotlight-link" href="https://cobaltrestaurant.net/" target="_blank" style="margin-top:0;">
+                        <a class="spotlight-link" href="https://pedrostacosandtequilaperdidokey.com/" target="_blank" style="margin-top:0;">
                             Visit Website
                             <span class="food-link-arrow">→</span>
                         </a>
-                        <a class="spotlight-link" href="https://www.tripadvisor.com/Restaurant_Review-g30753-d1450955-Reviews-Cobalt_The_Restaurant-Orange_Beach_Alabama.html" target="_blank" style="margin-top:0;">
-                            Reserve / Reviews
+                        <a class="spotlight-link" href="https://www.facebook.com/Pedrosperdidokeyfl/" target="_blank" style="margin-top:0;">
+                            Facebook (specials posts)
                             <span class="food-link-arrow">→</span>
                         </a>
                     </div>
@@ -572,14 +594,6 @@
             </div>
 
             <div class="food-link-container">
-                <p class="food-link-label">🍽️ Plan ahead</p>
-                <a class="food-link" href="https://www.tripadvisor.com/Restaurants-g34551-Perdido_Key_Florida.html" target="_blank">
-                    Best Places to Eat Near Perdido Key
-                    <span class="food-link-arrow">→</span>
-                </a>
-            </div>
-
-            <div class="food-link-container">
                 <p class="food-link-label">⛅ Weather</p>
                 <a class="food-link" href="https://forecast.weather.gov/MapClick.php?CityName=Perdido+Key&state=FL&site=MOB&textField1=30.2927&textField2=-87.5036" target="_blank">
                     Perdido Key 7-Day Forecast
@@ -601,6 +615,22 @@
                     <span id="vreiQuote">Loading Rick wisdom...</span>
                     <span class="vrei-quote-attribution">— Vacation Rick</span>
                 </div>
+            </div>
+
+            <div class="food-link-container">
+                <p class="food-link-label">🍽️ Plan ahead</p>
+                <a class="food-link" href="https://www.tripadvisor.com/Restaurants-g34551-Perdido_Key_Florida.html" target="_blank">
+                    Best Places to Eat Near Perdido Key
+                    <span class="food-link-arrow">→</span>
+                </a>
+            </div>
+
+            <div class="food-link-container">
+                <p class="food-link-label">🍴 Archived Spotlight</p>
+                <a class="food-link" href="https://cobaltrestaurant.net/" target="_blank">
+                    Cobalt, The Restaurant
+                    <span class="food-link-arrow">→</span>
+                </a>
             </div>
 
         </div>
@@ -653,11 +683,34 @@
 
         function updateCountdown() {
             const diff = new Date("July 11, 2026 00:00:00").getTime() - new Date().getTime();
-            document.getElementById("days").textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const daysLeft = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            document.getElementById("days").textContent = Math.max(daysLeft, 0);
             document.getElementById("hours").textContent = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
             document.getElementById("minutes").textContent = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
             document.getElementById("seconds").textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+
+            updateTicker(daysLeft);
+
             return diff;
+        }
+
+        // ===== Breaking News Ticker: days-left headline =====
+        function updateTicker(daysLeft) {
+            const tickerEl = document.getElementById('tickerText');
+            let headline;
+
+            if (daysLeft > 1) {
+                headline = `BREAKING: Just ${daysLeft} days remain until Perdido Key wheels-up — sources confirm anticipation levels rising fast`;
+            } else if (daysLeft === 1) {
+                headline = `BREAKING: ONE day to go. Bags being packed across multiple households at this hour`;
+            } else if (daysLeft === 0) {
+                headline = `BREAKING: TODAY IS THE DAY. Perdido Key departure window now open`;
+            } else {
+                headline = `BREAKING: Trip is officially underway — Perdido Key has the group, and the group has the beach`;
+            }
+
+            tickerEl.textContent = headline + ' \u00A0\u00B7\u00A0 ' + headline + ' \u00A0\u00B7\u00A0 ';
         }
 
         function displayQuote() {
@@ -673,7 +726,7 @@
         //
         // MANUAL OVERRIDE: set to a number to pin the score (e.g. for a "breaking news" spike).
         // Set to null to return to the normal days-based calculation.
-        const VREI_SCORE_OVERRIDE = 22;
+        const VREI_SCORE_OVERRIDE = null;
 
         let vreiJokes = null;
 
@@ -757,4 +810,3 @@
 
 </body>
 </html>
-
