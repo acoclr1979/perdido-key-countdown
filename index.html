@@ -750,7 +750,13 @@
         }
 
         async function submitProposal(dayId, triggerEl) {
-            if (!currentUser) { alert('Enter your name first.'); return; }
+            if (!currentUser) {
+                const n = prompt('What\'s your name?');
+                if (!n || !n.trim()) return;
+                currentUser = n.trim();
+                localStorage.setItem('pkc_user', currentUser);
+                renderNameBar();
+            }
             const card = triggerEl.closest('.day-card');
             const input = card.querySelector('.propose-input');
             const text = input.value.trim();
@@ -794,7 +800,13 @@
         }
 
         async function cobaltRsvp(status) {
-            if (!currentUser) { alert('Enter your name first.'); return; }
+            if (!currentUser) {
+                const n = prompt('What\'s your name?');
+                if (!n || !n.trim()) return;
+                currentUser = n.trim();
+                localStorage.setItem('pkc_user', currentUser);
+                renderNameBar();
+            }
             const id = currentUser.toLowerCase().replace(/\s+/g, '_');
             await setDoc(doc(db, 'cobalt', id), {
                 name: currentUser,
