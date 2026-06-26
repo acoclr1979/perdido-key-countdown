@@ -20,13 +20,14 @@ To deploy: `git add . && git commit -m "..." && git push` — GitHub Pages goes 
 
 All markup, CSS, and JavaScript are inline in `index.html`. The only external data file is `vrei-jokes.json`, fetched at runtime via `fetch('./vrei-jokes.json')` in `loadVreiJokes()`.
 
-**Key JS functions and what drives them:**
+**Layout:** Full-screen photo mosaic (`.mosaic-bg`) fixed behind everything, dark overlay (`.mosaic-overlay`), then centered `.main` content floating on top. No white card — glass-morphism countdown tiles and VREI box over the mosaic.
 
-- `refreshVrei()` — called every second via `setInterval`. Calls `updateCountdown()` (which also calls `updateTicker()`), then `updateVrei()`. The VREI quote only re-rolls on tier change (`lastVreiTier` guard), not every second.
-- `updateTicker(daysLeft)` — swaps the breaking-news headline text based on integer days remaining.
+**Key JS functions:**
+
+- `refreshVrei()` — called every second via `setInterval`. Calls `updateCountdown()`, then `updateVrei()`. The VREI quote only re-rolls on tier change (`lastVreiTier` guard), not every second.
 - `getVreiTier(daysLeft)` / `getVreiScore(daysLeft)` — VREI logic. Tiers: `simmering` (>15 days), `building` (4–15), `fullSend` (0–3 or negative). Score is linear 5–100 over a 21-day window. `VREI_SCORE_OVERRIDE` (currently `null`) pins the score when set to a number.
-- `displayQuote()` — picks one random quote from the inline `quotes` array on page load only (not on the 1s interval).
-- Carousel — dots are generated in JS by counting existing `.carousel-slide` divs; no separate count to maintain.
+
+**Mosaic background:** All 20 photos listed explicitly in `.mosaic-bg` as `<img>` tags in a 5×4 CSS grid (4×5 on mobile). Order in HTML = left-to-right, top-to-bottom grid fill.
 
 ## Important file quirks
 

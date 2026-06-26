@@ -3,365 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perdido Key Countdown</title>
+    <title>Perdido Key — T−2 Weeks</title>
     <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/Photo-00-PKC.jpeg">
-    <meta property="og:title" content="Perdido Key Countdown">
+    <meta property="og:title" content="Perdido Key — T−2 Weeks">
     <meta property="og:description" content="July 11–18, 2026 🏖️">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: #4a3a7a;
-            background-image: linear-gradient(135deg, rgba(102,126,234,0.55) 0%, rgba(118,75,162,0.55) 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            padding: 30px 20px;
+            overflow-x: hidden;
+            color: white;
         }
 
-        .container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
+        /* ===== Mosaic background ===== */
+        .mosaic-bg {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(4, 25vh);
+            z-index: 0;
         }
 
-        /* ===== Breaking News Ticker ===== */
-        .ticker-wrap {
-            margin: 25px 25px 0;
-            background: #b30000;
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(179,0,0,0.35);
-        }
-
-        .ticker-badge {
-            flex-shrink: 0;
-            background: #ffffff;
-            color: #b30000;
-            font-weight: 800;
-            font-size: 0.75em;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            padding: 10px 12px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            white-space: nowrap;
-        }
-
-        .ticker-badge::before {
-            content: "";
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #b30000;
-            animation: ticker-blink 1.2s infinite;
-        }
-
-        @keyframes ticker-blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.2; }
-        }
-
-        .ticker-track {
-            position: relative;
-            overflow: hidden;
-            flex: 1;
-            height: 38px;
-        }
-
-        .ticker-text {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-            color: #fff;
-            font-size: 0.88em;
-            font-weight: 600;
-            padding-left: 100%;
-            animation: ticker-scroll 32s linear infinite;
-        }
-
-        @keyframes ticker-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-200%); }
-        }
-
-        @media (max-width: 600px) {
-            .ticker-wrap { margin: 20px 18px 0; }
-            .ticker-text { font-size: 0.8em; }
-        }
-
-        /* ===== Culinary Spotlight ===== */
-        .spotlight-container {
-            margin: 25px 25px 0;
-            padding: 0;
-            background: linear-gradient(135deg, #eef6ff 0%, #e0eeff 100%);
-            border-radius: 12px;
-            border: 1px solid #c9deff;
-            text-align: left;
-            overflow: hidden;
-        }
-
-        .spotlight-toggle {
-            width: 100%;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 18px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            font-family: inherit;
-            text-align: left;
-        }
-
-        .spotlight-toggle-left {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .spotlight-label {
-            font-size: 0.78em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #2a5fa8;
-            margin: 0;
-        }
-
-        .spotlight-name {
-            font-size: 1.25em;
-            font-weight: 800;
-            color: #1d3f73;
-            margin: 0;
-        }
-
-        .spotlight-chevron {
-            flex-shrink: 0;
-            width: 22px;
-            height: 22px;
-            color: #2a5fa8;
-            transition: transform 0.3s ease;
-        }
-
-        .spotlight-container.expanded .spotlight-chevron {
-            transform: rotate(180deg);
-        }
-
-        .spotlight-panel {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-        }
-
-        .spotlight-container.expanded .spotlight-panel {
-            max-height: 1400px;
-        }
-
-        .spotlight-panel-inner {
-            padding: 0 30px 28px;
-        }
-
-        .spotlight-tagline {
-            text-align: center;
-            font-style: italic;
-            color: #4a6f9e;
-            margin-bottom: 16px;
-            font-size: 0.95em;
-        }
-
-        .spotlight-rating {
-            text-align: center;
-            font-weight: 700;
-            color: #2a5fa8;
-            margin-bottom: 16px;
-            font-size: 0.95em;
-        }
-
-        .spotlight-body {
-            color: #2c3e50;
-            line-height: 1.6;
-            font-size: 0.98em;
-        }
-
-        .spotlight-body p { margin-bottom: 12px; }
-
-        .spotlight-must-try {
-            background: rgba(255,255,255,0.7);
-            border-radius: 10px;
-            padding: 14px 16px;
-            margin-top: 14px;
-        }
-
-        .spotlight-must-try-label {
-            font-weight: 700;
-            color: #2a5fa8;
-            font-size: 0.85em;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-        }
-
-        .spotlight-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #2a5fa8;
-            font-weight: 600;
-            text-decoration: none;
-            margin-top: 14px;
-            font-size: 0.95em;
-        }
-
-        .spotlight-link:hover { color: #1d3f73; }
-
-        .carousel {
-            position: relative;
-            width: calc(100% - 50px);
-            margin: 25px 25px 0;
-            height: 280px;
-            overflow: hidden;
-            border-radius: 12px;
-            flex-shrink: 0;
-        }
-
-        .carousel-slide {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .carousel-slide.active { opacity: 1; }
-
-        .carousel-slide img {
+        .mosaic-bg img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
 
-        .carousel-dots {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 6px;
-            z-index: 10;
+        .mosaic-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 5, 40, 0.72);
+            z-index: 1;
         }
 
-        .carousel-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            transition: background 0.3s;
+        /* ===== Main content ===== */
+        .main {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 50px 30px 60px;
+            max-width: 640px;
+            width: 100%;
         }
 
-        .carousel-dot.active { background: #ffffff; }
-
-        .card-body {
-            padding: 40px 40px 50px;
-            flex: 1;
+        /* ===== T−2 WEEKS hero ===== */
+        .hero-eyebrow {
+            font-size: 0.85em;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 12px;
         }
 
-        h1 { font-size: 2.5em; color: #667eea; margin-bottom: 10px; letter-spacing: 1px; }
-        .subtitle { font-size: 1.1em; color: #666; margin-bottom: 40px; }
+        .hero-t2 {
+            font-size: clamp(5.5rem, 22vw, 13rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -4px;
+            color: #fff;
+            text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+        }
 
+        .hero-weeks {
+            font-size: clamp(1.4rem, 5vw, 2.8rem);
+            font-weight: 200;
+            letter-spacing: clamp(8px, 2vw, 18px);
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+            margin-top: 4px;
+            margin-bottom: 8px;
+        }
+
+        .hero-dates {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 3px;
+            margin-bottom: 52px;
+        }
+
+        /* ===== Countdown ===== */
         .countdown {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            display: flex;
+            gap: 16px;
+            justify-content: center;
             margin-bottom: 40px;
         }
 
         .countdown-item {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 25px;
-            border-radius: 12px;
-            color: white;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.18);
+            padding: 22px 20px 18px;
+            border-radius: 14px;
+            min-width: 88px;
+            flex: 1;
+            max-width: 130px;
         }
 
-        .countdown-number { font-size: 2.5em; font-weight: bold; display: block; margin-bottom: 5px; }
-        .countdown-label { font-size: 0.9em; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
-
-        .quote-container {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 12px;
-            border-left: 4px solid #667eea;
-            margin-top: 30px;
+        .countdown-number {
+            font-size: 2.6em;
+            font-weight: 700;
+            display: block;
+            line-height: 1;
+            margin-bottom: 7px;
         }
 
-        .quote-text { font-size: 1.3em; color: #333; font-style: italic; line-height: 1.6; margin-bottom: 10px; }
-        .quote-emoji { font-size: 2em; margin: 10px 0; }
-
-        .food-link-container {
-            margin-top: 25px;
-            padding: 20px 30px;
-            background: linear-gradient(135deg, #f6f8ff 0%, #eef2ff 100%);
-            border-radius: 12px;
-            border: 1px solid #dde3ff;
-        }
-
-        .food-link-label {
-            font-size: 0.85em;
+        .countdown-label {
+            font-size: 0.7em;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #999;
-            margin-bottom: 8px;
+            opacity: 0.5;
         }
 
-        .food-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #667eea;
-            font-size: 1.05em;
-            font-weight: 600;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .food-link:hover { color: #764ba2; }
-
-        .food-link-arrow {
-            font-size: 1.1em;
-        }
-
-        /* ===== VREI: Vacation Rick Energy Index ===== */
+        /* ===== VREI ===== */
         .vrei-container {
-            margin-top: 25px;
-            padding: 25px 30px 30px;
-            background: linear-gradient(135deg, #fff7eb 0%, #ffe9d6 100%);
-            border-radius: 12px;
-            border: 1px solid #ffd9b3;
+            max-width: 420px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 14px;
+            padding: 20px 24px 22px;
             text-align: left;
         }
 
         .vrei-label {
-            font-size: 0.85em;
+            font-size: 0.72em;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #b3672e;
-            margin-bottom: 10px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 12px;
             text-align: center;
         }
 
@@ -374,15 +155,15 @@
 
         .vrei-bar-track {
             flex: 1;
-            height: 16px;
-            background: rgba(0,0,0,0.08);
-            border-radius: 8px;
+            height: 10px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 5px;
             overflow: hidden;
         }
 
         .vrei-bar-fill {
             height: 100%;
-            border-radius: 8px;
+            border-radius: 5px;
             background: linear-gradient(90deg, #ffb347 0%, #ff5e62 100%);
             transition: width 1s ease-in-out;
             width: 0%;
@@ -390,341 +171,137 @@
 
         .vrei-score {
             font-weight: 800;
-            font-size: 1.3em;
-            color: #d9480f;
-            min-width: 48px;
+            font-size: 1.15em;
+            color: #ffb347;
+            min-width: 40px;
             text-align: right;
         }
 
         .vrei-tier {
             text-align: center;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            font-size: 0.95em;
-            color: #d9480f;
-            margin-bottom: 16px;
+            font-size: 0.75em;
+            color: #ffb347;
+            margin-bottom: 12px;
         }
 
         .vrei-quote-box {
-            background: rgba(255,255,255,0.6);
-            border-radius: 10px;
-            padding: 16px 18px;
+            background: rgba(0,0,0,0.25);
+            border-radius: 8px;
+            padding: 12px 14px;
             font-style: italic;
-            color: #5a3a1e;
-            line-height: 1.5;
-            font-size: 1.02em;
+            color: rgba(255,255,255,0.82);
+            font-size: 0.9em;
+            line-height: 1.55;
         }
 
         .vrei-quote-attribution {
             display: block;
-            margin-top: 8px;
+            margin-top: 6px;
             font-style: normal;
             font-weight: 700;
-            font-size: 0.85em;
-            letter-spacing: 0.5px;
-            color: #b3672e;
+            font-size: 0.8em;
+            letter-spacing: 1px;
+            color: #ffb347;
         }
 
         @media (max-width: 600px) {
-            body {
-                padding: 20px 15px;
-                align-items: flex-start;
+            .mosaic-bg {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(5, 20vh);
             }
-            .card-body { padding: 25px 20px 35px; }
-            h1 { font-size: 1.8em; }
-            .countdown { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .countdown-item { padding: 15px; }
-            .countdown-number { font-size: 1.8em; }
-            .quote-text { font-size: 1em; }
-            .carousel { height: 220px; width: calc(100% - 36px); margin: 20px 18px 0; }
-            .vrei-container { padding: 20px 18px 24px; }
-            .spotlight-toggle { padding: 16px 18px; }
-            .spotlight-panel-inner { padding: 0 18px 22px; }
+            .main { padding: 40px 20px 50px; }
+            .hero-t2 { letter-spacing: -2px; }
+            .countdown { gap: 10px; }
+            .countdown-item { padding: 16px 10px 14px; min-width: 0; }
+            .countdown-number { font-size: 1.9em; }
+            .vrei-container { padding: 16px 18px 18px; }
         }
-
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="mosaic-bg">
+        <img src="./Photo-00-PKC.jpeg" alt="">
+        <img src="./IMG_1144.jpeg" alt="">
+        <img src="./Photo-1-PKC.jpeg" alt="">
+        <img src="./Photo-2-PKC.jpeg" alt="">
+        <img src="./Photo-3-PKC.jpeg" alt="">
+        <img src="./Photo-4-PKC.jpeg" alt="">
+        <img src="./Photo-5-PKC.jpeg" alt="">
+        <img src="./Photo-6-PKC.jpeg" alt="">
+        <img src="./Photo-7-PKC.JPEG" alt="">
+        <img src="./Photo-8-PKC.jpeg" alt="">
+        <img src="./Photo-9-PKC.jpeg" alt="">
+        <img src="./Photo-10-PKC.jpeg" alt="">
+        <img src="./Photo-11-PKC.jpeg" alt="">
+        <img src="./Photo-12-PKC.jpeg" alt="">
+        <img src="./Photo-13-PKC.jpeg" alt="">
+        <img src="./Photo-14-PKC.jpeg" alt="">
+        <img src="./Photo-15-PKC.jpeg" alt="">
+        <img src="./Photo-17-PKC.jpeg" alt="">
+        <img src="./Photo-18-PKC.jpg" alt="">
+        <img src="./Photo-19-PKC.jpeg" alt="">
+    </div>
+    <div class="mosaic-overlay"></div>
 
-        <!-- ===== Breaking News Ticker (days-left) ===== -->
-        <div class="ticker-wrap">
-            <div class="ticker-badge">🏖️ Countdown</div>
-            <div class="ticker-track">
-                <div class="ticker-text" id="tickerText">BREAKING: Calculating days remaining until Perdido Key takeoff &nbsp;·&nbsp;</div>
+    <div class="main">
+
+        <p class="hero-eyebrow">🏖️ Perdido Key</p>
+        <div class="hero-t2">T&minus;2</div>
+        <div class="hero-weeks">Weeks</div>
+        <p class="hero-dates">July 11 &ndash; 18, 2026</p>
+
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">0</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">0</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">0</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">0</span>
+                <span class="countdown-label">Seconds</span>
             </div>
         </div>
 
-        <!-- ===== Culinary Spotlight (collapsible) ===== -->
-        <div class="spotlight-container" id="spotlightContainer">
-            <button class="spotlight-toggle" id="spotlightToggle" aria-expanded="false">
-                <div class="spotlight-toggle-left">
-                    <p class="spotlight-label">🍴 Culinary Spotlight</p>
-                    <p class="spotlight-name">Pedro's Tacos &amp; Tequila Bar</p>
+        <div class="vrei-container">
+            <p class="vrei-label">📈 Vacation Rick Energy Index</p>
+            <div class="vrei-meter-row">
+                <div class="vrei-bar-track">
+                    <div class="vrei-bar-fill" id="vreiBarFill"></div>
                 </div>
-                <svg class="spotlight-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            </button>
-            <div class="spotlight-panel" id="spotlightPanel">
-                <div class="spotlight-panel-inner">
-                    <p class="spotlight-tagline">Tex-Mex, margaritas, and a patio made for a group of 25</p>
-                    <p class="spotlight-rating">★ 3.7/5 on Tripadvisor &nbsp;·&nbsp; 94% recommend on Facebook &nbsp;·&nbsp; Est. 2018</p>
-                    <div class="spotlight-body">
-                        <p>Pedro's sits right on Perdido Key Drive and leans into the laid-back, lively side of Tex-Mex — tableside guacamole, a deep tequila list, and a patio that's built for groups. Reviewers consistently call out the al pastor tacos, the rice (one reviewer begged for the recipe), and a happy hour that locals describe as genuinely extensive, especially on Thursdays.</p>
-                        <p>It's known as a reliable Taco Tuesday spot, and the daily food and drink specials are part of the draw — though the exact nightly lineup shifts, so it's worth a quick call or a peek at their Facebook page before locking in plans for the group.</p>
-                        <p>Like most lively, popular spots, consistency can vary night to night — some visits are five-star, others land more in "kitchen was having an off night" territory. Worth going in with that expectation and an easy attitude.</p>
-                    </div>
-                    <div class="spotlight-must-try">
-                        <p class="spotlight-must-try-label">Must-Try</p>
-                        <p>Al Pastor Tacos · Tableside Guacamole · Chicken Fajitas · Carne Asada Burrito · Don Julio 1942 Margarita</p>
-                    </div>
-                    <p class="spotlight-must-try-label" style="margin-top:14px;">📍 13584 Perdido Key Dr, Pensacola, FL</p>
-                    <p style="font-size:0.9em; color:#4a6f9e; margin-top:2px;">For a group of 25, call ahead — (850) 492-1701 — and ask what tonight's specials actually are.</p>
-                    <div style="display:flex; gap:18px; flex-wrap:wrap; margin-top:14px;">
-                        <a class="spotlight-link" href="https://pedrostacosandtequilaperdidokey.com/" target="_blank" style="margin-top:0;">
-                            Visit Website
-                            <span class="food-link-arrow">→</span>
-                        </a>
-                        <a class="spotlight-link" href="https://www.facebook.com/Pedrosperdidokeyfl/" target="_blank" style="margin-top:0;">
-                            Facebook (specials posts)
-                            <span class="food-link-arrow">→</span>
-                        </a>
-                    </div>
-                </div>
+                <div class="vrei-score" id="vreiScore">0</div>
             </div>
-        </div>
-
-        <div class="carousel" id="carousel">
-            <div class="carousel-slide">
-                <img src="./Photo-00-PKC.jpeg" alt="Group photo">
+            <div class="vrei-tier" id="vreiTier">BUILDING</div>
+            <div class="vrei-quote-box">
+                <span id="vreiQuote">Loading Rick wisdom...</span>
+                <span class="vrei-quote-attribution">— Vacation Rick</span>
             </div>
-            <div class="carousel-slide">
-                <img src="./IMG_1144.jpeg" alt="Group photo 1">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-1-PKC.jpeg" alt="Group photo 2">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-2-PKC.jpeg" alt="Group photo 3">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-3-PKC.jpeg" alt="Group photo 4">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-4-PKC.jpeg" alt="Group photo 5">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-5-PKC.jpeg" alt="Group photo 6">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-6-PKC.jpeg" alt="Group photo 7">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-7-PKC.JPEG" alt="Group photo 8">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-8-PKC.jpeg" alt="Group photo 9">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-9-PKC.jpeg" alt="Group photo 10">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-10-PKC.jpeg" alt="Group photo 11">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-11-PKC.jpeg" alt="Group photo 12">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-12-PKC.jpeg" alt="Group photo 13">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-13-PKC.jpeg" alt="Group photo 14">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-14-PKC.jpeg" alt="Group photo 15">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-15-PKC.jpeg" alt="Group photo 16">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-17-PKC.jpeg" alt="Group photo 17">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-18-PKC.jpg" alt="Group photo 18">
-            </div>
-            <div class="carousel-slide">
-                <img src="./Photo-19-PKC.jpeg" alt="Group photo 19">
-            </div>
-            <div class="carousel-dots" id="dots"></div>
-        </div>
-
-        <div class="card-body">
-            <h1>🏖️ Perdido Key</h1>
-            <p class="subtitle">July 11 – 18, 2026</p>
-
-            <div class="countdown">
-                <div class="countdown-item">
-                    <span class="countdown-number" id="days">0</span>
-                    <span class="countdown-label">Days</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="hours">0</span>
-                    <span class="countdown-label">Hours</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="minutes">0</span>
-                    <span class="countdown-label">Minutes</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="seconds">0</span>
-                    <span class="countdown-label">Seconds</span>
-                </div>
-            </div>
-
-            <div class="quote-container">
-                <div class="quote-emoji" id="emoji">🎉</div>
-                <p class="quote-text" id="quote">Loading the good vibes...</p>
-            </div>
-
-            <div class="food-link-container">
-                <p class="food-link-label">⛅ Weather</p>
-                <a class="food-link" href="https://forecast.weather.gov/MapClick.php?CityName=Perdido+Key&state=FL&site=MOB&textField1=30.2927&textField2=-87.5036" target="_blank">
-                    Perdido Key 7-Day Forecast
-                    <span class="food-link-arrow">→</span>
-                </a>
-            </div>
-
-            <!-- ===== VREI: Vacation Rick Energy Index ===== -->
-            <div class="vrei-container">
-                <p class="vrei-label">📈 Vacation Rick Energy Index</p>
-                <div class="vrei-meter-row">
-                    <div class="vrei-bar-track">
-                        <div class="vrei-bar-fill" id="vreiBarFill"></div>
-                    </div>
-                    <div class="vrei-score" id="vreiScore">0</div>
-                </div>
-                <div class="vrei-tier" id="vreiTier">SIMMERING</div>
-                <div class="vrei-quote-box">
-                    <span id="vreiQuote">Loading Rick wisdom...</span>
-                    <span class="vrei-quote-attribution">— Vacation Rick</span>
-                </div>
-            </div>
-
-            <div class="food-link-container">
-                <p class="food-link-label">🍽️ Plan ahead</p>
-                <a class="food-link" href="https://www.tripadvisor.com/Restaurants-g34551-Perdido_Key_Florida.html" target="_blank">
-                    Best Places to Eat Near Perdido Key
-                    <span class="food-link-arrow">→</span>
-                </a>
-            </div>
-
-            <div class="food-link-container">
-                <p class="food-link-label">🍴 Archived Spotlight</p>
-                <a class="food-link" href="https://cobaltrestaurant.net/" target="_blank">
-                    Cobalt, The Restaurant
-                    <span class="food-link-arrow">→</span>
-                </a>
-            </div>
-
         </div>
 
     </div>
 
     <script>
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dotsContainer = document.getElementById('dots');
-        const _now = new Date();
-        const startSlide = Math.floor((_now - new Date(_now.getFullYear(), 0, 0)) / 86400000) % slides.length;
-        slides[startSlide].classList.add('active');
-        slides.forEach((_, i) => {
-            const dot = document.createElement('div');
-            dot.className = 'carousel-dot' + (i === startSlide ? ' active' : '');
-            dotsContainer.appendChild(dot);
-        });
-
-        let currentSlide = startSlide;
-
-        function goToSlide(n) {
-            const dots = document.querySelectorAll('.carousel-dot');
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
-            currentSlide = (n + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-        }
-
-        setInterval(() => goToSlide(currentSlide + 1), 4000);
-
-        // ===== Culinary Spotlight collapsible toggle =====
-        const spotlightContainer = document.getElementById('spotlightContainer');
-        const spotlightToggle = document.getElementById('spotlightToggle');
-
-        spotlightToggle.addEventListener('click', () => {
-            const isExpanded = spotlightContainer.classList.toggle('expanded');
-            spotlightToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-        });
-
-        const quotes = [
-            { text: "Florida: where the sun never stops shining and the fun never ends.", emoji: "☀️" },
-            { text: "Friends who vacation together, stay together.", emoji: "👯" },
-            { text: "Life is better in flip-flops and with friends by your side.", emoji: "🩴" },
-            { text: "Salty air, sandy hair, and friends everywhere.", emoji: "🌊" },
-            { text: "A vacation without friends is just a trip. With friends? It's a memory.", emoji: "📸" },
-            { text: "Florida: bringing people together one beach day at a time.", emoji: "🏝️" },
-            { text: "Good times + crazy friends = amazing memories.", emoji: "✨" },
-            { text: "The beach is calling and we must go... together.", emoji: "🐚" },
-            { text: "Vitamin Sea and friendship—the best remedy.", emoji: "💙" },
-            { text: "Making a splash with your favorite people.", emoji: "💦" }
-        ];
-
         function updateCountdown() {
             const diff = new Date("July 11, 2026 00:00:00").getTime() - new Date().getTime();
             const daysLeft = Math.floor(diff / (1000 * 60 * 60 * 24));
-
             document.getElementById("days").textContent = Math.max(daysLeft, 0);
             document.getElementById("hours").textContent = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
             document.getElementById("minutes").textContent = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
             document.getElementById("seconds").textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
-
-            updateTicker(daysLeft);
-
             return diff;
         }
 
-        // ===== Breaking News Ticker: days-left headline =====
-        function updateTicker(daysLeft) {
-            const tickerEl = document.getElementById('tickerText');
-            let headline;
-
-            if (daysLeft > 1) {
-                headline = `BREAKING: Just ${daysLeft} days remain until Perdido Key wheels-up — sources confirm anticipation levels rising fast`;
-            } else if (daysLeft === 1) {
-                headline = `BREAKING: ONE day to go. Bags being packed across multiple households at this hour`;
-            } else if (daysLeft === 0) {
-                headline = `BREAKING: TODAY IS THE DAY. Perdido Key departure window now open`;
-            } else {
-                headline = `BREAKING: Trip is officially underway — Perdido Key has the group, and the group has the beach`;
-            }
-
-            tickerEl.textContent = headline + ' \u00A0\u00B7\u00A0 ' + headline + ' \u00A0\u00B7\u00A0 ';
-        }
-
-        function displayQuote() {
-            const q = quotes[Math.floor(Math.random() * quotes.length)];
-            document.getElementById("quote").textContent = q.text;
-            document.getElementById("emoji").textContent = q.emoji;
-        }
-
-        // ===== VREI: Vacation Rick Energy Index =====
-        // Score climbs from 0 -> 100 as days-left shrinks.
-        // Tiers mirror the daily-bot logic: 15+ days = Simmering, 4-14 = Building, 0-3 (or trip started) = Full Send.
-        // Jokes live in vrei-jokes.json so they can be edited without touching this file.
-        //
-        // MANUAL OVERRIDE: set to a number to pin the score (e.g. for a "breaking news" spike).
-        // Set to null to return to the normal days-based calculation.
+        // MANUAL OVERRIDE: set to a number (0–100) to pin the VREI score. null = normal.
         const VREI_SCORE_OVERRIDE = null;
 
         let vreiJokes = null;
@@ -734,7 +311,6 @@
                 const res = await fetch('./vrei-jokes.json');
                 vreiJokes = await res.json();
             } catch (err) {
-                console.error('Could not load vrei-jokes.json, falling back to placeholder.', err);
                 vreiJokes = {
                     simmering: ["Vacation Rick is currently loading his wisdom. Please stand by."],
                     building: ["Vacation Rick is currently loading his wisdom. Please stand by."],
@@ -746,42 +322,31 @@
         function getVreiTier(daysLeft) {
             if (daysLeft > 15) return 'simmering';
             if (daysLeft >= 4) return 'building';
-            return 'fullSend'; // covers 0-3 days and negative (trip started)
+            return 'fullSend';
         }
 
         function getVreiScore(daysLeft) {
             if (VREI_SCORE_OVERRIDE !== null) return VREI_SCORE_OVERRIDE;
-            // Scale: 21 days out (page baseline) -> low score. 0 days -> 100.
-            // Clamp so far-out days don't go below a small idle hum, and past trip-start it pins at 100.
-            const maxDays = 21; // matches the trip's typical "far out" window
+            const maxDays = 21;
             const clamped = Math.max(0, Math.min(maxDays, daysLeft));
-            const score = Math.round(100 - (clamped / maxDays) * 100);
-            return Math.max(5, score); // never show a dead-zero, Rick is never truly at 0
+            return Math.max(5, Math.round(100 - (clamped / maxDays) * 100));
         }
 
         function updateVrei(diffMs) {
-            const daysLeft = diffMs / (1000 * 60 * 60 * 24); // fractional, for smoother climb
+            const daysLeft = diffMs / (1000 * 60 * 60 * 24);
             const tier = getVreiTier(daysLeft);
             const score = getVreiScore(daysLeft);
-
-            const tierLabels = {
-                simmering: 'SIMMERING',
-                building: 'BUILDING',
-                fullSend: 'FULL SEND'
-            };
-
+            const tierLabels = { simmering: 'SIMMERING', building: 'BUILDING', fullSend: 'FULL SEND' };
             document.getElementById('vreiBarFill').style.width = score + '%';
             document.getElementById('vreiScore').textContent = score;
             document.getElementById('vreiTier').textContent = tierLabels[tier];
-
             return tier;
         }
 
         function displayVreiQuote(tier) {
-            if (!vreiJokes) return; // jokes haven't loaded yet, skip this tick
+            if (!vreiJokes) return;
             const bank = vreiJokes[tier];
-            const quote = bank[Math.floor(Math.random() * bank.length)];
-            document.getElementById('vreiQuote').textContent = quote;
+            document.getElementById('vreiQuote').textContent = bank[Math.floor(Math.random() * bank.length)];
         }
 
         let lastVreiTier = null;
@@ -789,21 +354,18 @@
         function refreshVrei() {
             const diff = updateCountdown();
             const tier = updateVrei(diff);
-            // Only re-roll the quote when the tier changes, or on first load,
-            // so it doesn't shuffle every second while the bar just ticks.
             if (tier !== lastVreiTier) {
                 displayVreiQuote(tier);
                 lastVreiTier = tier;
             }
         }
 
-        async function startVrei() {
+        async function start() {
             await loadVreiJokes();
             refreshVrei();
         }
 
-        startVrei();
-        displayQuote();
+        start();
         setInterval(refreshVrei, 1000);
     </script>
 
