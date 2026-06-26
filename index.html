@@ -321,6 +321,21 @@
 
         .empty-proposals { font-size: 0.78em; color: rgba(255,255,255,0.22); padding: 4px 0 6px; }
 
+        .delete-btn {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.2);
+            cursor: pointer;
+            font-size: 0.85em;
+            padding: 2px 4px;
+            border-radius: 4px;
+            line-height: 1;
+            transition: color 0.15s, background 0.15s;
+            flex-shrink: 0;
+            align-self: center;
+        }
+        .delete-btn:hover { color: #f09090; background: rgba(200,70,70,0.15); }
+
         /* Cobalt */
         .cobalt-actions { display: flex; gap: 12px; margin-bottom: 20px; }
 
@@ -489,6 +504,54 @@
                 <!-- populated by JS -->
             </div>
 
+            <!-- Attendees -->
+            <div class="panel" style="display:none">
+                <h2>🏖️ Who's Coming</h2>
+                <p class="panel-sub">July 11–18, 2026 · Perdido Key, FL</p>
+                <div style="display:flex; gap:24px; margin-bottom:18px;">
+                    <div style="text-align:center;">
+                        <div style="font-size:2em; font-weight:800; color:#7eeaa0;">20</div>
+                        <div style="font-size:0.75em; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:.05em;">Confirmed</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:2em; font-weight:800; color:#f0c070;">5</div>
+                        <div style="font-size:0.75em; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:.05em;">Pending</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:2em; font-weight:800; color:white;">25</div>
+                        <div style="font-size:0.75em; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:.05em;">Total Possible</div>
+                    </div>
+                </div>
+                <div style="display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px;">
+                    <span class="cobalt-pill in">Adam</span>
+                    <span class="cobalt-pill in">Christy</span>
+                    <span class="cobalt-pill in">Aidan</span>
+                    <span class="cobalt-pill in">Audrey</span>
+                    <span class="cobalt-pill in">Ella O</span>
+                    <span class="cobalt-pill in">Rick</span>
+                    <span class="cobalt-pill in">Theresa</span>
+                    <span class="cobalt-pill in">Casey</span>
+                    <span class="cobalt-pill in">Allisa</span>
+                    <span class="cobalt-pill in">Aiden</span>
+                    <span class="cobalt-pill in">Greg</span>
+                    <span class="cobalt-pill in">Shana</span>
+                    <span class="cobalt-pill in">Jack</span>
+                    <span class="cobalt-pill in">Ella C</span>
+                    <span class="cobalt-pill in">Carey</span>
+                    <span class="cobalt-pill in">Jennifer</span>
+                    <span class="cobalt-pill in">Grayson</span>
+                    <span class="cobalt-pill in">Amalia</span>
+                    <span class="cobalt-pill in">Becky</span>
+                    <span class="cobalt-pill in">Bill</span>
+                </div>
+                <div style="display:flex; flex-wrap:wrap; gap:7px;">
+                    <span class="cobalt-pill out">Jennifer's kids (×3)</span>
+                    <span class="cobalt-pill out">Grace</span>
+                    <span class="cobalt-pill out">Brady</span>
+                </div>
+                <p style="font-size:0.75em; color:rgba(255,255,255,0.28); margin-top:10px;">🟡 = open to confirm</p>
+            </div>
+
             <!-- Daily Programming -->
             <div class="panel">
                 <h2>📅 Trip Programming</h2>
@@ -608,7 +671,7 @@
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
         import {
             getFirestore, collection, addDoc, onSnapshot,
-            doc, updateDoc, setDoc, query, orderBy,
+            doc, updateDoc, setDoc, deleteDoc, query, orderBy,
             increment, serverTimestamp
         } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
@@ -642,6 +705,7 @@
 
         // ===== Name bar =====
         let currentUser = localStorage.getItem('pkc_user') || '';
+        let latestProposals = [];
 
         function renderNameBar() {
             const bar = document.getElementById('nameBar');
@@ -671,6 +735,7 @@
                     currentUser = val;
                     localStorage.setItem('pkc_user', val);
                     renderNameBar();
+                    if (latestProposals.length) renderSchedule(latestProposals);
                 }
                 btn.addEventListener('click', saveName);
                 input.addEventListener('keydown', e => { if (e.key === 'Enter') saveName(); });
@@ -690,6 +755,7 @@
                     ? `<p class="empty-proposals">No proposals yet — be first!</p>`
                     : `<ul class="proposals-list">${items.map(p => {
                         const myVote = localStorage.getItem('vote_' + p.id);
+                        const isOwn = currentUser && p.author === currentUser;
                         return `<li class="proposal-item">
                             <div style="flex:1">
                                 <div class="proposal-text">${esc(p.text)}</div>
@@ -700,6 +766,7 @@
                                     data-id="${p.id}" data-dir="up">👍 <span>${p.thumbsUp || 0}</span></button>
                                 <button class="vote-btn ${myVote === 'down' ? 'voted-down' : ''}"
                                     data-id="${p.id}" data-dir="down">👎 <span>${p.thumbsDown || 0}</span></button>
+                                ${isOwn ? `<button class="delete-btn" data-id="${p.id}" title="Delete your proposal">✕</button>` : ''}
                             </div>
                         </li>`;
                     }).join('')}</ul>`;
@@ -735,6 +802,14 @@
                     }
                     await updateDoc(doc(db, 'proposals', id), updates);
                     localStorage.setItem('vote_' + id, dir);
+                });
+            });
+
+            // Delete proposal (own entries only)
+            grid.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    if (!confirm('Remove your proposal?')) return;
+                    await deleteDoc(doc(db, 'proposals', btn.dataset.id));
                 });
             });
 
@@ -819,7 +894,8 @@
         function listenProposals() {
             const q = query(collection(db, 'proposals'), orderBy('createdAt'));
             onSnapshot(q, snapshot => {
-                renderSchedule(snapshot.docs.map(d => ({ id: d.id, ...d.data() })));
+                latestProposals = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+                renderSchedule(latestProposals);
             }, err => {
                 document.getElementById('scheduleGrid').innerHTML =
                     `<p style="color:#f09090;font-size:0.85em;">Firestore error: ${err.code} — ${err.message}</p>`;
