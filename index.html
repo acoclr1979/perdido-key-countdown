@@ -660,7 +660,7 @@
             <!-- Who's Bringing What -->
             <div class="panel">
                 <h2>🎒 Who's Bringing What</h2>
-                <p class="panel-sub">Gear we need for the week — tap to claim what you've got</p>
+                <p class="panel-sub">Claim what you're bringing — or suggest something the group needs</p>
                 <div id="gearList">
                     <p style="color:rgba(255,255,255,0.3);font-size:0.85em;">Connecting…</p>
                 </div>
@@ -1008,22 +1008,35 @@
 
         // ===== Gear Sign-Up =====
         const GEAR_ITEMS = [
-            { id: 'cornhole', label: 'Cornhole Boards', emoji: '🎯', max: 1 },
-            { id: 'speaker',  label: 'Speaker',         emoji: '🔊', max: 1 },
-            { id: 'tent',     label: 'Tents',           emoji: '⛺', max: 2 },
+            { id: 'cornhole', label: 'Cornhole Boards', emoji: '🎯', max: 1, seed: true },
+            { id: 'speaker',  label: 'Speaker',         emoji: '🔊', max: 1, seed: true },
+            { id: 'tent',     label: 'Tents',           emoji: '⛺', max: 2, seed: true },
         ];
 
+        let communityGearItems = [];
+        let latestClaims = [];
+
+        function allGearItems() {
+            return [...GEAR_ITEMS, ...communityGearItems];
+        }
+
         function renderGear(claims) {
+            const items = allGearItems();
             const byItem = {};
-            GEAR_ITEMS.forEach(g => byItem[g.id] = []);
+            items.forEach(g => byItem[g.id] = []);
             claims.forEach(c => { if (byItem[c.item] !== undefined) byItem[c.item].push(c); });
 
-            document.getElementById('gearList').innerHTML = GEAR_ITEMS.map(g => {
+            const itemsHtml = items.map(g => {
                 const claimers = byItem[g.id];
                 const myKey = currentUser ? g.id + '_' + currentUser.toLowerCase().replace(/\s+/g, '_') : null;
                 const iClaimed = myKey && claimers.some(c => c.id === myKey);
-                const atCapacity = claimers.length >= g.max;
-                const countLabel = `${claimers.length} of ${g.max} claimed`;
+                const atCapacity = g.seed && claimers.length >= g.max;
+                const countLabel = g.seed
+                    ? `${claimers.length} of ${g.max} claimed`
+                    : claimers.length
+                        ? claimers.map(c => esc(c.name)).join(', ') + ' bringing it'
+                        : 'Not yet claimed';
+                const isMyItem = !g.seed && currentUser && g.suggestedBy === currentUser;
 
                 const pillsHtml = claimers.length
                     ? claimers.map(c => `<span class="cobalt-pill in">✓ ${esc(c.name)}</span>`).join('')
@@ -1042,17 +1055,60 @@
                     <div class="gear-row-top">
                         <span class="gear-emoji">${g.emoji}</span>
                         <div class="gear-info">
-                            <span class="gear-label">${g.label}</span>
+                            <span class="gear-label">${esc(g.label)}${isMyItem ? ` <span style="font-size:0.72em;color:rgba(255,255,255,0.3);font-weight:400;">· your suggestion</span>` : ''}</span>
                             <span class="gear-count">${countLabel}</span>
                         </div>
-                        <div class="gear-btn-wrap">${btnHtml}</div>
+                        <div style="display:flex;align-items:center;gap:6px;">
+                            ${btnHtml}
+                            ${isMyItem && !claimers.length ? `<button class="delete-btn" data-gearitem="${g.id}" title="Remove your suggestion">✕</button>` : ''}
+                        </div>
                     </div>
                     <div class="gear-claimers">${pillsHtml}</div>
                 </div>`;
             }).join('');
 
+            document.getElementById('gearList').innerHTML = `
+                ${itemsHtml}
+                <div class="add-proposal" style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.07);">
+                    <input id="gearSuggestInput" placeholder="Suggest something to bring…" maxlength="50" autocomplete="off">
+                    <button id="gearSuggestBtn">+ Suggest</button>
+                </div>`;
+
             document.querySelectorAll('.gear-btn[data-action]').forEach(btn => {
                 btn.addEventListener('click', () => gearAction(btn.dataset.item, btn.dataset.action));
+            });
+
+            document.querySelectorAll('.delete-btn[data-gearitem]').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    if (!confirm('Remove your suggestion?')) return;
+                    await deleteDoc(doc(db, 'gearItems', btn.dataset.gearitem));
+                });
+            });
+
+            const suggestInput = document.getElementById('gearSuggestInput');
+            const suggestBtn = document.getElementById('gearSuggestBtn');
+            suggestBtn.addEventListener('click', () => submitGearSuggestion());
+            suggestInput.addEventListener('keydown', e => { if (e.key === 'Enter') submitGearSuggestion(); });
+        }
+
+        async function submitGearSuggestion() {
+            if (!currentUser) {
+                const n = prompt('What\'s your name?');
+                if (!n || !n.trim()) return;
+                currentUser = n.trim();
+                localStorage.setItem('pkc_user', currentUser);
+                renderNameBar();
+            }
+            const input = document.getElementById('gearSuggestInput');
+            const text = input.value.trim();
+            if (!text) return;
+            input.value = '';
+            await addDoc(collection(db, 'gearItems'), {
+                label: text,
+                emoji: '🎒',
+                suggestedBy: currentUser,
+                max: 1,
+                createdAt: serverTimestamp()
             });
         }
 
@@ -1074,8 +1130,16 @@
 
         function listenGear() {
             onSnapshot(collection(db, 'gear'), snapshot => {
-                const claims = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-                renderGear(claims);
+                latestClaims = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+                renderGear(latestClaims);
+            });
+        }
+
+        function listenGearItems() {
+            const q = query(collection(db, 'gearItems'), orderBy('createdAt'));
+            onSnapshot(q, snapshot => {
+                communityGearItems = snapshot.docs.map(d => ({ id: d.id, seed: false, ...d.data() }));
+                renderGear(latestClaims);
             });
         }
 
@@ -1095,6 +1159,7 @@
         renderNameBar();
         listenProposals();
         initCobalt();
+        listenGearItems();
         listenGear();
     </script>
 
