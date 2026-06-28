@@ -408,6 +408,31 @@
             margin: 4px 0;
         }
 
+        /* Helpful links */
+        .helpful-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 12px 14px;
+            transition: background 0.15s;
+        }
+        .helpful-link:hover { background: rgba(255,255,255,0.12); }
+        .hl-title { font-size: 0.9em; font-weight: 600; }
+        .hl-sub { font-size: 0.74em; color: rgba(255,255,255,0.38); margin-top: 1px; }
+        .hl-arrow { margin-left: auto; color: rgba(255,255,255,0.3); font-size: 0.8em; flex-shrink: 0; }
+        .hl-group-label {
+            font-size: 0.68em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            padding: 4px 2px 0;
+        }
+
         /* Gear sign-up */
         .gear-row {
             padding: 14px 0;
@@ -621,29 +646,47 @@
 
             <div class="section-divider"></div>
 
-            <!-- Helpful Links -->
-            <div class="panel">
-                <h2>🔗 Helpful Links</h2>
-                <div style="display:flex; flex-direction:column; gap:10px; margin-top:4px;">
-                    <a href="https://www.ikesbeachservice.com" target="_blank" style="display:flex; align-items:center; gap:10px; color:white; text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:12px 14px; transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.12)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">
-                        <span style="font-size:1.3em;">🏖️</span>
-                        <div>
-                            <div style="font-size:0.9em; font-weight:600;">Ike's Beach Service</div>
-                            <div style="font-size:0.74em; color:rgba(255,255,255,0.38);">ikesbeachservice.com · chairs, umbrellas & more</div>
-                        </div>
-                        <span style="margin-left:auto; color:rgba(255,255,255,0.3); font-size:0.8em;">↗</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="section-divider"></div>
-
             <!-- Who's Bringing What -->
             <div class="panel">
                 <h2>🎒 Who's Bringing What</h2>
                 <p class="panel-sub">Gear we need for the week — tap to claim what you've got</p>
                 <div id="gearList">
                     <p style="color:rgba(255,255,255,0.3);font-size:0.85em;">Connecting…</p>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Helpful Links -->
+            <div class="panel">
+                <h2>🔗 Helpful Links</h2>
+                <div style="display:flex; flex-direction:column; gap:10px; margin-top:4px;">
+                    <a href="https://www.ikesbeachservice.com" target="_blank" class="helpful-link">
+                        <span style="font-size:1.3em;">🏖️</span>
+                        <div><div class="hl-title">Ike's Beach Service</div><div class="hl-sub">Chair &amp; umbrella rentals on the beach</div></div>
+                        <span class="hl-arrow">↗</span>
+                    </a>
+                    <a href="https://www.florabama.com" target="_blank" class="helpful-link">
+                        <span style="font-size:1.3em;">🎵</span>
+                        <div><div class="hl-title">Flora-Bama</div><div class="hl-sub">Legendary bar, live music &amp; Sunday church service on the state line</div></div>
+                        <span class="hl-arrow">↗</span>
+                    </a>
+                    <div class="hl-group-label">⛳ Golf</div>
+                    <a href="https://www.kivadunes.com" target="_blank" class="helpful-link">
+                        <span style="font-size:1.3em;">🏌️</span>
+                        <div><div class="hl-title">Kiva Dunes</div><div class="hl-sub">Gulf Shores · Alabama's only beachfront course · Jerry Pate design</div></div>
+                        <span class="hl-arrow">↗</span>
+                    </a>
+                    <a href="https://www.perdidobaygolf.com" target="_blank" class="helpful-link">
+                        <span style="font-size:1.3em;">🏌️</span>
+                        <div><div class="hl-title">Perdido Bay Golf Club</div><div class="hl-sub">Pensacola · former PGA Tour host, right on Perdido Key</div></div>
+                        <span class="hl-arrow">↗</span>
+                    </a>
+                    <a href="https://craftfarms.com" target="_blank" class="helpful-link">
+                        <span style="font-size:1.3em;">🏌️</span>
+                        <div><div class="hl-title">Craft Farms</div><div class="hl-sub">Gulf Shores · Arnold Palmer Signature Design · Cotton Creek &amp; Cypress Bend</div></div>
+                        <span class="hl-arrow">↗</span>
+                    </a>
                 </div>
             </div>
 
