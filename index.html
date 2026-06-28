@@ -408,6 +408,40 @@
             margin: 4px 0;
         }
 
+        /* Gear sign-up */
+        .gear-row {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .gear-row:last-child { border-bottom: none; }
+        .gear-row-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .gear-emoji { font-size: 1.5em; flex-shrink: 0; width: 30px; text-align: center; }
+        .gear-info { flex: 1; }
+        .gear-label { font-size: 0.95em; font-weight: 600; display: block; }
+        .gear-count { font-size: 0.72em; color: rgba(255,255,255,0.38); letter-spacing: 0.5px; }
+        .gear-claimers { display: flex; flex-wrap: wrap; gap: 7px; padding-left: 2px; }
+        .gear-btn {
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 0.82em;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+            white-space: nowrap;
+            border: 1px solid;
+        }
+        .gear-btn-claim { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: white; }
+        .gear-btn-claim:hover { background: rgba(255,255,255,0.2); }
+        .gear-btn-claimed { background: rgba(80,200,110,0.2); border-color: rgba(80,200,110,0.35); color: #7eeaa0; }
+        .gear-btn-claimed:hover { background: rgba(200,70,70,0.15); border-color: rgba(200,70,70,0.3); color: #f09090; }
+        .gear-btn-full { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.35); cursor: default; }
+
         @media (max-width: 600px) {
             .mosaic-bg { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 20vh); }
             .hero-wrap { padding: 40px 20px 70px; }
@@ -583,6 +617,17 @@
                 <a class="btn-primary" href="https://www.signupgenius.com/go/30E0449ADA923A7FB6-64637872-perdido#/" target="_blank" id="potluckLink">
                     Sign Up → What You're Bringing
                 </a>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Who's Bringing What -->
+            <div class="panel">
+                <h2>🎒 Who's Bringing What</h2>
+                <p class="panel-sub">Gear we need for the week — tap to claim what you've got</p>
+                <div id="gearList">
+                    <p style="color:rgba(255,255,255,0.3);font-size:0.85em;">Connecting…</p>
+                </div>
             </div>
 
         </div>
@@ -890,6 +935,79 @@
             });
         }
 
+        // ===== Gear Sign-Up =====
+        const GEAR_ITEMS = [
+            { id: 'cornhole', label: 'Cornhole Boards', emoji: '🎯', max: 1 },
+            { id: 'speaker',  label: 'Speaker',         emoji: '🔊', max: 1 },
+            { id: 'tent',     label: 'Tents',           emoji: '⛺', max: 2 },
+        ];
+
+        function renderGear(claims) {
+            const byItem = {};
+            GEAR_ITEMS.forEach(g => byItem[g.id] = []);
+            claims.forEach(c => { if (byItem[c.item] !== undefined) byItem[c.item].push(c); });
+
+            document.getElementById('gearList').innerHTML = GEAR_ITEMS.map(g => {
+                const claimers = byItem[g.id];
+                const myKey = currentUser ? g.id + '_' + currentUser.toLowerCase().replace(/\s+/g, '_') : null;
+                const iClaimed = myKey && claimers.some(c => c.id === myKey);
+                const atCapacity = claimers.length >= g.max;
+                const countLabel = `${claimers.length} of ${g.max} claimed`;
+
+                const pillsHtml = claimers.length
+                    ? claimers.map(c => `<span class="cobalt-pill in">✓ ${esc(c.name)}</span>`).join('')
+                    : `<span style="color:rgba(255,255,255,0.22);font-size:0.82em;">Not yet claimed</span>`;
+
+                let btnHtml;
+                if (iClaimed) {
+                    btnHtml = `<button class="gear-btn gear-btn-claimed" data-item="${g.id}" data-action="unclaim">Got it ✓</button>`;
+                } else if (atCapacity) {
+                    btnHtml = `<button class="gear-btn gear-btn-full" disabled>Covered ✓</button>`;
+                } else {
+                    btnHtml = `<button class="gear-btn gear-btn-claim" data-item="${g.id}" data-action="claim">I've got it!</button>`;
+                }
+
+                return `<div class="gear-row">
+                    <div class="gear-row-top">
+                        <span class="gear-emoji">${g.emoji}</span>
+                        <div class="gear-info">
+                            <span class="gear-label">${g.label}</span>
+                            <span class="gear-count">${countLabel}</span>
+                        </div>
+                        <div class="gear-btn-wrap">${btnHtml}</div>
+                    </div>
+                    <div class="gear-claimers">${pillsHtml}</div>
+                </div>`;
+            }).join('');
+
+            document.querySelectorAll('.gear-btn[data-action]').forEach(btn => {
+                btn.addEventListener('click', () => gearAction(btn.dataset.item, btn.dataset.action));
+            });
+        }
+
+        async function gearAction(itemId, action) {
+            if (!currentUser) {
+                const n = prompt('What\'s your name?');
+                if (!n || !n.trim()) return;
+                currentUser = n.trim();
+                localStorage.setItem('pkc_user', currentUser);
+                renderNameBar();
+            }
+            const docId = itemId + '_' + currentUser.toLowerCase().replace(/\s+/g, '_');
+            if (action === 'claim') {
+                await setDoc(doc(db, 'gear', docId), { item: itemId, name: currentUser, updatedAt: serverTimestamp() });
+            } else {
+                await deleteDoc(doc(db, 'gear', docId));
+            }
+        }
+
+        function listenGear() {
+            onSnapshot(collection(db, 'gear'), snapshot => {
+                const claims = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+                renderGear(claims);
+            });
+        }
+
         // ===== Proposals real-time listener =====
         function listenProposals() {
             const q = query(collection(db, 'proposals'), orderBy('createdAt'));
@@ -906,6 +1024,7 @@
         renderNameBar();
         listenProposals();
         initCobalt();
+        listenGear();
     </script>
 
 </body>
