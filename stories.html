@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tales from the Shore — Perdido Key</title>
+    <meta property="og:title" content="Tales from the Shore — Perdido Key">
+    <meta property="og:description" content="The stories that don't make the photo album.">
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/Photo-00-PKC.jpeg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        .mosaic-bg {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(4, 25vh);
+            z-index: 0;
+        }
+        .mosaic-bg .mc {
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 200%;
+        }
+        .mosaic-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 4, 35, 0.82);
+            z-index: 1;
+        }
+
+        .page-wrap {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Hero */
+        .hero {
+            width: 100%;
+            max-width: 680px;
+            padding: 72px 30px 52px;
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.35);
+            text-decoration: none;
+            font-size: 0.75em;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 36px;
+            transition: color 0.15s;
+        }
+        .back-link:hover { color: rgba(255,255,255,0.65); }
+
+        .hero-eyebrow {
+            font-size: 0.8em;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 14px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 11vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.02;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+        }
+
+        .hero-sub {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.65;
+        }
+
+        /* Content */
+        .content {
+            width: 100%;
+            max-width: 740px;
+            padding: 0 24px 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+        }
+
+        /* Panel */
+        .panel {
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.11);
+            border-radius: 18px;
+            padding: 28px 30px;
+        }
+        .panel h2 { font-size: 1.15em; font-weight: 700; margin-bottom: 4px; }
+        .panel-sub { font-size: 0.82em; color: rgba(255,255,255,0.36); margin-bottom: 22px; }
+
+        /* Featured / seed story */
+        .featured-story {
+            background: rgba(255,180,70,0.06);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,180,70,0.22);
+            border-radius: 18px;
+            padding: 28px 30px;
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,180,70,0.14);
+            border: 1px solid rgba(255,180,70,0.28);
+            border-radius: 20px;
+            padding: 4px 13px;
+            font-size: 0.68em;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #ffb347;
+            margin-bottom: 18px;
+        }
+
+        .story-title {
+            font-size: 1.4em;
+            font-weight: 800;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .story-meta {
+            font-size: 0.74em;
+            color: rgba(255,255,255,0.32);
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        .story-meta strong { color: #ffb347; font-weight: 600; }
+
+        .story-body {
+            font-size: 0.93em;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.83);
+        }
+        .story-body p { margin-bottom: 15px; }
+        .story-body p:last-child { margin-bottom: 0; }
+        .story-body em { color: rgba(255,255,255,0.96); font-style: italic; }
+
+        /* Community stories */
+        .community-story {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 20px 22px;
+            margin-bottom: 14px;
+        }
+        .community-story:last-child { margin-bottom: 0; }
+        .cs-title { font-size: 1.02em; font-weight: 700; margin-bottom: 4px; }
+        .cs-meta { font-size: 0.72em; color: rgba(255,255,255,0.3); letter-spacing: 1px; margin-bottom: 12px; }
+        .cs-body { font-size: 0.88em; line-height: 1.68; color: rgba(255,255,255,0.78); white-space: pre-wrap; }
+        .cs-photo { margin-top: 14px; }
+        .cs-photo img { width: 100%; height: auto; border-radius: 10px; display: block; max-height: 340px; object-fit: cover; }
+
+        .empty-state {
+            text-align: center;
+            padding: 22px 0 8px;
+            color: rgba(255,255,255,0.22);
+            font-size: 0.85em;
+            font-style: italic;
+        }
+
+        /* Submit form */
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .form-group { margin-bottom: 16px; }
+        .form-label {
+            display: block;
+            font-size: 0.7em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.32);
+            margin-bottom: 7px;
+        }
+        .form-label-note { color: rgba(255,255,255,0.2); font-weight: 400; text-transform: none; letter-spacing: 0; }
+        .form-input, .form-textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 9px;
+            padding: 10px 13px;
+            color: white;
+            font-family: inherit;
+            font-size: 0.9em;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+        .form-input:focus, .form-textarea:focus { border-color: rgba(255,255,255,0.34); }
+        .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.2); }
+        .form-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-family: inherit;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.15s;
+            margin-top: 4px;
+        }
+        .btn-submit:hover { opacity: 0.85; }
+        .btn-submit:disabled { opacity: 0.4; cursor: default; }
+
+        .submit-note {
+            font-size: 0.74em;
+            color: rgba(255,255,255,0.28);
+            text-align: center;
+            margin-top: 10px;
+            min-height: 18px;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            margin: 2px 0;
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 56px 20px 40px; }
+            .content { padding: 0 16px 80px; }
+            .featured-story, .panel { padding: 22px 20px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mosaic-bg">
+        <div class="mc" style="background-image:url('./Photo-00-PKC.jpeg'); background-position:center 72%; background-size:240%;"></div>
+        <div class="mc" style="background-image:url('./IMG_1144.jpeg');      background-position:center center; background-size:cover;"></div>
+        <div class="mc" style="background-image:url('./Photo-1-PKC.jpeg');   background-position:center 35%; background-size:250%;"></div>
+        <div class="mc" style="background-image:url('./Photo-2-PKC.jpeg');   background-position:center 65%; background-size:210%;"></div>
+        <div class="mc" style="background-image:url('./Photo-3-PKC.jpeg');   background-position:80% 50%; background-size:175%;"></div>
+        <div class="mc" style="background-image:url('./Photo-4-PKC.jpeg');   background-position:center 40%; background-size:260%;"></div>
+        <div class="mc" style="background-image:url('./Photo-5-PKC.jpeg');   background-position:center 32%; background-size:190%;"></div>
+        <div class="mc" style="background-image:url('./Photo-6-PKC.jpeg');   background-position:center 70%; background-size:230%;"></div>
+        <div class="mc" style="background-image:url('./Photo-7-PKC.JPEG');   background-position:center center; background-size:cover;"></div>
+        <div class="mc" style="background-image:url('./Photo-8-PKC.jpeg');   background-position:center 48%; background-size:200%;"></div>
+        <div class="mc" style="background-image:url('./Photo-9-PKC.jpeg');   background-position:center 42%; background-size:170%;"></div>
+        <div class="mc" style="background-image:url('./Photo-10-PKC.jpeg');  background-position:48% 38%; background-size:130%;"></div>
+        <div class="mc" style="background-image:url('./Photo-11-PKC.jpeg');  background-position:center 44%; background-size:210%;"></div>
+        <div class="mc" style="background-image:url('./Photo-12-PKC.jpeg');  background-position:center 55%; background-size:170%;"></div>
+        <div class="mc" style="background-image:url('./Photo-13-PKC.jpeg');  background-position:center 50%; background-size:210%;"></div>
+        <div class="mc" style="background-image:url('./Photo-14-PKC.jpeg');  background-position:center 8%; background-size:120%;"></div>
+        <div class="mc" style="background-image:url('./Photo-15-PKC.jpeg');  background-position:center 55%; background-size:200%;"></div>
+        <div class="mc" style="background-image:url('./Photo-17-PKC.jpeg');  background-position:center 50%; background-size:180%;"></div>
+        <div class="mc" style="background-image:url('./Photo-18-PKC.jpg');   background-position:center 45%; background-size:135%;"></div>
+        <div class="mc" style="background-image:url('./Photo-19-PKC.jpeg');  background-position:center 42%; background-size:240%;"></div>
+    </div>
+    <div class="mosaic-overlay"></div>
+
+    <div class="page-wrap">
+
+        <div class="hero">
+            <a href="./index.html" class="back-link">← Back to Countdown</a>
+            <p class="hero-eyebrow">🏖️ Perdido Key</p>
+            <h1 class="hero-title">Tales from<br>the Shore</h1>
+            <p class="hero-sub">The stories that don't make the photo album.<br>Add yours below.</p>
+        </div>
+
+        <div class="content">
+
+            <!-- Seed story -->
+            <div class="featured-story">
+                <div class="featured-badge">⭐ Legend</div>
+                <div class="story-title">The Great Beach Ball Incident</div>
+                <div class="story-meta">Told by <strong>Christy &amp; Adam</strong> &nbsp;·&nbsp; <strong>~2021</strong></div>
+                <div class="story-body">
+                    <p>It started with a simple idea. Christy arrived at Perdido Key with what can only be described as a weather balloon — a six-foot inflatable beach ball, still in its shrink wrap, impossibly optimistic about the future.</p>
+                    <p>Packing it had been its own odyssey. The box consumed half the car. Someone's knees were against it the entire drive down.</p>
+                    <p>Then came the inflation. What followed was nearly an hour of rotating tag-team lung labor — adults taking shifts, faces cycling through colors not found in nature, at least one near-medical event involving dizziness and hyperventilation. A pump materialized at some point. It helped less than anyone hoped. The ball grew. Slowly. Stubbornly. Like it was doing us a favor.</p>
+                    <p>But finally — <em>finally</em> — it was done. Six feet of pure vinyl ambition. The kind of beach presence that makes strangers lower their sunglasses.</p>
+                    <p>We walked it to the water's edge. The whole family gathered. Someone said something that felt cinematic in the moment. We released it.</p>
+                    <p>It was airborne in two seconds. Gone in four.</p>
+                    <p>The Gulf wind took it east at what witnesses conservatively estimated as 100 miles per hour. We watched it clear the beach. Clear the dunes. Clear the tree line. It did not slow. It did not waver. It did not look back.</p>
+                    <p>No one chased it. There was nothing to chase.</p>
+                    <p>To this day its whereabouts are unknown. It may be in Georgia. It may be in the Atlantic. <em>It may still be moving.</em></p>
+                    <p>The ball was never recovered. The hyperventilation was.</p>
+                </div>
+
+                <!-- The ball, looming -->
+                <div style="margin-top:24px; border-radius:12px; overflow:hidden; height:320px; position:relative;">
+                    <img src="./beachball.jpeg" alt="The Great Beach Ball"
+                        style="width:140%; height:140%; object-fit:cover; object-position:55% 72%;
+                               position:absolute; top:-20%; left:-20%;
+                               transform: perspective(600px) rotateX(4deg) scale(1.05);
+                               filter: saturate(1.15);">
+                </div>
+                <p style="font-size:0.7em; color:rgba(255,180,70,0.5); text-align:center; margin-top:10px; letter-spacing:1.5px; text-transform:uppercase;">Actual size. We are not exaggerating.</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Community stories -->
+            <div class="panel">
+                <h2>📖 More Shore Tales</h2>
+                <p class="panel-sub">Stories submitted by the crew</p>
+                <div id="storiesList">
+                    <p style="color:rgba(255,255,255,0.3);font-size:0.85em;">Connecting…</p>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Submit form -->
+            <div class="panel">
+                <h2>✍️ Add Your Story</h2>
+                <p class="panel-sub">Got a tale from a past trip? Put it on record.</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input class="form-input" id="sName" placeholder="e.g. Rick" maxlength="40" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Year It Happened</label>
+                        <input class="form-input" id="sYear" placeholder="e.g. 2019" maxlength="4" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Story Title</label>
+                    <input class="form-input" id="sTitle" placeholder="Give it a name" maxlength="80" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">The Story</label>
+                    <textarea class="form-textarea" id="sBody" placeholder="Tell it like it happened…" maxlength="3000"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Photo Link <span class="form-label-note">(optional — paste a shared Google Photos or iCloud link)</span></label>
+                    <input class="form-input" id="sPhoto" placeholder="https://…" autocomplete="off" type="url">
+                </div>
+
+                <button class="btn-submit" id="submitStoryBtn">Post Your Story →</button>
+                <p class="submit-note" id="submitNote"></p>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+        import {
+            getFirestore, collection, addDoc, onSnapshot,
+            query, orderBy, serverTimestamp
+        } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+        const app = initializeApp({
+            apiKey: "AIzaSyBG7y9CXKe7f3aMFGFvOOPS47G-rmDQsnk",
+            authDomain: "perdido-key-2026.firebaseapp.com",
+            projectId: "perdido-key-2026",
+            storageBucket: "perdido-key-2026.firebasestorage.app",
+            messagingSenderId: "363728185503",
+            appId: "1:363728185503:web:4d54bc49557b16c549daaa"
+        });
+
+        const db = getFirestore(app);
+
+        function esc(str) {
+            return String(str)
+                .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+                .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        function renderStories(stories) {
+            const el = document.getElementById('storiesList');
+            if (stories.length === 0) {
+                el.innerHTML = '<div class="empty-state">No stories yet — yours could be first.</div>';
+                return;
+            }
+            el.innerHTML = stories.map(s => `
+                <div class="community-story">
+                    <div class="cs-title">${esc(s.title)}</div>
+                    <div class="cs-meta">By ${esc(s.name)}${s.year ? ' &nbsp;·&nbsp; ' + esc(s.year) : ''}</div>
+                    <div class="cs-body">${esc(s.body)}</div>
+                    ${s.photoUrl ? `<div class="cs-photo"><img src="${esc(s.photoUrl)}" alt="Story photo" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        const q = query(collection(db, 'stories'), orderBy('createdAt', 'desc'));
+        onSnapshot(q, snapshot => {
+            renderStories(snapshot.docs.map(d => ({ id: d.id, ...d.data() })));
+        }, () => {
+            document.getElementById('storiesList').innerHTML =
+                '<div class="empty-state">Couldn\'t load stories right now.</div>';
+        });
+
+        document.getElementById('submitStoryBtn').addEventListener('click', async () => {
+            const name  = document.getElementById('sName').value.trim();
+            const year  = document.getElementById('sYear').value.trim();
+            const title = document.getElementById('sTitle').value.trim();
+            const body  = document.getElementById('sBody').value.trim();
+            const photo = document.getElementById('sPhoto').value.trim();
+            const note  = document.getElementById('submitNote');
+            const btn   = document.getElementById('submitStoryBtn');
+
+            if (!name || !title || !body) {
+                note.style.color = '#f09090';
+                note.textContent = 'Name, title, and story are all required.';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Posting…';
+            note.textContent = '';
+
+            try {
+                await addDoc(collection(db, 'stories'), {
+                    name, year, title, body,
+                    photoUrl: photo || null,
+                    createdAt: serverTimestamp()
+                });
+                ['sName','sYear','sTitle','sBody','sPhoto'].forEach(id => {
+                    document.getElementById(id).value = '';
+                });
+                note.style.color = '#7eeaa0';
+                note.textContent = 'Story posted — legend status confirmed.';
+            } catch {
+                note.style.color = '#f09090';
+                note.textContent = 'Something went wrong — try again.';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Post Your Story →';
+            }
+        });
+    </script>
+
+</body>
+</html>
