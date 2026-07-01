@@ -379,28 +379,6 @@
         .cobalt-pill.in { background: rgba(80,200,110,0.15); border: 1px solid rgba(80,200,110,0.28); color: #7eeaa0; }
         .cobalt-pill.out { background: rgba(200,70,70,0.15); border: 1px solid rgba(200,70,70,0.28); color: #f09090; }
 
-        /* Potluck */
-        .btn-primary {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            padding: 15px 32px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1em;
-            transition: opacity 0.15s;
-            margin-top: 4px;
-        }
-        .btn-primary:hover { opacity: 0.85; }
-
-        .placeholder-note {
-            margin-top: 14px;
-            font-size: 0.8em;
-            color: rgba(255,255,255,0.3);
-            font-style: italic;
-        }
-
         /* Divider */
         .section-divider {
             height: 1px;
@@ -563,54 +541,6 @@
                 <!-- populated by JS -->
             </div>
 
-            <!-- Attendees -->
-            <div class="panel" style="display:none">
-                <h2>🏖️ Who's Coming</h2>
-                <p class="panel-sub">July 11–18, 2026 · Perdido Key, FL</p>
-                <div style="display:flex; gap:24px; margin-bottom:18px;">
-                    <div style="text-align:center;">
-                        <div style="font-size:2em; font-weight:800; color:#7eeaa0;">20</div>
-                        <div style="font-size:0.75em; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:.05em;">Confirmed</div>
-                    </div>
-                    <div style="text-align:center;">
-                        <div style="font-size:2em; font-weight:800; color:#f0c070;">5</div>
-                        <div style="font-size:0.75em; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:.05em;">Pending</div>
-                    </div>
-                    <div style="text-align:center;">
-                        <div style="font-size:2em; font-weight:800; color:white;">25</div>
-                        <div style="font-size:0.75em; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:.05em;">Total Possible</div>
-                    </div>
-                </div>
-                <div style="display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px;">
-                    <span class="cobalt-pill in">Adam</span>
-                    <span class="cobalt-pill in">Christy</span>
-                    <span class="cobalt-pill in">Aidan</span>
-                    <span class="cobalt-pill in">Audrey</span>
-                    <span class="cobalt-pill in">Ella O</span>
-                    <span class="cobalt-pill in">Rick</span>
-                    <span class="cobalt-pill in">Theresa</span>
-                    <span class="cobalt-pill in">Casey</span>
-                    <span class="cobalt-pill in">Allisa</span>
-                    <span class="cobalt-pill in">Aiden</span>
-                    <span class="cobalt-pill in">Greg</span>
-                    <span class="cobalt-pill in">Shana</span>
-                    <span class="cobalt-pill in">Jack</span>
-                    <span class="cobalt-pill in">Ella C</span>
-                    <span class="cobalt-pill in">Carey</span>
-                    <span class="cobalt-pill in">Jennifer</span>
-                    <span class="cobalt-pill in">Grayson</span>
-                    <span class="cobalt-pill in">Amalia</span>
-                    <span class="cobalt-pill in">Becky</span>
-                    <span class="cobalt-pill in">Bill</span>
-                </div>
-                <div style="display:flex; flex-wrap:wrap; gap:7px;">
-                    <span class="cobalt-pill out">Jennifer's kids (×3)</span>
-                    <span class="cobalt-pill out">Grace</span>
-                    <span class="cobalt-pill out">Brady</span>
-                </div>
-                <p style="font-size:0.75em; color:rgba(255,255,255,0.28); margin-top:10px;">🟡 = open to confirm</p>
-            </div>
-
             <!-- Side Quest -->
             <a href="./stories.html" style="display:flex; align-items:center; gap:14px; text-decoration:none; color:white; background:rgba(255,180,70,0.07); border:1px solid rgba(255,180,70,0.2); border-radius:14px; padding:16px 20px; transition:background 0.15s;" onmouseover="this.style.background='rgba(255,180,70,0.14)'" onmouseout="this.style.background='rgba(255,180,70,0.07)'">
                 <span style="font-size:1.6em; flex-shrink:0;">📜</span>
@@ -662,28 +592,28 @@
             <div class="panel">
                 <h2>🔗 Helpful Links</h2>
                 <div style="display:flex; flex-direction:column; gap:10px; margin-top:4px;">
-                    <a href="https://www.ikesbeachservice.com" target="_blank" class="helpful-link">
+                    <a href="https://www.ikesbeachservice.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
                         <span style="font-size:1.3em;">🏖️</span>
                         <div><div class="hl-title">Ike's Beach Service</div><div class="hl-sub">Chair &amp; umbrella rentals on the beach</div></div>
                         <span class="hl-arrow">↗</span>
                     </a>
-                    <a href="https://www.florabama.com" target="_blank" class="helpful-link">
+                    <a href="https://www.florabama.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
                         <span style="font-size:1.3em;">🎵</span>
                         <div><div class="hl-title">Flora-Bama</div><div class="hl-sub">Legendary bar, live music &amp; Sunday church service on the state line</div></div>
                         <span class="hl-arrow">↗</span>
                     </a>
                     <div class="hl-group-label">⛳ Golf</div>
-                    <a href="https://www.kivadunes.com" target="_blank" class="helpful-link">
+                    <a href="https://www.kivadunes.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
                         <span style="font-size:1.3em;">🏌️</span>
                         <div><div class="hl-title">Kiva Dunes</div><div class="hl-sub">Gulf Shores · Alabama's only beachfront course · Jerry Pate design</div></div>
                         <span class="hl-arrow">↗</span>
                     </a>
-                    <a href="https://www.perdidobaygolf.com" target="_blank" class="helpful-link">
+                    <a href="https://www.perdidobaygolf.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
                         <span style="font-size:1.3em;">🏌️</span>
                         <div><div class="hl-title">Perdido Bay Golf Club</div><div class="hl-sub">Pensacola · former PGA Tour host, right on Perdido Key</div></div>
                         <span class="hl-arrow">↗</span>
                     </a>
-                    <a href="https://craftfarms.com" target="_blank" class="helpful-link">
+                    <a href="https://craftfarms.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
                         <span style="font-size:1.3em;">🏌️</span>
                         <div><div class="hl-title">Craft Farms</div><div class="hl-sub">Gulf Shores · Arnold Palmer Signature Design · Cotton Creek &amp; Cypress Bend</div></div>
                         <span class="hl-arrow">↗</span>
@@ -769,7 +699,15 @@
         }
 
         start();
-        setInterval(refreshVrei, 1000);
+        let vreiInterval = setInterval(refreshVrei, 1000);
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(vreiInterval);
+            } else {
+                refreshVrei();
+                vreiInterval = setInterval(refreshVrei, 1000);
+            }
+        });
     </script>
 
     <!-- Firebase: schedule voting + Cobalt RSVP -->
@@ -1141,7 +1079,7 @@
                 renderSchedule(latestProposals);
             }, err => {
                 document.getElementById('scheduleGrid').innerHTML =
-                    `<p style="color:#f09090;font-size:0.85em;">Firestore error: ${err.code} — ${err.message}</p>`;
+                    `<p style="color:#f09090;font-size:0.85em;">Could not load schedule — check your connection.</p>`;
             });
         }
 
