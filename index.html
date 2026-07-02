@@ -102,6 +102,67 @@
             margin-bottom: 52px;
         }
 
+        .match-banner {
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center 18%;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            margin-bottom: 36px;
+        }
+
+        .match-banner-overlay {
+            background: linear-gradient(180deg, rgba(0,20,60,0.55) 0%, rgba(0,20,60,0.75) 55%, rgba(0,20,60,0.9) 100%);
+            padding: 22px 20px 20px;
+            text-align: center;
+        }
+
+        .match-eyebrow {
+            font-size: 0.8em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ffb347;
+            margin-bottom: 6px;
+        }
+
+        .match-teams {
+            font-size: clamp(1.4rem, 5vw, 2rem);
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+            margin-bottom: 4px;
+        }
+
+        .match-meta {
+            font-size: 0.8em;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .match-countdown {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .match-countdown-item {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px 8px 8px;
+            border-radius: 10px;
+            min-width: 58px;
+            flex: 1;
+            max-width: 80px;
+        }
+
+        .match-countdown-number { font-size: 1.4em; font-weight: 700; display: block; line-height: 1; margin-bottom: 3px; }
+        .match-countdown-label { font-size: 0.6em; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.6; }
+
         .countdown {
             display: flex;
             gap: 16px;
@@ -491,6 +552,32 @@
         <!-- ===== HERO ===== -->
         <div class="hero-wrap">
             <div class="main">
+                <div class="match-banner" style="background-image:url('./usa-wins-banner.jpeg');">
+                    <div class="match-banner-overlay">
+                        <p class="match-eyebrow">🇺🇸 USA Wins! &mdash; Next Match</p>
+                        <p class="match-teams">USA vs Belgium</p>
+                        <p class="match-meta">Round of 16 &middot; Lumen Field, Seattle</p>
+                        <div class="match-countdown">
+                            <div class="match-countdown-item">
+                                <span class="match-countdown-number" id="matchDays">0</span>
+                                <span class="match-countdown-label">Days</span>
+                            </div>
+                            <div class="match-countdown-item">
+                                <span class="match-countdown-number" id="matchHours">0</span>
+                                <span class="match-countdown-label">Hrs</span>
+                            </div>
+                            <div class="match-countdown-item">
+                                <span class="match-countdown-number" id="matchMinutes">0</span>
+                                <span class="match-countdown-label">Min</span>
+                            </div>
+                            <div class="match-countdown-item">
+                                <span class="match-countdown-number" id="matchSeconds">0</span>
+                                <span class="match-countdown-label">Sec</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <p class="hero-eyebrow">🏖️ Perdido Key</p>
                 <div class="hero-t2">T&minus;2</div>
                 <div class="hero-weeks">Weeks</div>
@@ -676,6 +763,16 @@
             return diff;
         }
 
+        // USA vs Belgium, Round of 16, Mon July 6 2026, 5:00 PM PT (Lumen Field, Seattle)
+        function updateMatchCountdown() {
+            const diff = Math.max(0, new Date("2026-07-06T17:00:00-07:00").getTime() - new Date().getTime());
+            const daysLeft = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("matchDays").textContent = daysLeft;
+            document.getElementById("matchHours").textContent = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+            document.getElementById("matchMinutes").textContent = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
+            document.getElementById("matchSeconds").textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+        }
+
         const VREI_SCORE_OVERRIDE = null;
         let vreiJokes = null;
 
@@ -726,6 +823,7 @@
 
         function refreshVrei() {
             const diff = updateCountdown();
+            updateMatchCountdown();
             const tier = updateVrei(diff);
             if (tier !== lastVreiTier) {
                 displayVreiQuote(tier);
