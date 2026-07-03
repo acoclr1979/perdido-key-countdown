@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perdido Key — T−2 Weeks</title>
-    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/Photo-00-PKC.jpeg">
-    <meta property="og:title" content="Perdido Key — T−2 Weeks">
+    <title>Perdido Key — T−1 Week</title>
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/Photo-20-PKC.JPG">
+    <meta property="og:title" content="Perdido Key — 1 Week Out">
     <meta property="og:description" content="July 11–18, 2026 🏖️">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -18,11 +18,67 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             overflow-x: hidden;
             color: white;
+            background: #0a0528;
+        }
+
+        /* ===== Hero photo (new prominent hero) ===== */
+        .hero-photo-wrap {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* Sky runs roughly top 30% of this photo, horizon below that — headline sits in the sky */
+            background-image: url('./Photo-20-PKC.JPG');
+            background-repeat: no-repeat;
+            background-position: center 12%;
+            background-size: cover;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-photo-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                rgba(0,0,0,0.45) 0%,
+                rgba(0,0,0,0.15) 22%,
+                rgba(0,0,0,0.02) 55%,
+                rgba(10,5,40,0.75) 100%);
+        }
+
+        .hero-photo-headline {
+            position: relative;
+            z-index: 2;
+            margin-top: clamp(36px, 9vh, 110px);
+            padding: 0 24px;
+            text-align: center;
+            font-size: clamp(3rem, 11vw, 7.5rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 0.98;
+            background: linear-gradient(90deg,
+                #b22234 0%,
+                #b22234 28%,
+                #ffffff 42%,
+                #ffffff 58%,
+                #3c3b6e 72%,
+                #3c3b6e 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            filter: drop-shadow(0 6px 26px rgba(0,0,0,0.55));
+        }
+
+        /* ===== Content background wrap — mosaic starts below the hero photo ===== */
+        .content-bg-wrap {
+            position: relative;
+            width: 100%;
         }
 
         /* ===== Mosaic background ===== */
         .mosaic-bg {
-            position: fixed;
+            position: absolute;
             inset: 0;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -37,7 +93,7 @@
         }
 
         .mosaic-overlay {
-            position: fixed;
+            position: absolute;
             inset: 0;
             background: rgba(10, 5, 40, 0.72);
             z-index: 1;
@@ -109,7 +165,6 @@
             background-size: cover;
             background-position: center 18%;
             box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-            margin-bottom: 36px;
         }
 
         .match-banner-overlay {
@@ -507,6 +562,7 @@
         .gear-btn-full { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.35); cursor: default; }
 
         @media (max-width: 600px) {
+            .hero-photo-headline { margin-top: 30px; letter-spacing: -1px; }
             .mosaic-bg { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 20vh); }
             .hero-wrap { padding: 40px 20px 70px; }
             .hero-t2 { letter-spacing: -2px; }
@@ -522,36 +578,217 @@
 </head>
 <body>
 
-    <div class="mosaic-bg">
-        <!-- position: where to focus | size: zoom level (higher = more zoomed in) -->
-        <div class="mc" style="background-image:url('./Photo-00-PKC.jpeg'); background-position:center 72%; background-size:240%;"></div>
-        <div class="mc" style="background-image:url('./IMG_1144.jpeg');      background-position:center center; background-size:cover;"></div>
-        <div class="mc" style="background-image:url('./Photo-1-PKC.jpeg');   background-position:center 35%; background-size:250%;"></div>
-        <div class="mc" style="background-image:url('./Photo-2-PKC.jpeg');   background-position:center 65%; background-size:210%;"></div>
-        <div class="mc" style="background-image:url('./Photo-3-PKC.jpeg');   background-position:80% 50%; background-size:175%;"></div>
-        <div class="mc" style="background-image:url('./Photo-4-PKC.jpeg');   background-position:center 40%; background-size:260%;"></div>
-        <div class="mc" style="background-image:url('./Photo-5-PKC.jpeg');   background-position:center 32%; background-size:190%;"></div>
-        <div class="mc" style="background-image:url('./Photo-6-PKC.jpeg');   background-position:center 70%; background-size:230%;"></div>
-        <div class="mc" style="background-image:url('./Photo-7-PKC.JPEG');   background-position:center center; background-size:cover;"></div>
-        <div class="mc" style="background-image:url('./Photo-8-PKC.jpeg');   background-position:center 48%; background-size:200%;"></div>
-        <div class="mc" style="background-image:url('./Photo-9-PKC.jpeg');   background-position:center 42%; background-size:170%;"></div>
-        <div class="mc" style="background-image:url('./Photo-10-PKC.jpeg');  background-position:48% 38%; background-size:130%;"></div>
-        <div class="mc" style="background-image:url('./Photo-11-PKC.jpeg');  background-position:center 44%; background-size:210%;"></div>
-        <div class="mc" style="background-image:url('./Photo-12-PKC.jpeg');  background-position:center 55%; background-size:170%;"></div>
-        <div class="mc" style="background-image:url('./Photo-13-PKC.jpeg');  background-position:center 50%; background-size:210%;"></div>
-        <div class="mc" style="background-image:url('./Photo-14-PKC.jpeg');  background-position:center 8%; background-size:120%;"></div>
-        <div class="mc" style="background-image:url('./Photo-15-PKC.jpeg');  background-position:center 55%; background-size:200%;"></div>
-        <div class="mc" style="background-image:url('./Photo-17-PKC.jpeg');  background-position:center 50%; background-size:180%;"></div>
-        <div class="mc" style="background-image:url('./Photo-18-PKC.jpg');   background-position:center 45%; background-size:135%;"></div>
-        <div class="mc" style="background-image:url('./Photo-19-PKC.jpeg');  background-position:center 42%; background-size:240%;"></div>
+    <!-- ===== HERO PHOTO (new prominent hero) ===== -->
+    <div class="hero-photo-wrap">
+        <div class="hero-photo-overlay"></div>
+        <h1 class="hero-photo-headline">1 Week Out</h1>
     </div>
-    <div class="mosaic-overlay"></div>
 
-    <div class="page-wrap">
+    <div class="content-bg-wrap">
 
-        <!-- ===== HERO ===== -->
-        <div class="hero-wrap">
-            <div class="main">
+        <div class="mosaic-bg">
+            <!-- position: where to focus | size: zoom level (higher = more zoomed in) -->
+            <div class="mc" style="background-image:url('./Photo-00-PKC.jpeg'); background-position:center 72%; background-size:240%;"></div>
+            <div class="mc" style="background-image:url('./IMG_1144.jpeg');      background-position:center center; background-size:cover;"></div>
+            <div class="mc" style="background-image:url('./Photo-1-PKC.jpeg');   background-position:center 35%; background-size:250%;"></div>
+            <div class="mc" style="background-image:url('./Photo-2-PKC.jpeg');   background-position:center 65%; background-size:210%;"></div>
+            <div class="mc" style="background-image:url('./Photo-3-PKC.jpeg');   background-position:80% 50%; background-size:175%;"></div>
+            <div class="mc" style="background-image:url('./Photo-4-PKC.jpeg');   background-position:center 40%; background-size:260%;"></div>
+            <div class="mc" style="background-image:url('./Photo-5-PKC.jpeg');   background-position:center 32%; background-size:190%;"></div>
+            <div class="mc" style="background-image:url('./Photo-6-PKC.jpeg');   background-position:center 70%; background-size:230%;"></div>
+            <div class="mc" style="background-image:url('./Photo-7-PKC.JPEG');   background-position:center center; background-size:cover;"></div>
+            <div class="mc" style="background-image:url('./Photo-8-PKC.jpeg');   background-position:center 48%; background-size:200%;"></div>
+            <div class="mc" style="background-image:url('./Photo-9-PKC.jpeg');   background-position:center 42%; background-size:170%;"></div>
+            <div class="mc" style="background-image:url('./Photo-10-PKC.jpeg');  background-position:48% 38%; background-size:130%;"></div>
+            <div class="mc" style="background-image:url('./Photo-11-PKC.jpeg');  background-position:center 44%; background-size:210%;"></div>
+            <div class="mc" style="background-image:url('./Photo-12-PKC.jpeg');  background-position:center 55%; background-size:170%;"></div>
+            <div class="mc" style="background-image:url('./Photo-13-PKC.jpeg');  background-position:center 50%; background-size:210%;"></div>
+            <div class="mc" style="background-image:url('./Photo-14-PKC.jpeg');  background-position:center 8%; background-size:120%;"></div>
+            <div class="mc" style="background-image:url('./Photo-15-PKC.jpeg');  background-position:center 55%; background-size:200%;"></div>
+            <div class="mc" style="background-image:url('./Photo-17-PKC.jpeg');  background-position:center 50%; background-size:180%;"></div>
+            <div class="mc" style="background-image:url('./Photo-18-PKC.jpg');   background-position:center 45%; background-size:135%;"></div>
+            <div class="mc" style="background-image:url('./Photo-19-PKC.jpeg');  background-position:center 42%; background-size:240%;"></div>
+        </div>
+        <div class="mosaic-overlay"></div>
+
+        <div class="page-wrap">
+
+            <!-- ===== HERO (countdown / VREI) ===== -->
+            <div class="hero-wrap">
+                <div class="main">
+                    <p class="hero-eyebrow">🏖️ Perdido Key</p>
+                    <div class="hero-t2">T&minus;1</div>
+                    <div class="hero-weeks">Week</div>
+                    <p class="hero-dates">July 11 &ndash; 18, 2026</p>
+
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="days">0</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="hours">0</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="minutes">0</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="seconds">0</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
+                    </div>
+
+                    <div class="vrei-container">
+                        <p class="vrei-label">📈 Vacation Rick Energy Index</p>
+                        <div class="vrei-meter-row">
+                            <div class="vrei-bar-track">
+                                <div class="vrei-bar-fill" id="vreiBarFill"></div>
+                            </div>
+                            <div class="vrei-score" id="vreiScore">0</div>
+                        </div>
+                        <div class="vrei-tier" id="vreiTier">BUILDING</div>
+                        <div class="vrei-quote-box">
+                            <span id="vreiQuote">Loading Rick wisdom...</span>
+                            <span class="vrei-quote-attribution">— Vacation Rick</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-cue">↓ &nbsp; Trip Plans</div>
+            </div>
+
+            <!-- ===== SECTIONS ===== -->
+            <div class="sections-wrap">
+
+                <!-- Who are you -->
+                <div class="name-bar" id="nameBar">
+                    <!-- populated by JS -->
+                </div>
+
+                <!-- Side Quest -->
+                <a href="./stories.html" style="display:flex; align-items:center; gap:14px; text-decoration:none; color:white; background:rgba(255,180,70,0.07); border:1px solid rgba(255,180,70,0.2); border-radius:14px; padding:16px 20px; transition:background 0.15s;" onmouseover="this.style.background='rgba(255,180,70,0.14)'" onmouseout="this.style.background='rgba(255,180,70,0.07)'">
+                    <span style="font-size:1.6em; flex-shrink:0;">📜</span>
+                    <div>
+                        <div style="font-size:0.72em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#ffb347; margin-bottom:3px;">Side Quest</div>
+                        <div style="font-size:0.95em; font-weight:700;">Tales from the Shore</div>
+                        <div style="font-size:0.76em; color:rgba(255,255,255,0.35); margin-top:2px;">Trip legends, nostalgia &amp; stories from past trips</div>
+                    </div>
+                    <span style="margin-left:auto; color:rgba(255,180,70,0.5); font-size:1em; flex-shrink:0;">→</span>
+                </a>
+
+                <!-- Daily Programming -->
+                <div class="panel">
+                    <h2>📅 Trip Programming</h2>
+                    <p class="panel-sub">Propose activities for each day · vote to lock in the schedule</p>
+                    <div class="days-grid" id="scheduleGrid">
+                        <p style="color:rgba(255,255,255,0.3);font-size:0.85em;">Connecting…</p>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Cobalt Night -->
+                <div class="panel" style="background-image: linear-gradient(rgba(10,5,40,0.58), rgba(10,5,40,0.58)), url('./heart-sand.jpeg'); background-size: cover; background-position: center;">
+                    <h2>🍽️ Night Out at Cobalt</h2>
+                    <p class="panel-sub">Day TBD from the schedule above — are you in?</p>
+                    <div class="cobalt-actions">
+                        <button class="btn-in" id="cobaltInBtn">👍 &nbsp; I'm In</button>
+                        <button class="btn-out" id="cobaltOutBtn">👎 &nbsp; I'm Out</button>
+                    </div>
+                    <div id="cobaltList"></div>
+                </div>
+
+
+                <div class="section-divider"></div>
+
+                <!-- Who's Bringing What -->
+                <div class="panel" style="background-image: linear-gradient(rgba(10,5,40,0.58), rgba(10,5,40,0.58)), url('./lantern-sand.jpeg'); background-size: cover; background-position: 30% center;">
+                    <h2>🎒 Who's Bringing What</h2>
+                    <p class="panel-sub">Claim what you're bringing — or suggest something the group needs</p>
+                    <div id="gearList">
+                        <p style="color:rgba(255,255,255,0.3);font-size:0.85em;">Connecting…</p>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Helpful Links -->
+                <div class="panel">
+                    <h2>🔗 Helpful Links</h2>
+                    <div style="display:flex; flex-direction:column; gap:10px; margin-top:4px;">
+                        <a href="https://www.ikesbeachservice.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🏖️</span>
+                            <div><div class="hl-title">Ike's Beach Service</div><div class="hl-sub">Chair &amp; umbrella rentals on the beach</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                        <a href="https://www.florabama.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🎵</span>
+                            <div><div class="hl-title">Flora-Bama</div><div class="hl-sub">Legendary bar, live music &amp; Sunday church service on the state line</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                        <div class="hl-group-label">⛳ Golf</div>
+                        <a href="https://www.kivadunes.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🏌️</span>
+                            <div><div class="hl-title">Kiva Dunes</div><div class="hl-sub">Gulf Shores · Alabama's only beachfront course · Jerry Pate design</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                        <a href="https://www.perdidobaygolf.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🏌️</span>
+                            <div><div class="hl-title">Perdido Bay Golf Club</div><div class="hl-sub">Pensacola · former PGA Tour host, right on Perdido Key</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                        <a href="https://craftfarms.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🏌️</span>
+                            <div><div class="hl-title">Craft Farms</div><div class="hl-sub">Gulf Shores · Arnold Palmer Signature Design · Cotton Creek &amp; Cypress Bend</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Who's Coming -->
+                <div class="panel">
+                    <h2>🏖️ Who's Coming</h2>
+                    <p class="panel-sub">July 11–18, 2026 · Perdido Key, FL</p>
+                    <div style="display:flex; gap:24px; margin-bottom:18px;">
+                        <div style="text-align:center;">
+                            <div style="font-size:2em; font-weight:800; color:#7eeaa0;">26</div>
+                            <div style="font-size:0.75em; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:.05em;">Confirmed</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; flex-wrap:wrap; gap:7px;">
+                        <span class="cobalt-pill in">Adam</span>
+                        <span class="cobalt-pill in">Christy</span>
+                        <span class="cobalt-pill in">Aidan</span>
+                        <span class="cobalt-pill in">Audrey</span>
+                        <span class="cobalt-pill in">Ella O</span>
+                        <span class="cobalt-pill in">Rick</span>
+                        <span class="cobalt-pill in">Theresa</span>
+                        <span class="cobalt-pill in">Kasey</span>
+                        <span class="cobalt-pill in">Alyssa</span>
+                        <span class="cobalt-pill in">Aiden</span>
+                        <span class="cobalt-pill in">Greg</span>
+                        <span class="cobalt-pill in">Shana</span>
+                        <span class="cobalt-pill in">Jack</span>
+                        <span class="cobalt-pill in">Ella C</span>
+                        <span class="cobalt-pill in">Carey</span>
+                        <span class="cobalt-pill in">Kat</span>
+                        <span class="cobalt-pill in">Jennifer</span>
+                        <span class="cobalt-pill in">Grayson</span>
+                        <span class="cobalt-pill in">Amalia</span>
+                        <span class="cobalt-pill in">Becky</span>
+                        <span class="cobalt-pill in">Bill</span>
+                        <span class="cobalt-pill in">Parker</span>
+                        <span class="cobalt-pill in">Dane</span>
+                        <span class="cobalt-pill in">Brady</span>
+                        <span class="cobalt-pill in">Grace</span>
+                        <span class="cobalt-pill in">Grace's Friend</span>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Soccer Match (moved to bottom) -->
                 <div class="match-banner" style="background-image:url('./usa-wins-banner.jpeg');">
                     <div class="match-banner-overlay">
                         <p class="match-eyebrow">🇺🇸 USA Wins! &mdash; Next Match</p>
@@ -578,176 +815,7 @@
                     </div>
                 </div>
 
-                <p class="hero-eyebrow">🏖️ Perdido Key</p>
-                <div class="hero-t2">T&minus;2</div>
-                <div class="hero-weeks">Weeks</div>
-                <p class="hero-dates">July 11 &ndash; 18, 2026</p>
-
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="days">0</span>
-                        <span class="countdown-label">Days</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="hours">0</span>
-                        <span class="countdown-label">Hours</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="minutes">0</span>
-                        <span class="countdown-label">Minutes</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="seconds">0</span>
-                        <span class="countdown-label">Seconds</span>
-                    </div>
-                </div>
-
-                <div class="vrei-container">
-                    <p class="vrei-label">📈 Vacation Rick Energy Index</p>
-                    <div class="vrei-meter-row">
-                        <div class="vrei-bar-track">
-                            <div class="vrei-bar-fill" id="vreiBarFill"></div>
-                        </div>
-                        <div class="vrei-score" id="vreiScore">0</div>
-                    </div>
-                    <div class="vrei-tier" id="vreiTier">BUILDING</div>
-                    <div class="vrei-quote-box">
-                        <span id="vreiQuote">Loading Rick wisdom...</span>
-                        <span class="vrei-quote-attribution">— Vacation Rick</span>
-                    </div>
-                </div>
             </div>
-            <div class="scroll-cue">↓ &nbsp; Trip Plans</div>
-        </div>
-
-        <!-- ===== SECTIONS ===== -->
-        <div class="sections-wrap">
-
-            <!-- Who are you -->
-            <div class="name-bar" id="nameBar">
-                <!-- populated by JS -->
-            </div>
-
-            <!-- Side Quest -->
-            <a href="./stories.html" style="display:flex; align-items:center; gap:14px; text-decoration:none; color:white; background:rgba(255,180,70,0.07); border:1px solid rgba(255,180,70,0.2); border-radius:14px; padding:16px 20px; transition:background 0.15s;" onmouseover="this.style.background='rgba(255,180,70,0.14)'" onmouseout="this.style.background='rgba(255,180,70,0.07)'">
-                <span style="font-size:1.6em; flex-shrink:0;">📜</span>
-                <div>
-                    <div style="font-size:0.72em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#ffb347; margin-bottom:3px;">Side Quest</div>
-                    <div style="font-size:0.95em; font-weight:700;">Tales from the Shore</div>
-                    <div style="font-size:0.76em; color:rgba(255,255,255,0.35); margin-top:2px;">Trip legends, nostalgia &amp; stories from past trips</div>
-                </div>
-                <span style="margin-left:auto; color:rgba(255,180,70,0.5); font-size:1em; flex-shrink:0;">→</span>
-            </a>
-
-            <!-- Daily Programming -->
-            <div class="panel">
-                <h2>📅 Trip Programming</h2>
-                <p class="panel-sub">Propose activities for each day · vote to lock in the schedule</p>
-                <div class="days-grid" id="scheduleGrid">
-                    <p style="color:rgba(255,255,255,0.3);font-size:0.85em;">Connecting…</p>
-                </div>
-            </div>
-
-            <div class="section-divider"></div>
-
-            <!-- Cobalt Night -->
-            <div class="panel" style="background-image: linear-gradient(rgba(10,5,40,0.58), rgba(10,5,40,0.58)), url('./heart-sand.jpeg'); background-size: cover; background-position: center;">
-                <h2>🍽️ Night Out at Cobalt</h2>
-                <p class="panel-sub">Day TBD from the schedule above — are you in?</p>
-                <div class="cobalt-actions">
-                    <button class="btn-in" id="cobaltInBtn">👍 &nbsp; I'm In</button>
-                    <button class="btn-out" id="cobaltOutBtn">👎 &nbsp; I'm Out</button>
-                </div>
-                <div id="cobaltList"></div>
-            </div>
-
-
-            <div class="section-divider"></div>
-
-            <!-- Who's Bringing What -->
-            <div class="panel" style="background-image: linear-gradient(rgba(10,5,40,0.58), rgba(10,5,40,0.58)), url('./lantern-sand.jpeg'); background-size: cover; background-position: 30% center;">
-                <h2>🎒 Who's Bringing What</h2>
-                <p class="panel-sub">Claim what you're bringing — or suggest something the group needs</p>
-                <div id="gearList">
-                    <p style="color:rgba(255,255,255,0.3);font-size:0.85em;">Connecting…</p>
-                </div>
-            </div>
-
-            <div class="section-divider"></div>
-
-            <!-- Helpful Links -->
-            <div class="panel">
-                <h2>🔗 Helpful Links</h2>
-                <div style="display:flex; flex-direction:column; gap:10px; margin-top:4px;">
-                    <a href="https://www.ikesbeachservice.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                        <span style="font-size:1.3em;">🏖️</span>
-                        <div><div class="hl-title">Ike's Beach Service</div><div class="hl-sub">Chair &amp; umbrella rentals on the beach</div></div>
-                        <span class="hl-arrow">↗</span>
-                    </a>
-                    <a href="https://www.florabama.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                        <span style="font-size:1.3em;">🎵</span>
-                        <div><div class="hl-title">Flora-Bama</div><div class="hl-sub">Legendary bar, live music &amp; Sunday church service on the state line</div></div>
-                        <span class="hl-arrow">↗</span>
-                    </a>
-                    <div class="hl-group-label">⛳ Golf</div>
-                    <a href="https://www.kivadunes.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                        <span style="font-size:1.3em;">🏌️</span>
-                        <div><div class="hl-title">Kiva Dunes</div><div class="hl-sub">Gulf Shores · Alabama's only beachfront course · Jerry Pate design</div></div>
-                        <span class="hl-arrow">↗</span>
-                    </a>
-                    <a href="https://www.perdidobaygolf.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                        <span style="font-size:1.3em;">🏌️</span>
-                        <div><div class="hl-title">Perdido Bay Golf Club</div><div class="hl-sub">Pensacola · former PGA Tour host, right on Perdido Key</div></div>
-                        <span class="hl-arrow">↗</span>
-                    </a>
-                    <a href="https://craftfarms.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                        <span style="font-size:1.3em;">🏌️</span>
-                        <div><div class="hl-title">Craft Farms</div><div class="hl-sub">Gulf Shores · Arnold Palmer Signature Design · Cotton Creek &amp; Cypress Bend</div></div>
-                        <span class="hl-arrow">↗</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Who's Coming -->
-            <div class="panel">
-                <h2>🏖️ Who's Coming</h2>
-                <p class="panel-sub">July 11–18, 2026 · Perdido Key, FL</p>
-                <div style="display:flex; gap:24px; margin-bottom:18px;">
-                    <div style="text-align:center;">
-                        <div style="font-size:2em; font-weight:800; color:#7eeaa0;">26</div>
-                        <div style="font-size:0.75em; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:.05em;">Confirmed</div>
-                    </div>
-                </div>
-                <div style="display:flex; flex-wrap:wrap; gap:7px;">
-                    <span class="cobalt-pill in">Adam</span>
-                    <span class="cobalt-pill in">Christy</span>
-                    <span class="cobalt-pill in">Aidan</span>
-                    <span class="cobalt-pill in">Audrey</span>
-                    <span class="cobalt-pill in">Ella O</span>
-                    <span class="cobalt-pill in">Rick</span>
-                    <span class="cobalt-pill in">Theresa</span>
-                    <span class="cobalt-pill in">Kasey</span>
-                    <span class="cobalt-pill in">Alyssa</span>
-                    <span class="cobalt-pill in">Aiden</span>
-                    <span class="cobalt-pill in">Greg</span>
-                    <span class="cobalt-pill in">Shana</span>
-                    <span class="cobalt-pill in">Jack</span>
-                    <span class="cobalt-pill in">Ella C</span>
-                    <span class="cobalt-pill in">Carey</span>
-                    <span class="cobalt-pill in">Kat</span>
-                    <span class="cobalt-pill in">Jennifer</span>
-                    <span class="cobalt-pill in">Grayson</span>
-                    <span class="cobalt-pill in">Amalia</span>
-                    <span class="cobalt-pill in">Becky</span>
-                    <span class="cobalt-pill in">Bill</span>
-                    <span class="cobalt-pill in">Parker</span>
-                    <span class="cobalt-pill in">Dane</span>
-                    <span class="cobalt-pill in">Brady</span>
-                    <span class="cobalt-pill in">Grace</span>
-                    <span class="cobalt-pill in">Grace's Friend</span>
-                </div>
-            </div>
-
         </div>
     </div>
 
@@ -1231,3 +1299,4 @@
 
 </body>
 </html>
+
