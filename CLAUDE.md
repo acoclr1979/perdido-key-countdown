@@ -18,9 +18,17 @@ To deploy: `git add . && git commit -m "..." && git push` — GitHub Pages goes 
 
 ## Architecture
 
-All markup, CSS, and JavaScript are inline in `index.html`. The only external data file is `vrei-jokes.json`, fetched at runtime via `fetch('./vrei-jokes.json')` in `loadVreiJokes()`.
+Three pages, all static HTML with inline CSS/JS, linked to each other:
 
-**Layout:** Full-screen photo mosaic (`.mosaic-bg`) fixed behind everything, dark overlay (`.mosaic-overlay`), then centered `.main` content floating on top. No white card — glass-morphism countdown tiles and VREI box over the mosaic.
+- `index.html` — Page 1, Main Countdown (the homepage)
+- `stories.html` — Page 2, Tales from the Shore (side quest, linked from index.html)
+- `gallery.html` — Page 3, The Photo Dump (photo grid gallery, linked from index.html)
+
+All markup, CSS, and JavaScript are inline in each page. The only external data file is `vrei-jokes.json`, fetched at runtime via `fetch('./vrei-jokes.json')` in `loadVreiJokes()` (index.html only).
+
+**Layout (index.html):** Full-screen photo hero (`.hero-photo-wrap`, currently `Photo-21-PKC.png`) at the top with a large gradient headline, then full-screen photo mosaic (`.mosaic-bg`) fixed behind everything, dark overlay (`.mosaic-overlay`), then centered `.main` content floating on top. No white card — glass-morphism countdown tiles and VREI box over the mosaic.
+
+**gallery.html:** Same mosaic background treatment as stories.html, but the content area is a responsive photo grid (`.gallery-grid`) showing actual `<img>` thumbnails (not blurred backgrounds) for every mosaic photo plus `Photo-20-PKC.JPG` (the "two men on the beach" photo that used to be the index.html hero). Each thumbnail links to the full-size image in a new tab.
 
 **Key JS functions:**
 
@@ -34,6 +42,8 @@ All markup, CSS, and JavaScript are inline in `index.html`. The only external da
 - `Photo-7-PKC.JPEG` — uppercase `.JPEG` extension. Do not rename it; it will 404 on case-sensitive hosts (GitHub Pages).
 - `Photo-18-PKC.jpg` — `.jpg` (not `.jpeg`); now a carousel slide (was the tiled background image; background is now a solid gradient).
 - `IMG_1144.jpeg` — carousel image that wasn't renamed to the `Photo-##-PKC` convention; leave as-is.
+- `Photo-20-PKC.JPG` — uppercase `.JPG` extension (uploaded via GitHub web UI, which preserved the original case). Do not rename it; it will 404 on case-sensitive hosts. Was the index.html hero photo; now lives on gallery.html only.
+- `Photo-21-PKC.png` — current index.html hero photo (was uploaded as `Photo - 21 - PKC.PNG` with spaces; renamed to match convention). Portrait orientation.
 
 ## Adding content
 

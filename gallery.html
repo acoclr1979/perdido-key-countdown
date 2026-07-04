@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Photo Dump — Perdido Key</title>
+    <meta property="og:title" content="The Photo Dump — Perdido Key">
+    <meta property="og:description" content="Every trip photo, unsorted and unfiltered.">
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/Photo-00-PKC.jpeg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        .mosaic-bg {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(4, 25vh);
+            z-index: 0;
+        }
+        .mosaic-bg .mc {
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 200%;
+        }
+        .mosaic-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 4, 35, 0.86);
+            z-index: 1;
+        }
+
+        .page-wrap {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Hero */
+        .hero {
+            width: 100%;
+            max-width: 780px;
+            padding: 72px 30px 52px;
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.35);
+            text-decoration: none;
+            font-size: 0.75em;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 36px;
+            transition: color 0.15s;
+        }
+        .back-link:hover { color: rgba(255,255,255,0.65); }
+
+        .hero-eyebrow {
+            font-size: 0.8em;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 14px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 11vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.02;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+        }
+
+        .hero-sub {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.65;
+        }
+
+        /* Content */
+        .content {
+            width: 100%;
+            max-width: 1100px;
+            padding: 0 24px 100px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 10px;
+        }
+
+        .gallery-item {
+            display: block;
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.25s ease;
+        }
+
+        .gallery-item:hover img { transform: scale(1.06); }
+
+        .gallery-item.featured {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            padding: 8px 10px 7px;
+            font-size: 0.72em;
+            color: rgba(255,255,255,0.85);
+            background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 56px 20px 40px; }
+            .content { padding: 0 16px 80px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 7px; }
+            .gallery-item.featured { grid-column: span 2; grid-row: span 2; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mosaic-bg">
+        <div class="mc" style="background-image:url('./Photo-00-PKC.jpeg'); background-position:center 72%; background-size:240%;"></div>
+        <div class="mc" style="background-image:url('./IMG_1144.jpeg');      background-position:center center; background-size:cover;"></div>
+        <div class="mc" style="background-image:url('./Photo-1-PKC.jpeg');   background-position:center 35%; background-size:250%;"></div>
+        <div class="mc" style="background-image:url('./Photo-2-PKC.jpeg');   background-position:center 65%; background-size:210%;"></div>
+        <div class="mc" style="background-image:url('./Photo-3-PKC.jpeg');   background-position:80% 50%; background-size:175%;"></div>
+        <div class="mc" style="background-image:url('./Photo-4-PKC.jpeg');   background-position:center 40%; background-size:260%;"></div>
+        <div class="mc" style="background-image:url('./Photo-5-PKC.jpeg');   background-position:center 32%; background-size:190%;"></div>
+        <div class="mc" style="background-image:url('./Photo-6-PKC.jpeg');   background-position:center 70%; background-size:230%;"></div>
+        <div class="mc" style="background-image:url('./Photo-7-PKC.JPEG');   background-position:center center; background-size:cover;"></div>
+        <div class="mc" style="background-image:url('./Photo-8-PKC.jpeg');   background-position:center 48%; background-size:200%;"></div>
+        <div class="mc" style="background-image:url('./Photo-9-PKC.jpeg');   background-position:center 42%; background-size:170%;"></div>
+        <div class="mc" style="background-image:url('./Photo-10-PKC.jpeg');  background-position:48% 38%; background-size:130%;"></div>
+        <div class="mc" style="background-image:url('./Photo-11-PKC.jpeg');  background-position:center 44%; background-size:210%;"></div>
+        <div class="mc" style="background-image:url('./Photo-12-PKC.jpeg');  background-position:center 55%; background-size:170%;"></div>
+        <div class="mc" style="background-image:url('./Photo-13-PKC.jpeg');  background-position:center 50%; background-size:210%;"></div>
+        <div class="mc" style="background-image:url('./Photo-14-PKC.jpeg');  background-position:center 8%; background-size:120%;"></div>
+        <div class="mc" style="background-image:url('./Photo-15-PKC.jpeg');  background-position:center 55%; background-size:200%;"></div>
+        <div class="mc" style="background-image:url('./Photo-17-PKC.jpeg');  background-position:center 50%; background-size:180%;"></div>
+        <div class="mc" style="background-image:url('./Photo-18-PKC.jpg');   background-position:center 45%; background-size:135%;"></div>
+        <div class="mc" style="background-image:url('./Photo-19-PKC.jpeg');  background-position:center 42%; background-size:240%;"></div>
+    </div>
+    <div class="mosaic-overlay"></div>
+
+    <div class="page-wrap">
+
+        <div class="hero">
+            <a href="./index.html" class="back-link">← Back to Countdown</a>
+            <p class="hero-eyebrow">🏖️ Perdido Key</p>
+            <h1 class="hero-title">The Photo Dump</h1>
+            <p class="hero-sub">Every trip photo, unsorted and unfiltered.<br>Tap any image to see it full size.</p>
+        </div>
+
+        <div class="content">
+            <div class="gallery-grid">
+                <a class="gallery-item featured" href="./Photo-20-PKC.JPG" target="_blank" rel="noopener noreferrer">
+                    <img src="./Photo-20-PKC.JPG" alt="Two legends, Michelob Ultras in hand" loading="lazy">
+                    <span class="gallery-caption">The legends, post-swim 🍺</span>
+                </a>
+                <a class="gallery-item" href="./Photo-00-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-00-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./IMG_1144.jpeg" target="_blank" rel="noopener noreferrer"><img src="./IMG_1144.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-1-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-1-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-2-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-2-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-3-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-3-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-4-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-4-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-5-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-5-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-6-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-6-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-7-PKC.JPEG" target="_blank" rel="noopener noreferrer"><img src="./Photo-7-PKC.JPEG" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-8-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-8-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-9-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-9-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-10-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-10-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-11-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-11-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-12-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-12-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-13-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-13-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-14-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-14-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-15-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-15-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-17-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-17-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-18-PKC.jpg" target="_blank" rel="noopener noreferrer"><img src="./Photo-18-PKC.jpg" alt="Trip photo" loading="lazy"></a>
+                <a class="gallery-item" href="./Photo-19-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-19-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

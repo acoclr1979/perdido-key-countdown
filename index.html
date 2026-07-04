@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perdido Key — T−1 Week</title>
-    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/Photo-20-PKC.JPG">
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/Photo-21-PKC.png">
     <meta property="og:title" content="Perdido Key — 1 Week Out">
     <meta property="og:description" content="July 11–18, 2026 🏖️">
     <style>
@@ -26,10 +26,10 @@
             position: relative;
             width: 100%;
             height: 100vh;
-            /* Sky runs roughly top 30% of this photo, horizon below that — headline sits in the sky */
-            background-image: url('./Photo-20-PKC.JPG');
+            /* Portrait crop — stone wall runs along the top, headline sits above the head/hat */
+            background-image: url('./Photo-21-PKC.png');
             background-repeat: no-repeat;
-            background-position: center 12%;
+            background-position: center 15%;
             background-size: cover;
             overflow: hidden;
             display: flex;
@@ -49,20 +49,17 @@
         .hero-photo-headline {
             position: relative;
             z-index: 2;
-            margin-top: clamp(36px, 9vh, 110px);
+            margin-top: clamp(28px, 7vh, 90px);
             padding: 0 24px;
+            max-width: 780px;
             text-align: center;
-            font-size: clamp(3rem, 11vw, 7.5rem);
+            text-wrap: balance;
+            font-size: clamp(1.9rem, 5.6vw, 4rem);
             font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 0.98;
-            background: linear-gradient(90deg,
-                #b22234 0%,
-                #b22234 28%,
-                #ffffff 42%,
-                #ffffff 58%,
-                #3c3b6e 72%,
-                #3c3b6e 100%);
+            letter-spacing: -0.5px;
+            line-height: 1.18;
+            -webkit-font-smoothing: antialiased;
+            background: linear-gradient(180deg, #c8232f 0%, #ffffff 50%, #3c3b6e 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -562,7 +559,7 @@
         .gear-btn-full { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.35); cursor: default; }
 
         @media (max-width: 600px) {
-            .hero-photo-headline { margin-top: 30px; letter-spacing: -1px; }
+            .hero-photo-headline { margin-top: 24px; letter-spacing: 0; }
             .mosaic-bg { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 20vh); }
             .hero-wrap { padding: 40px 20px 70px; }
             .hero-t2 { letter-spacing: -2px; }
@@ -581,7 +578,7 @@
     <!-- ===== HERO PHOTO (new prominent hero) ===== -->
     <div class="hero-photo-wrap">
         <div class="hero-photo-overlay"></div>
-        <h1 class="hero-photo-headline">1 Week Out</h1>
+        <h1 class="hero-photo-headline">Happy 4th of July Independence Day Americans!</h1>
     </div>
 
     <div class="content-bg-wrap">
@@ -675,6 +672,17 @@
                         <div style="font-size:0.76em; color:rgba(255,255,255,0.35); margin-top:2px;">Trip legends, nostalgia &amp; stories from past trips</div>
                     </div>
                     <span style="margin-left:auto; color:rgba(255,180,70,0.5); font-size:1em; flex-shrink:0;">→</span>
+                </a>
+
+                <!-- Gallery -->
+                <a href="./gallery.html" style="display:flex; align-items:center; gap:14px; text-decoration:none; color:white; background:rgba(120,170,255,0.07); border:1px solid rgba(120,170,255,0.2); border-radius:14px; padding:16px 20px; transition:background 0.15s;" onmouseover="this.style.background='rgba(120,170,255,0.14)'" onmouseout="this.style.background='rgba(120,170,255,0.07)'">
+                    <span style="font-size:1.6em; flex-shrink:0;">📸</span>
+                    <div>
+                        <div style="font-size:0.72em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#78aaff; margin-bottom:3px;">Photo Album</div>
+                        <div style="font-size:0.95em; font-weight:700;">The Photo Dump</div>
+                        <div style="font-size:0.76em; color:rgba(255,255,255,0.35); margin-top:2px;">Every trip photo, unsorted and unfiltered</div>
+                    </div>
+                    <span style="margin-left:auto; color:rgba(120,170,255,0.5); font-size:1em; flex-shrink:0;">→</span>
                 </a>
 
                 <!-- Daily Programming -->
