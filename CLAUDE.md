@@ -43,7 +43,7 @@ All markup, CSS, and JavaScript are inline in each page. The only external data 
 - `Photo-18-PKC.jpg` — `.jpg` (not `.jpeg`); now a carousel slide (was the tiled background image; background is now a solid gradient).
 - `IMG_1144.jpeg` — carousel image that wasn't renamed to the `Photo-##-PKC` convention; leave as-is.
 - `Photo-20-PKC.JPG` — uppercase `.JPG` extension (uploaded via GitHub web UI, which preserved the original case). Do not rename it; it will 404 on case-sensitive hosts. Was the index.html hero photo; now lives on gallery.html only.
-- `Photo-21-PKC.png` — current index.html hero photo (was uploaded as `Photo - 21 - PKC.PNG` with spaces; renamed to match convention). Portrait orientation.
+- `Photo-22-PKC.jpeg` — current index.html hero photo (beach deck couple selfie, landscape orientation). Also the `og:image` used for link-share previews.
 
 ## Adding content
 
