@@ -7,6 +7,9 @@
     <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/Photo-21-PKC.png">
     <meta property="og:title" content="Perdido Key — 1 Week Out">
     <meta property="og:description" content="July 11–18, 2026 🏖️">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -26,10 +29,10 @@
             position: relative;
             width: 100%;
             height: 100vh;
-            /* Portrait crop — stone wall runs along the top, headline sits above the head/hat */
-            background-image: url('./Photo-21-PKC.png');
+            /* Landscape beach deck selfie — sky fills the top band, headline sits over it */
+            background-image: url('./Photo-22-PKC.jpeg');
             background-repeat: no-repeat;
-            background-position: center 15%;
+            background-position: center 22%;
             background-size: cover;
             overflow: hidden;
             display: flex;
@@ -49,17 +52,18 @@
         .hero-photo-headline {
             position: relative;
             z-index: 2;
-            margin-top: clamp(28px, 7vh, 90px);
+            margin-top: clamp(60px, 16vh, 170px);
             padding: 0 24px;
             max-width: 780px;
             text-align: center;
             text-wrap: balance;
-            font-size: clamp(1.9rem, 5.6vw, 4rem);
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            line-height: 1.18;
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.6rem, 8vw, 5.5rem);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            line-height: 1.15;
             -webkit-font-smoothing: antialiased;
-            background: linear-gradient(180deg, #c8232f 0%, #ffffff 50%, #3c3b6e 100%);
+            background: linear-gradient(180deg, #1fb3a3 0%, #ff2d84 42%, #ff2d84 68%, #26315c 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -154,66 +158,6 @@
             letter-spacing: 3px;
             margin-bottom: 52px;
         }
-
-        .match-banner {
-            width: 100%;
-            border-radius: 18px;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center 18%;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-        }
-
-        .match-banner-overlay {
-            background: linear-gradient(180deg, rgba(0,20,60,0.55) 0%, rgba(0,20,60,0.75) 55%, rgba(0,20,60,0.9) 100%);
-            padding: 22px 20px 20px;
-            text-align: center;
-        }
-
-        .match-eyebrow {
-            font-size: 0.8em;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #ffb347;
-            margin-bottom: 6px;
-        }
-
-        .match-teams {
-            font-size: clamp(1.4rem, 5vw, 2rem);
-            font-weight: 800;
-            color: #fff;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.5);
-            margin-bottom: 4px;
-        }
-
-        .match-meta {
-            font-size: 0.8em;
-            color: rgba(255,255,255,0.7);
-            letter-spacing: 1px;
-            margin-bottom: 18px;
-        }
-
-        .match-countdown {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .match-countdown-item {
-            background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 10px 8px 8px;
-            border-radius: 10px;
-            min-width: 58px;
-            flex: 1;
-            max-width: 80px;
-        }
-
-        .match-countdown-number { font-size: 1.4em; font-weight: 700; display: block; line-height: 1; margin-bottom: 3px; }
-        .match-countdown-label { font-size: 0.6em; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.6; }
 
         .countdown {
             display: flex;
@@ -449,37 +393,6 @@
         }
         .delete-btn:hover { color: #f09090; background: rgba(200,70,70,0.15); }
 
-        /* Cobalt */
-        .cobalt-actions { display: flex; gap: 12px; margin-bottom: 20px; }
-
-        .btn-in, .btn-out {
-            flex: 1;
-            padding: 14px;
-            border-radius: 10px;
-            font-size: 0.95em;
-            font-weight: 700;
-            cursor: pointer;
-            font-family: inherit;
-            transition: background 0.15s;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-in { background: rgba(80,200,110,0.2); border: 1px solid rgba(80,200,110,0.35); color: #7eeaa0; }
-        .btn-in:hover { background: rgba(80,200,110,0.32); }
-        .btn-out { background: rgba(200,70,70,0.2); border: 1px solid rgba(200,70,70,0.35); color: #f09090; }
-        .btn-out:hover { background: rgba(200,70,70,0.32); }
-
-        .rsvp-group { margin-bottom: 16px; }
-        .rsvp-group-label {
-            font-size: 0.68em;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.3);
-            margin-bottom: 8px;
-        }
-
-        .cobalt-pills { display: flex; flex-wrap: wrap; gap: 7px; }
-
         .cobalt-pill {
             display: inline-flex;
             align-items: center;
@@ -490,7 +403,6 @@
         }
 
         .cobalt-pill.in { background: rgba(80,200,110,0.15); border: 1px solid rgba(80,200,110,0.28); color: #7eeaa0; }
-        .cobalt-pill.out { background: rgba(200,70,70,0.15); border: 1px solid rgba(200,70,70,0.28); color: #f09090; }
 
         /* Divider */
         .section-divider {
@@ -558,8 +470,49 @@
         .gear-btn-claimed:hover { background: rgba(200,70,70,0.15); border-color: rgba(200,70,70,0.3); color: #f09090; }
         .gear-btn-full { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.35); cursor: default; }
 
+        /* Photo Dump card */
+        .photo-dump-card {
+            display: block;
+            text-decoration: none;
+            color: white;
+            background: rgba(120,170,255,0.09);
+            border: 1px solid rgba(120,170,255,0.28);
+            border-radius: 16px;
+            padding: 18px 20px 16px;
+            box-shadow: 0 4px 22px rgba(30,70,160,0.18);
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .photo-dump-card:hover { background: rgba(120,170,255,0.16); border-color: rgba(120,170,255,0.42); }
+        .photo-dump-top { display: flex; align-items: center; gap: 14px; }
+        .photo-dump-strip {
+            margin-top: 14px;
+            overflow: hidden;
+            border-radius: 10px;
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
+        }
+        .photo-dump-track {
+            display: flex;
+            gap: 8px;
+            width: max-content;
+            animation: photo-dump-scroll 22s linear infinite;
+        }
+        .photo-dump-card:hover .photo-dump-track { animation-play-state: paused; }
+        .photo-dump-track img {
+            width: 84px;
+            height: 84px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        @keyframes photo-dump-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         @media (max-width: 600px) {
-            .hero-photo-headline { margin-top: 24px; letter-spacing: 0; }
+            .hero-photo-headline { margin-top: clamp(40px, 12vh, 110px); letter-spacing: 0; }
             .mosaic-bg { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 20vh); }
             .hero-wrap { padding: 40px 20px 70px; }
             .hero-t2 { letter-spacing: -2px; }
@@ -569,7 +522,6 @@
             .sections-wrap { padding: 0 16px 80px; gap: 20px; }
             .panel { padding: 20px 18px; }
             .days-grid { grid-template-columns: 1fr; }
-            .cobalt-actions { flex-direction: column; }
         }
     </style>
 </head>
@@ -578,7 +530,7 @@
     <!-- ===== HERO PHOTO (new prominent hero) ===== -->
     <div class="hero-photo-wrap">
         <div class="hero-photo-overlay"></div>
-        <h1 class="hero-photo-headline">Happy 4th of July Independence Day Americans!</h1>
+        <h1 class="hero-photo-headline">Here's to the couple that prefers the red-eye into PKF</h1>
     </div>
 
     <div class="content-bg-wrap">
@@ -663,26 +615,33 @@
                     <!-- populated by JS -->
                 </div>
 
-                <!-- Side Quest -->
-                <a href="./stories.html" style="display:flex; align-items:center; gap:14px; text-decoration:none; color:white; background:rgba(255,180,70,0.07); border:1px solid rgba(255,180,70,0.2); border-radius:14px; padding:16px 20px; transition:background 0.15s;" onmouseover="this.style.background='rgba(255,180,70,0.14)'" onmouseout="this.style.background='rgba(255,180,70,0.07)'">
-                    <span style="font-size:1.6em; flex-shrink:0;">📜</span>
-                    <div>
-                        <div style="font-size:0.72em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#ffb347; margin-bottom:3px;">Side Quest</div>
-                        <div style="font-size:0.95em; font-weight:700;">Tales from the Shore</div>
-                        <div style="font-size:0.76em; color:rgba(255,255,255,0.35); margin-top:2px;">Trip legends, nostalgia &amp; stories from past trips</div>
-                    </div>
-                    <span style="margin-left:auto; color:rgba(255,180,70,0.5); font-size:1em; flex-shrink:0;">→</span>
-                </a>
-
                 <!-- Gallery -->
-                <a href="./gallery.html" style="display:flex; align-items:center; gap:14px; text-decoration:none; color:white; background:rgba(120,170,255,0.07); border:1px solid rgba(120,170,255,0.2); border-radius:14px; padding:16px 20px; transition:background 0.15s;" onmouseover="this.style.background='rgba(120,170,255,0.14)'" onmouseout="this.style.background='rgba(120,170,255,0.07)'">
-                    <span style="font-size:1.6em; flex-shrink:0;">📸</span>
-                    <div>
-                        <div style="font-size:0.72em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#78aaff; margin-bottom:3px;">Photo Album</div>
-                        <div style="font-size:0.95em; font-weight:700;">The Photo Dump</div>
-                        <div style="font-size:0.76em; color:rgba(255,255,255,0.35); margin-top:2px;">Every trip photo, unsorted and unfiltered</div>
+                <a href="./gallery.html" class="photo-dump-card">
+                    <div class="photo-dump-top">
+                        <span style="font-size:1.6em; flex-shrink:0;">📸</span>
+                        <div>
+                            <div style="font-size:0.72em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#78aaff; margin-bottom:3px;">Photo Album · 20+ Photos</div>
+                            <div style="font-size:0.95em; font-weight:700;">The Photo Dump</div>
+                            <div style="font-size:0.76em; color:rgba(255,255,255,0.35); margin-top:2px;">Every trip photo, unsorted and unfiltered — tap to see them all</div>
+                        </div>
+                        <span style="margin-left:auto; color:rgba(120,170,255,0.6); font-size:1.1em; flex-shrink:0;">→</span>
                     </div>
-                    <span style="margin-left:auto; color:rgba(120,170,255,0.5); font-size:1em; flex-shrink:0;">→</span>
+                    <div class="photo-dump-strip">
+                        <div class="photo-dump-track">
+                            <img src="./Photo-8-PKC.jpeg" alt="" loading="lazy">
+                            <img src="./Photo-12-PKC.jpeg" alt="" loading="lazy">
+                            <img src="./Photo-15-PKC.jpeg" alt="" loading="lazy">
+                            <img src="./Photo-17-PKC.jpeg" alt="" loading="lazy">
+                            <img src="./Photo-19-PKC.jpeg" alt="" loading="lazy">
+                            <img src="./Photo-22-PKC.jpeg" alt="" loading="lazy">
+                            <img src="./Photo-8-PKC.jpeg" alt="" loading="lazy">
+                            <img src="./Photo-12-PKC.jpeg" alt="" loading="lazy">
+                            <img src="./Photo-15-PKC.jpeg" alt="" loading="lazy">
+                            <img src="./Photo-17-PKC.jpeg" alt="" loading="lazy">
+                            <img src="./Photo-19-PKC.jpeg" alt="" loading="lazy">
+                            <img src="./Photo-22-PKC.jpeg" alt="" loading="lazy">
+                        </div>
+                    </div>
                 </a>
 
                 <!-- Daily Programming -->
@@ -693,20 +652,6 @@
                         <p style="color:rgba(255,255,255,0.3);font-size:0.85em;">Connecting…</p>
                     </div>
                 </div>
-
-                <div class="section-divider"></div>
-
-                <!-- Cobalt Night -->
-                <div class="panel" style="background-image: linear-gradient(rgba(10,5,40,0.58), rgba(10,5,40,0.58)), url('./heart-sand.jpeg'); background-size: cover; background-position: center;">
-                    <h2>🍽️ Night Out at Cobalt</h2>
-                    <p class="panel-sub">Day TBD from the schedule above — are you in?</p>
-                    <div class="cobalt-actions">
-                        <button class="btn-in" id="cobaltInBtn">👍 &nbsp; I'm In</button>
-                        <button class="btn-out" id="cobaltOutBtn">👎 &nbsp; I'm Out</button>
-                    </div>
-                    <div id="cobaltList"></div>
-                </div>
-
 
                 <div class="section-divider"></div>
 
@@ -796,32 +741,16 @@
 
                 <div class="section-divider"></div>
 
-                <!-- Soccer Match (moved to bottom) -->
-                <div class="match-banner" style="background-image:url('./usa-wins-banner.jpeg');">
-                    <div class="match-banner-overlay">
-                        <p class="match-eyebrow">🇺🇸 USA Wins! &mdash; Next Match</p>
-                        <p class="match-teams">USA vs Belgium</p>
-                        <p class="match-meta">Round of 16 &middot; Lumen Field, Seattle</p>
-                        <div class="match-countdown">
-                            <div class="match-countdown-item">
-                                <span class="match-countdown-number" id="matchDays">0</span>
-                                <span class="match-countdown-label">Days</span>
-                            </div>
-                            <div class="match-countdown-item">
-                                <span class="match-countdown-number" id="matchHours">0</span>
-                                <span class="match-countdown-label">Hrs</span>
-                            </div>
-                            <div class="match-countdown-item">
-                                <span class="match-countdown-number" id="matchMinutes">0</span>
-                                <span class="match-countdown-label">Min</span>
-                            </div>
-                            <div class="match-countdown-item">
-                                <span class="match-countdown-number" id="matchSeconds">0</span>
-                                <span class="match-countdown-label">Sec</span>
-                            </div>
-                        </div>
+                <!-- Side Quest (moved to bottom) -->
+                <a href="./stories.html" style="display:flex; align-items:center; gap:14px; text-decoration:none; color:white; background:rgba(255,180,70,0.07); border:1px solid rgba(255,180,70,0.2); border-radius:14px; padding:16px 20px; transition:background 0.15s;" onmouseover="this.style.background='rgba(255,180,70,0.14)'" onmouseout="this.style.background='rgba(255,180,70,0.07)'">
+                    <span style="font-size:1.6em; flex-shrink:0;">📜</span>
+                    <div>
+                        <div style="font-size:0.72em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#ffb347; margin-bottom:3px;">Side Quest</div>
+                        <div style="font-size:0.95em; font-weight:700;">Tales from the Shore</div>
+                        <div style="font-size:0.76em; color:rgba(255,255,255,0.35); margin-top:2px;">Trip legends, nostalgia &amp; stories from past trips</div>
                     </div>
-                </div>
+                    <span style="margin-left:auto; color:rgba(255,180,70,0.5); font-size:1em; flex-shrink:0;">→</span>
+                </a>
 
             </div>
         </div>
@@ -837,16 +766,6 @@
             document.getElementById("minutes").textContent = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
             document.getElementById("seconds").textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
             return diff;
-        }
-
-        // USA vs Belgium, Round of 16, Mon July 6 2026, 5:00 PM PT (Lumen Field, Seattle)
-        function updateMatchCountdown() {
-            const diff = Math.max(0, new Date("2026-07-06T17:00:00-07:00").getTime() - new Date().getTime());
-            const daysLeft = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById("matchDays").textContent = daysLeft;
-            document.getElementById("matchHours").textContent = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
-            document.getElementById("matchMinutes").textContent = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
-            document.getElementById("matchSeconds").textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
         }
 
         const VREI_SCORE_OVERRIDE = null;
@@ -899,7 +818,6 @@
 
         function refreshVrei() {
             const diff = updateCountdown();
-            updateMatchCountdown();
             const tier = updateVrei(diff);
             if (tier !== lastVreiTier) {
                 displayVreiQuote(tier);
@@ -924,7 +842,7 @@
         });
     </script>
 
-    <!-- Firebase: schedule voting + Cobalt RSVP -->
+    <!-- Firebase: schedule voting + gear sign-up -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
         import {
@@ -1105,49 +1023,6 @@
             });
         }
 
-        // ===== Cobalt RSVP =====
-        function initCobalt() {
-            document.getElementById('cobaltInBtn').addEventListener('click', () => cobaltRsvp('in'));
-            document.getElementById('cobaltOutBtn').addEventListener('click', () => cobaltRsvp('out'));
-
-            onSnapshot(collection(db, 'cobalt'), snapshot => {
-                const entries = snapshot.docs.map(d => d.data());
-                const inList = entries.filter(e => e.status === 'in');
-                const outList = entries.filter(e => e.status === 'out');
-                document.getElementById('cobaltList').innerHTML = `
-                    <div class="rsvp-group">
-                        <div class="rsvp-group-label">In (${inList.length})</div>
-                        <div class="cobalt-pills">
-                            ${inList.map(e => `<span class="cobalt-pill in">✓ ${esc(e.name)}</span>`).join('')
-                                || '<span style="color:rgba(255,255,255,0.22);font-size:0.82em;">No one yet</span>'}
-                        </div>
-                    </div>
-                    <div class="rsvp-group">
-                        <div class="rsvp-group-label">Out (${outList.length})</div>
-                        <div class="cobalt-pills">
-                            ${outList.map(e => `<span class="cobalt-pill out">✗ ${esc(e.name)}</span>`).join('')
-                                || '<span style="color:rgba(255,255,255,0.22);font-size:0.82em;">No one yet</span>'}
-                        </div>
-                    </div>`;
-            });
-        }
-
-        async function cobaltRsvp(status) {
-            if (!currentUser) {
-                const n = prompt('What\'s your name?');
-                if (!n || !n.trim()) return;
-                currentUser = n.trim();
-                localStorage.setItem('pkc_user', currentUser);
-                renderNameBar();
-            }
-            const id = currentUser.toLowerCase().replace(/\s+/g, '_');
-            await setDoc(doc(db, 'cobalt', id), {
-                name: currentUser,
-                status,
-                updatedAt: serverTimestamp()
-            });
-        }
-
         // ===== Gear Sign-Up =====
         const GEAR_ITEMS = [
             { id: 'cornhole', label: 'Cornhole Boards', emoji: '🎯', max: 1, seed: true },
@@ -1300,7 +1175,6 @@
         // ===== Init =====
         renderNameBar();
         listenProposals();
-        initCobalt();
         listenGearItems();
         listenGear();
     </script>

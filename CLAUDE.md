@@ -26,7 +26,7 @@ Three pages, all static HTML with inline CSS/JS, linked to each other:
 
 All markup, CSS, and JavaScript are inline in each page. The only external data file is `vrei-jokes.json`, fetched at runtime via `fetch('./vrei-jokes.json')` in `loadVreiJokes()` (index.html only).
 
-**Layout (index.html):** Full-screen photo hero (`.hero-photo-wrap`, currently `Photo-21-PKC.png`) at the top with a large gradient headline, then full-screen photo mosaic (`.mosaic-bg`) fixed behind everything, dark overlay (`.mosaic-overlay`), then centered `.main` content floating on top. No white card — glass-morphism countdown tiles and VREI box over the mosaic.
+**Layout (index.html):** Full-screen photo hero (`.hero-photo-wrap`, currently `Photo-22-PKC.jpeg`) at the top with a large gradient headline, then full-screen photo mosaic (`.mosaic-bg`) fixed behind everything, dark overlay (`.mosaic-overlay`), then centered `.main` content floating on top. No white card — glass-morphism countdown tiles and VREI box over the mosaic.
 
 **gallery.html:** Same mosaic background treatment as stories.html, but the content area is a responsive photo grid (`.gallery-grid`) showing actual `<img>` thumbnails (not blurred backgrounds) for every mosaic photo plus `Photo-20-PKC.JPG` (the "two men on the beach" photo that used to be the index.html hero). Each thumbnail links to the full-size image in a new tab.
 
