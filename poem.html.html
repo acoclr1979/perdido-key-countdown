@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Night Before Perdido</title>
+    <meta property="og:title" content="The Night Before Perdido">
+    <meta property="og:description" content="A very Perdido prelude 🏖️">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            color: white;
+            background: #0a0528;
+        }
+
+        .page-wrap {
+            width: 100%;
+            max-width: 780px;
+            padding: 40px 24px 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.45);
+            text-decoration: none;
+            font-size: 0.82em;
+            letter-spacing: 1px;
+            align-self: flex-start;
+            padding: 6px 2px;
+            transition: color 0.15s;
+        }
+        .back-link:hover { color: rgba(255,255,255,0.8); }
+
+        .panel {
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.11);
+            border-radius: 18px;
+            padding: 30px 28px;
+            overflow: hidden;
+        }
+        .panel-sub { font-size: 0.82em; color: rgba(255,255,255,0.38); margin-bottom: 20px; }
+
+        .poem-photo-wrap { position: relative; width: 100%; border-radius: 14px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 14px 40px rgba(0,0,0,0.4); }
+        .poem-photo-blur-bg {
+            position: absolute; inset: -16px; background-image: url('./Photo-25-PKC.jpeg'); background-repeat: no-repeat;
+            background-position: center; background-size: cover; filter: blur(30px) brightness(0.5) saturate(1.15); transform: scale(1.15); z-index: 0;
+        }
+        .poem-photo-img { position: relative; z-index: 1; width: 100%; height: auto; max-height: 50vh; object-fit: contain; display: block; margin: 0 auto; }
+
+        .poem { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(0.95rem, 2.4vw, 1.1rem); line-height: 1.85; color: rgba(255,255,255,0.88); text-align: center; }
+        .poem p { margin-bottom: 26px; }
+        .poem p:first-of-type::first-letter { font-size: 1.6em; font-weight: 700; color: #ffb347; }
+        .poem .signoff { margin-top: 6px; font-style: italic; color: rgba(255,255,255,0.5); font-size: 0.95em; }
+
+        @media (max-width: 600px) {
+            .page-wrap { padding: 30px 18px 80px; }
+            .panel { padding: 22px 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <a href="./index.html" class="back-link">← &nbsp;Back to Perdido Key</a>
+
+        <div class="panel">
+            <p style="font-size:0.72em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#78aaff; margin-bottom:3px; text-align:center;">🎬 Side Quest</p>
+            <h2 style="font-family: Georgia, 'Times New Roman', serif; font-style:italic; text-align:center;">The Night Before Perdido</h2>
+            <p class="panel-sub" style="text-align:center;">A very Perdido prelude</p>
+
+            <div class="poem-photo-wrap">
+                <div class="poem-photo-blur-bg"></div>
+                <img src="./Photo-25-PKC.jpeg" alt="Perdido Key" class="poem-photo-img">
+            </div>
+
+            <div class="poem">
+                <p>'Twas the night before Perdido, and all through the house,<br>
+                Every suitcase was zipped tight — not a swimsuit left out.<br>
+                The stockings were swapped for beach bags with care,<br>
+                In hopes that the sunscreen soon would be there.</p>
+
+                <p>The kids were all buzzing, refusing their beds,<br>
+                While visions of Pedro's tacos danced in their heads.<br>
+                And Mama in her flip-flops, and I in my cap,<br>
+                Had just settled in for a pre-trip power nap —</p>
+
+                <p>When out on the porch there arose such a clatter,<br>
+                I sprang to my phone to check what was the matter.<br>
+                'Twas the countdown site, glowing bright on the screen,<br>
+                The VREI ticking up — highest tier ever seen.</p>
+
+                <p>More rapid than eagles the group chat replied,<br>
+                As twenty-five guests coordinated ride after ride.<br>
+                "Now Aidan! Now cousins! Now Grandpa, don't lag!<br>
+                On coolers! On floaties! On one more beach bag!"</p>
+
+                <p>To the top of Sandy Key, unit six-two-eight,<br>
+                Where the dock catches sunset and nobody's late.<br>
+                And then, in a twinkling, I heard through the door,<br>
+                The Wi-Fi login taped up on the floor.</p>
+
+                <p>I straightened my mind, sent one last email away,<br>
+                Set my out-of-office to "gone, come what may."<br>
+                The site was all polished, the photo hung right,<br>
+                "One more Monday between us and this" — pure delight.</p>
+
+                <p>A wink of the eye and a nod, "we're all set,"<br>
+                Not a single logistics loose thread left, and yet —<br>
+                He sprang to his suitcase, gave one final zip,<br>
+                And away they all drove on the family road trip.</p>
+
+                <p class="signoff">But I heard him exclaim, as he pulled out of sight,<br>
+                "Reservation eight-nine-seven-seven — sleep tight!"</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
