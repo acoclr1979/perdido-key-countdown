@@ -26,7 +26,6 @@ To deploy: `git add . && git commit -m "..." && git push` — GitHub Pages goes 
 - `gallery.html` — "The Photo Dump," a grid of every photo in `/photos/`
 - `stories.html` — "Tales from the Shore," trip legends/nostalgia + a community story submission form
 - `poem.html` — "The Night Before Perdido," a one-off "Twas the Night Before Christmas" parody poem page (side quest, linked from index.html)
-- `trip.html` — an orphaned earlier version of the homepage (title "T−24 Hours"), not linked from anywhere. Kept only in case an old shared link points at it; safe to delete if that's not a concern.
 
 ## Shared infrastructure
 
@@ -49,7 +48,7 @@ How it works: `photos.js` calls the GitHub Contents API (`api.github.com/repos/a
 
 **HEIC caveat:** the loader accepts `.heic`, but HEIC doesn't render in an `<img>` tag on Chrome/Firefox/Windows/Android — only Safari displays it. Convert to `.jpg` before uploading if the whole group needs to see it. (`IMG_1350.heic` sits untracked in the repo root for this reason — convert before adding to `/photos/`.)
 
-Non-pooled images stay in the repo root because they're referenced by explicit filename: `beachball.jpeg` (stories.html seed story). A few leftovers from removed features are currently unreferenced anywhere — see "Known cleanup opportunities" below.
+Non-pooled images stay in the repo root because they're referenced by explicit filename: `beachball.jpeg` (stories.html seed story).
 
 ## Important file quirks
 
@@ -77,6 +76,4 @@ These are two independent mechanisms sharing the same visual meter — don't ass
 
 ## Known cleanup opportunities (not yet acted on)
 
-- `heart-sand.jpeg` and `usa-wins-banner.jpeg` in the repo root are leftover from removed features and currently unreferenced anywhere. Safe to delete if no longer wanted.
-- `trip.html` is an orphaned, unlinked earlier homepage snapshot — see "Pages" above.
 - `IMG_1350.heic` needs conversion to `.jpg` before it can join `/photos/` (see HEIC caveat above).
