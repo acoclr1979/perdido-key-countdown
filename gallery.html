@@ -6,7 +6,7 @@
     <title>The Photo Dump — Perdido Key</title>
     <meta property="og:title" content="The Photo Dump — Perdido Key">
     <meta property="og:description" content="Every trip photo, unsorted and unfiltered.">
-    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/Photo-00-PKC.jpeg">
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/photos/Photo-00-PKC.jpeg">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -18,14 +18,13 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             overflow-x: hidden;
             color: white;
+            background: #0a0528;
         }
 
         .mosaic-bg {
             position: fixed;
             inset: 0;
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(4, 25vh);
             z-index: 0;
         }
         .mosaic-bg .mc {
@@ -150,28 +149,7 @@
 </head>
 <body>
 
-    <div class="mosaic-bg">
-        <div class="mc" style="background-image:url('./Photo-00-PKC.jpeg'); background-position:center 72%; background-size:240%;"></div>
-        <div class="mc" style="background-image:url('./IMG_1144.jpeg');      background-position:center center; background-size:cover;"></div>
-        <div class="mc" style="background-image:url('./Photo-1-PKC.jpeg');   background-position:center 35%; background-size:250%;"></div>
-        <div class="mc" style="background-image:url('./Photo-2-PKC.jpeg');   background-position:center 65%; background-size:210%;"></div>
-        <div class="mc" style="background-image:url('./Photo-3-PKC.jpeg');   background-position:80% 50%; background-size:175%;"></div>
-        <div class="mc" style="background-image:url('./Photo-4-PKC.jpeg');   background-position:center 40%; background-size:260%;"></div>
-        <div class="mc" style="background-image:url('./Photo-5-PKC.jpeg');   background-position:center 32%; background-size:190%;"></div>
-        <div class="mc" style="background-image:url('./Photo-6-PKC.jpeg');   background-position:center 70%; background-size:230%;"></div>
-        <div class="mc" style="background-image:url('./Photo-7-PKC.JPEG');   background-position:center center; background-size:cover;"></div>
-        <div class="mc" style="background-image:url('./Photo-8-PKC.jpeg');   background-position:center 48%; background-size:200%;"></div>
-        <div class="mc" style="background-image:url('./Photo-9-PKC.jpeg');   background-position:center 42%; background-size:170%;"></div>
-        <div class="mc" style="background-image:url('./Photo-10-PKC.jpeg');  background-position:48% 38%; background-size:130%;"></div>
-        <div class="mc" style="background-image:url('./Photo-11-PKC.jpeg');  background-position:center 44%; background-size:210%;"></div>
-        <div class="mc" style="background-image:url('./Photo-12-PKC.jpeg');  background-position:center 55%; background-size:170%;"></div>
-        <div class="mc" style="background-image:url('./Photo-13-PKC.jpeg');  background-position:center 50%; background-size:210%;"></div>
-        <div class="mc" style="background-image:url('./Photo-14-PKC.jpeg');  background-position:center 8%; background-size:120%;"></div>
-        <div class="mc" style="background-image:url('./Photo-15-PKC.jpeg');  background-position:center 55%; background-size:200%;"></div>
-        <div class="mc" style="background-image:url('./Photo-17-PKC.jpeg');  background-position:center 50%; background-size:180%;"></div>
-        <div class="mc" style="background-image:url('./Photo-18-PKC.jpg');   background-position:center 45%; background-size:135%;"></div>
-        <div class="mc" style="background-image:url('./Photo-19-PKC.jpeg');  background-position:center 42%; background-size:240%;"></div>
-    </div>
+    <div class="mosaic-bg" id="mosaicBg"></div>
     <div class="mosaic-overlay"></div>
 
     <div class="page-wrap">
@@ -184,34 +162,12 @@
         </div>
 
         <div class="content">
-            <div class="gallery-grid">
-                <a class="gallery-item featured" href="./Photo-20-PKC.JPG" target="_blank" rel="noopener noreferrer">
-                    <img src="./Photo-20-PKC.JPG" alt="Two legends, Michelob Ultras in hand" loading="lazy">
-                    <span class="gallery-caption">The legends, post-swim 🍺</span>
-                </a>
-                <a class="gallery-item" href="./Photo-00-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-00-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./IMG_1144.jpeg" target="_blank" rel="noopener noreferrer"><img src="./IMG_1144.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-1-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-1-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-2-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-2-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-3-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-3-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-4-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-4-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-5-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-5-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-6-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-6-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-7-PKC.JPEG" target="_blank" rel="noopener noreferrer"><img src="./Photo-7-PKC.JPEG" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-8-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-8-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-9-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-9-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-10-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-10-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-11-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-11-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-12-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-12-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-13-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-13-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-14-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-14-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-15-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-15-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-17-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-17-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-18-PKC.jpg" target="_blank" rel="noopener noreferrer"><img src="./Photo-18-PKC.jpg" alt="Trip photo" loading="lazy"></a>
-                <a class="gallery-item" href="./Photo-19-PKC.jpeg" target="_blank" rel="noopener noreferrer"><img src="./Photo-19-PKC.jpeg" alt="Trip photo" loading="lazy"></a>
-            </div>
+            <div class="gallery-grid" id="galleryGrid"></div>
         </div>
     </div>
 
+    <script src="./photos.js"></script>
+    <script src="./mosaic.js"></script>
+    <script src="./gallery.js"></script>
 </body>
 </html>

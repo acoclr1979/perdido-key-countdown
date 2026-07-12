@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perdido Key — First Full Day On The Beach</title>
-    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/Photo-29-PKC.jpeg">
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/photos/Photo-29-PKC.jpeg">
     <meta property="og:title" content="Perdido Key — First Full Day On The Beach">
     <meta property="og:description" content="We are live in Florida! 🏖️ July 11–18, 2026">
     <style>
@@ -49,7 +49,7 @@
         .hero-photo-blur-bg {
             position: absolute;
             inset: -30px;
-            background-image: url('./Photo-29-PKC.jpeg');
+            background-image: url('./photos/Photo-29-PKC.jpeg');
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -106,8 +106,6 @@
             position: absolute;
             inset: 0;
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(4, 25vh);
             z-index: 0;
         }
         .mosaic-bg .mc { background-repeat: no-repeat; background-position: center center; background-size: 200%; }
@@ -291,23 +289,6 @@
         .hl-arrow { margin-left: auto; color: rgba(255,255,255,0.3); font-size: 0.8em; flex-shrink: 0; }
         .hl-group-label { font-size: 0.68em; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 4px 2px 0; }
 
-        .gear-row { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
-        .gear-row:last-child { border-bottom: none; }
-        .gear-row-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-        .gear-emoji { font-size: 1.5em; flex-shrink: 0; width: 30px; text-align: center; }
-        .gear-info { flex: 1; }
-        .gear-label { font-size: 0.95em; font-weight: 600; display: block; }
-        .gear-count { font-size: 0.72em; color: rgba(255,255,255,0.38); letter-spacing: 0.5px; }
-        .gear-claimers { display: flex; flex-wrap: wrap; gap: 7px; padding-left: 2px; }
-        .gear-btn {
-            padding: 7px 14px; border-radius: 8px; font-size: 0.82em; font-weight: 600; cursor: pointer; font-family: inherit;
-            transition: background 0.15s, border-color 0.15s, color 0.15s; white-space: nowrap; border: 1px solid;
-        }
-        .gear-btn-claim { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: white; }
-        .gear-btn-claim:hover { background: rgba(255,255,255,0.2); }
-        .gear-btn-claimed { background: rgba(80,200,110,0.2); border-color: rgba(80,200,110,0.35); color: #7eeaa0; }
-        .gear-btn-claimed:hover { background: rgba(200,70,70,0.15); border-color: rgba(200,70,70,0.3); color: #f09090; }
-        .gear-btn-full { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.35); cursor: default; }
 
         .photo-dump-card {
             display: block; text-decoration: none; color: white; background: rgba(120,170,255,0.09);
@@ -329,7 +310,7 @@
         /* ===== Poem (bonus scene) ===== */
         .poem-photo-wrap { position: relative; width: 100%; border-radius: 14px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 14px 40px rgba(0,0,0,0.4); }
         .poem-photo-blur-bg {
-            position: absolute; inset: -16px; background-image: url('./Photo-25-PKC.jpeg'); background-repeat: no-repeat;
+            position: absolute; inset: -16px; background-image: url('./photos/Photo-25-PKC.jpeg'); background-repeat: no-repeat;
             background-position: center; background-size: cover; filter: blur(30px) brightness(0.5) saturate(1.15); transform: scale(1.15); z-index: 0;
         }
         .poem-photo-img { position: relative; z-index: 1; width: 100%; height: auto; max-height: 42vh; object-fit: contain; display: block; margin: 0 auto; }
@@ -344,7 +325,6 @@
             .countdown { gap: 10px; }
             .countdown-item { padding: 16px 10px 14px; min-width: 0; }
             .countdown-number { font-size: 1.9em; }
-            .mosaic-bg { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 20vh); }
             .sections-wrap { padding: 0 16px 80px; gap: 20px; }
             .panel { padding: 20px 18px; }
             .days-grid { grid-template-columns: 1fr; }
@@ -359,36 +339,17 @@
         <div class="hero-photo-overlay"></div>
         <div class="hero-photo-content">
             <p class="hero-photo-eyebrow">🌅 Calm Morning on the Key</p>
-            <img src="./Photo-29-PKC.jpeg" alt="A heron stands watch on the shoreline at sunrise, American flag waving beside a beach umbrella, storm clouds building over the Gulf" class="hero-photo-img" fetchpriority="high">
+            <img src="./photos/Photo-29-PKC.jpeg" alt="A heron stands watch on the shoreline at sunrise, American flag waving beside a beach umbrella, storm clouds building over the Gulf" class="hero-photo-img" fetchpriority="high">
         </div>
     </div>
 
     <!-- ================= EXISTING SITE ================= -->
     <div class="content-bg-wrap">
 
-        <div class="mosaic-bg">
-            <div class="mc" style="background-image:url('./Photo-00-PKC.jpeg'); background-position:center 72%; background-size:240%;"></div>
-            <div class="mc" style="background-image:url('./IMG_1144.jpeg');      background-position:center center; background-size:cover;"></div>
-            <div class="mc" style="background-image:url('./Photo-1-PKC.jpeg');   background-position:center 35%; background-size:250%;"></div>
-            <div class="mc" style="background-image:url('./Photo-2-PKC.jpeg');   background-position:center 65%; background-size:210%;"></div>
-            <div class="mc" style="background-image:url('./Photo-3-PKC.jpeg');   background-position:80% 50%; background-size:175%;"></div>
-            <div class="mc" style="background-image:url('./Photo-4-PKC.jpeg');   background-position:center 40%; background-size:260%;"></div>
-            <div class="mc" style="background-image:url('./Photo-5-PKC.jpeg');   background-position:center 32%; background-size:190%;"></div>
-            <div class="mc" style="background-image:url('./Photo-6-PKC.jpeg');   background-position:center 70%; background-size:230%;"></div>
-            <div class="mc" style="background-image:url('./Photo-7-PKC.JPEG');   background-position:center center; background-size:cover;"></div>
-            <div class="mc" style="background-image:url('./Photo-8-PKC.jpeg');   background-position:center 48%; background-size:200%;"></div>
-            <div class="mc" style="background-image:url('./Photo-9-PKC.jpeg');   background-position:center 42%; background-size:170%;"></div>
-            <div class="mc" style="background-image:url('./Photo-10-PKC.jpeg');  background-position:48% 38%; background-size:130%;"></div>
-            <div class="mc" style="background-image:url('./Photo-11-PKC.jpeg');  background-position:center 44%; background-size:210%;"></div>
-            <div class="mc" style="background-image:url('./Photo-12-PKC.jpeg');  background-position:center 55%; background-size:170%;"></div>
-            <div class="mc" style="background-image:url('./Photo-13-PKC.jpeg');  background-position:center 50%; background-size:210%;"></div>
-            <div class="mc" style="background-image:url('./Photo-14-PKC.jpeg');  background-position:center 8%; background-size:120%;"></div>
-            <div class="mc" style="background-image:url('./Photo-15-PKC.jpeg');  background-position:center 55%; background-size:200%;"></div>
-            <div class="mc" style="background-image:url('./Photo-17-PKC.jpeg');  background-position:center 50%; background-size:180%;"></div>
-            <div class="mc" style="background-image:url('./Photo-18-PKC.jpg');   background-position:center 45%; background-size:135%;"></div>
-            <div class="mc" style="background-image:url('./Photo-19-PKC.jpeg');  background-position:center 42%; background-size:240%;"></div>
-        </div>
+        <div class="mosaic-bg" id="mosaicBg"></div>
         <div class="mosaic-overlay"></div>
+        <script src="./photos.js"></script>
+        <script src="./mosaic.js"></script>
 
         <div class="page-wrap">
 
@@ -422,7 +383,7 @@
 
                     <div class="vrei-container">
                         <div class="vrei-avatar-row">
-                            <img src="./Photo-30-PKC.PNG" alt="Vacation Rick outside the VREI 5000">
+                            <img src="./photos/Photo-30-PKC.PNG" alt="Vacation Rick outside the VREI 5000">
                         </div>
                         <p class="vrei-avatar-caption">Vacation Rick, live at the VREI 5000</p>
                         <p class="vrei-label">📈 Vacation Rick Energy Index</p>
@@ -463,18 +424,18 @@
                     </div>
                     <div class="photo-dump-strip">
                         <div class="photo-dump-track">
-                            <img src="./Photo-8-PKC.jpeg" alt="" loading="lazy" decoding="async">
-                            <img src="./Photo-12-PKC.jpeg" alt="" loading="lazy" decoding="async">
-                            <img src="./Photo-15-PKC.jpeg" alt="" loading="lazy" decoding="async">
-                            <img src="./Photo-17-PKC.jpeg" alt="" loading="lazy" decoding="async">
-                            <img src="./Photo-19-PKC.jpeg" alt="" loading="lazy" decoding="async">
-                            <img src="./Photo-22-PKC.jpeg" alt="" loading="lazy" decoding="async">
-                            <img src="./Photo-8-PKC.jpeg" alt="" loading="lazy" decoding="async">
-                            <img src="./Photo-12-PKC.jpeg" alt="" loading="lazy" decoding="async">
-                            <img src="./Photo-15-PKC.jpeg" alt="" loading="lazy" decoding="async">
-                            <img src="./Photo-17-PKC.jpeg" alt="" loading="lazy" decoding="async">
-                            <img src="./Photo-19-PKC.jpeg" alt="" loading="lazy" decoding="async">
-                            <img src="./Photo-22-PKC.jpeg" alt="" loading="lazy" decoding="async">
+                            <img src="./photos/Photo-8-PKC.jpeg" alt="" loading="lazy" decoding="async">
+                            <img src="./photos/Photo-12-PKC.jpeg" alt="" loading="lazy" decoding="async">
+                            <img src="./photos/Photo-15-PKC.jpeg" alt="" loading="lazy" decoding="async">
+                            <img src="./photos/Photo-17-PKC.jpeg" alt="" loading="lazy" decoding="async">
+                            <img src="./photos/Photo-19-PKC.jpeg" alt="" loading="lazy" decoding="async">
+                            <img src="./photos/Photo-22-PKC.jpeg" alt="" loading="lazy" decoding="async">
+                            <img src="./photos/Photo-8-PKC.jpeg" alt="" loading="lazy" decoding="async">
+                            <img src="./photos/Photo-12-PKC.jpeg" alt="" loading="lazy" decoding="async">
+                            <img src="./photos/Photo-15-PKC.jpeg" alt="" loading="lazy" decoding="async">
+                            <img src="./photos/Photo-17-PKC.jpeg" alt="" loading="lazy" decoding="async">
+                            <img src="./photos/Photo-19-PKC.jpeg" alt="" loading="lazy" decoding="async">
+                            <img src="./photos/Photo-22-PKC.jpeg" alt="" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </a>
@@ -484,17 +445,6 @@
                     <h2>📅 Trip Programming</h2>
                     <p class="panel-sub">Propose activities for each day · vote to lock in the schedule</p>
                     <div class="days-grid" id="scheduleGrid">
-                        <p style="color:rgba(255,255,255,0.3);font-size:0.85em;">Connecting…</p>
-                    </div>
-                </div>
-
-                <div class="section-divider"></div>
-
-                <!-- Who's Bringing What -->
-                <div class="panel" style="background-image: linear-gradient(rgba(10,5,40,0.58), rgba(10,5,40,0.58)), url('./lantern-sand.jpeg'); background-size: cover; background-position: 30% center;">
-                    <h2>🎒 Who's Bringing What</h2>
-                    <p class="panel-sub">Claim what you're bringing — or suggest something the group needs</p>
-                    <div id="gearList">
                         <p style="color:rgba(255,255,255,0.3);font-size:0.85em;">Connecting…</p>
                     </div>
                 </div>
@@ -631,8 +581,20 @@
         }
 
         const VREI_SCORE_OVERRIDE = null;
-        const VREI_TRIP_START = new Date("July 11, 2026 00:00:00").getTime();
-        const VREI_PACK_TIME = new Date("July 17, 2026 21:00:00").getTime();
+
+        // In-trip energy curve: peaks Monday (golf day), declines through midweek,
+        // then drops hard Thursday/Friday as the trip winds down.
+        const VREI_CURVE = [
+            { date: '2026-07-11', score: 65 },  // Sat — arrival, travel-day hype
+            { date: '2026-07-12', score: 78 },  // Sun — settling in, energy rising
+            { date: '2026-07-13', score: 100 }, // Mon — golf day, peak Vacation Rick
+            { date: '2026-07-14', score: 68 },  // Tue — slow decline begins
+            { date: '2026-07-15', score: 52 },  // Wed — still declining
+            { date: '2026-07-16', score: 22 },  // Thu — sudden drop
+            { date: '2026-07-17', score: 12 },  // Fri — sudden drop continues
+            { date: '2026-07-18', score: 8 },   // Sat — departure day
+        ];
+
         let vreiJokes = null;
 
         async function loadVreiJokes() {
@@ -648,21 +610,35 @@
             }
         }
 
-        function getVreiScore(diffMs) {
+        function localDateKey(d) {
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        }
+
+        function getVreiScore() {
             if (VREI_SCORE_OVERRIDE !== null) return VREI_SCORE_OVERRIDE;
-            const totalWindow = VREI_PACK_TIME - VREI_TRIP_START;
-            const clamped = Math.max(0, Math.min(totalWindow, diffMs));
-            return Math.round((clamped / totalWindow) * 100);
+            const todayKey = localDateKey(new Date());
+            const match = VREI_CURVE.find(e => e.date === todayKey);
+            if (match) return match.score;
+
+            const firstDay = new Date(VREI_CURVE[0].date + 'T00:00:00').getTime();
+            const todayMidnight = new Date().setHours(0, 0, 0, 0);
+            const daysUntilArrival = Math.round((firstDay - todayMidnight) / (1000 * 60 * 60 * 24));
+            if (daysUntilArrival > 0) {
+                const maxDays = 21;
+                const clamped = Math.max(0, Math.min(maxDays, daysUntilArrival));
+                return Math.max(5, Math.round(VREI_CURVE[0].score - (clamped / maxDays) * VREI_CURVE[0].score));
+            }
+            return 5; // trip's over — back to a quiet hum
         }
 
         function getVreiTier(score) {
-            if (score > 60) return 'fullSend';
-            if (score > 20) return 'building';
+            if (score >= 80) return 'fullSend';
+            if (score >= 30) return 'building';
             return 'simmering';
         }
 
         function updateVrei(diffMs) {
-            const score = getVreiScore(diffMs);
+            const score = getVreiScore();
             const tier = getVreiTier(score);
             const tierLabels = { simmering: 'SIMMERING', building: 'BUILDING', fullSend: 'FULL SEND' };
             const tierLabel = diffMs <= 0 ? 'PACK MODE' : tierLabels[tier];
@@ -706,25 +682,14 @@
         });
     </script>
 
-    <!-- Firebase: schedule voting + gear sign-up -->
+    <!-- Firebase: schedule voting -->
     <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
         import {
-            getFirestore, collection, addDoc, onSnapshot,
-            doc, updateDoc, setDoc, deleteDoc, query, orderBy,
+            collection, addDoc, onSnapshot,
+            doc, updateDoc, deleteDoc, query, orderBy,
             increment, serverTimestamp
         } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-
-        const app = initializeApp({
-            apiKey: "AIzaSyBG7y9CXKe7f3aMFGFvOOPS47G-rmDQsnk",
-            authDomain: "perdido-key-2026.firebaseapp.com",
-            projectId: "perdido-key-2026",
-            storageBucket: "perdido-key-2026.firebasestorage.app",
-            messagingSenderId: "363728185503",
-            appId: "1:363728185503:web:4d54bc49557b16c549daaa"
-        });
-
-        const db = getFirestore(app);
+        import { db } from './firebase-init.js';
 
         const DAYS = [
             { id: '2026-07-11', dow: 'SAT', date: 'Jul 11', note: 'Arrival' },
@@ -884,143 +849,6 @@
             });
         }
 
-        // ===== Gear Sign-Up =====
-        const GEAR_ITEMS = [
-            { id: 'cornhole', label: 'Cornhole Boards', emoji: '🎯', max: 1, seed: true },
-            { id: 'speaker',  label: 'Speaker',         emoji: '🔊', max: 1, seed: true },
-            { id: 'tent',     label: 'Tents',           emoji: '⛺', max: 2, seed: true },
-        ];
-
-        let communityGearItems = [];
-        let latestClaims = [];
-
-        function allGearItems() {
-            return [...GEAR_ITEMS, ...communityGearItems];
-        }
-
-        function renderGear(claims) {
-            const items = allGearItems();
-            const byItem = {};
-            items.forEach(g => byItem[g.id] = []);
-            claims.forEach(c => { if (byItem[c.item] !== undefined) byItem[c.item].push(c); });
-
-            const itemsHtml = items.map(g => {
-                const claimers = byItem[g.id];
-                const myKey = currentUser ? g.id + '_' + currentUser.toLowerCase().replace(/\s+/g, '_') : null;
-                const iClaimed = myKey && claimers.some(c => c.id === myKey);
-                const atCapacity = g.seed && claimers.length >= g.max;
-                const countLabel = g.seed
-                    ? `${claimers.length} of ${g.max} claimed`
-                    : claimers.length
-                        ? claimers.map(c => esc(c.name)).join(', ') + ' bringing it'
-                        : 'Not yet claimed';
-                const isMyItem = !g.seed && currentUser && g.suggestedBy === currentUser;
-
-                const pillsHtml = claimers.length
-                    ? claimers.map(c => `<span class="cobalt-pill in">✓ ${esc(c.name)}</span>`).join('')
-                    : `<span style="color:rgba(255,255,255,0.22);font-size:0.82em;">Not yet claimed</span>`;
-
-                let btnHtml;
-                if (iClaimed) {
-                    btnHtml = `<button class="gear-btn gear-btn-claimed" data-item="${g.id}" data-action="unclaim">Got it ✓</button>`;
-                } else if (atCapacity) {
-                    btnHtml = `<button class="gear-btn gear-btn-full" disabled>Covered ✓</button>`;
-                } else {
-                    btnHtml = `<button class="gear-btn gear-btn-claim" data-item="${g.id}" data-action="claim">I've got it!</button>`;
-                }
-
-                return `<div class="gear-row">
-                    <div class="gear-row-top">
-                        <span class="gear-emoji">${g.emoji}</span>
-                        <div class="gear-info">
-                            <span class="gear-label">${esc(g.label)}${isMyItem ? ` <span style="font-size:0.72em;color:rgba(255,255,255,0.3);font-weight:400;">· your suggestion</span>` : ''}</span>
-                            <span class="gear-count">${countLabel}</span>
-                        </div>
-                        <div style="display:flex;align-items:center;gap:6px;">
-                            ${btnHtml}
-                            ${isMyItem && !claimers.length ? `<button class="delete-btn" data-gearitem="${g.id}" title="Remove your suggestion">✕</button>` : ''}
-                        </div>
-                    </div>
-                    <div class="gear-claimers">${pillsHtml}</div>
-                </div>`;
-            }).join('');
-
-            document.getElementById('gearList').innerHTML = `
-                ${itemsHtml}
-                <div class="add-proposal" style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.07);">
-                    <input id="gearSuggestInput" placeholder="Suggest something to bring…" maxlength="50" autocomplete="off">
-                    <button id="gearSuggestBtn">+ Suggest</button>
-                </div>`;
-
-            document.querySelectorAll('.gear-btn[data-action]').forEach(btn => {
-                btn.addEventListener('click', () => gearAction(btn.dataset.item, btn.dataset.action));
-            });
-
-            document.querySelectorAll('.delete-btn[data-gearitem]').forEach(btn => {
-                btn.addEventListener('click', async () => {
-                    if (!confirm('Remove your suggestion?')) return;
-                    await deleteDoc(doc(db, 'gearItems', btn.dataset.gearitem));
-                });
-            });
-
-            const suggestInput = document.getElementById('gearSuggestInput');
-            const suggestBtn = document.getElementById('gearSuggestBtn');
-            suggestBtn.addEventListener('click', () => submitGearSuggestion());
-            suggestInput.addEventListener('keydown', e => { if (e.key === 'Enter') submitGearSuggestion(); });
-        }
-
-        async function submitGearSuggestion() {
-            if (!currentUser) {
-                const n = prompt('What\'s your name?');
-                if (!n || !n.trim()) return;
-                currentUser = n.trim();
-                localStorage.setItem('pkc_user', currentUser);
-                renderNameBar();
-            }
-            const input = document.getElementById('gearSuggestInput');
-            const text = input.value.trim();
-            if (!text) return;
-            input.value = '';
-            await addDoc(collection(db, 'gearItems'), {
-                label: text,
-                emoji: '🎒',
-                suggestedBy: currentUser,
-                max: 1,
-                createdAt: serverTimestamp()
-            });
-        }
-
-        async function gearAction(itemId, action) {
-            if (!currentUser) {
-                const n = prompt('What\'s your name?');
-                if (!n || !n.trim()) return;
-                currentUser = n.trim();
-                localStorage.setItem('pkc_user', currentUser);
-                renderNameBar();
-            }
-            const docId = itemId + '_' + currentUser.toLowerCase().replace(/\s+/g, '_');
-            if (action === 'claim') {
-                await setDoc(doc(db, 'gear', docId), { item: itemId, name: currentUser, updatedAt: serverTimestamp() });
-            } else {
-                await deleteDoc(doc(db, 'gear', docId));
-            }
-        }
-
-        function listenGear() {
-            onSnapshot(collection(db, 'gear'), snapshot => {
-                latestClaims = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-                renderGear(latestClaims);
-            });
-        }
-
-        function listenGearItems() {
-            const q = query(collection(db, 'gearItems'), orderBy('createdAt'));
-            onSnapshot(q, snapshot => {
-                communityGearItems = snapshot.docs.map(d => ({ id: d.id, seed: false, ...d.data() }));
-                renderGear(latestClaims);
-            });
-        }
-
         // ===== Proposals real-time listener =====
         function listenProposals() {
             const q = query(collection(db, 'proposals'), orderBy('createdAt'));
@@ -1036,8 +864,6 @@
         // ===== Init =====
         renderNameBar();
         listenProposals();
-        listenGearItems();
-        listenGear();
     </script>
 
 </body>

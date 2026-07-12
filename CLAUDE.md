@@ -4,55 +4,79 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Single-page countdown site for a group trip to Perdido Key, FL (July 11–18, 2026). No build step, no framework, no dependencies — everything lives in `index.html`. Deployed via GitHub Pages at https://acoclr1979.github.io/perdido-key-countdown/.
+Single-page-per-topic trip site for a group trip to Perdido Key, FL (July 11–18, 2026). No build step, no framework, no dependencies — plain HTML/CSS/JS files. Deployed via GitHub Pages at https://acoclr1979.github.io/perdido-key-countdown/.
+
+The homepage's hero copy, title, and headline are updated by hand most days during the trip (e.g. "T−1 Week" → "24 Hours Out" → "First Full Day On The Beach") — this is an intentional daily ritual, not something to automate away.
 
 ## Git workflow
 
 Never commit or push to GitHub without asking first and waiting for explicit confirmation, even for small changes. Each push should get its own separate confirmation — do not batch multiple changes into one push without asking each time.
 
+Note: this site gets edited directly on GitHub's web/mobile UI throughout the trip (not just through Claude Code sessions), so `main` can move between sessions. Run `git fetch origin && git log --oneline main..origin/main` before building on top of an old checkout.
+
 ## Development
 
-Open `index.html` directly in a browser to test locally. There is no dev server, no build, no package manager.
+Serve the folder with `python3 -m http.server` and open `http://localhost:8000` (needed for the Firebase `type="module"` scripts to behave like they do in production; opening `index.html` directly via `file://` will not run them).
 
 To deploy: `git add . && git commit -m "..." && git push` — GitHub Pages goes live within ~1 minute.
 
-## Architecture
+## Pages
 
-Three pages, all static HTML with inline CSS/JS, linked to each other:
+- `index.html` — homepage: hero photo, countdown, VREI meter, trip programming/voting, helpful links, who's coming, links out to the side-quest pages
+- `gallery.html` — "The Photo Dump," a grid of every photo in `/photos/`
+- `stories.html` — "Tales from the Shore," trip legends/nostalgia + a community story submission form
+- `poem.html` — "The Night Before Perdido," a one-off "Twas the Night Before Christmas" parody poem page (side quest, linked from index.html)
+- `trip.html` — an orphaned earlier version of the homepage (title "T−24 Hours"), not linked from anywhere. Kept only in case an old shared link points at it; safe to delete if that's not a concern.
 
-- `index.html` — Page 1, Main Countdown (the homepage)
-- `stories.html` — Page 2, Tales from the Shore (side quest, linked from index.html)
-- `gallery.html` — Page 3, The Photo Dump (photo grid gallery, linked from index.html)
+## Shared infrastructure
 
-All markup, CSS, and JavaScript are inline in each page. The only external data file is `vrei-jokes.json`, fetched at runtime via `fetch('./vrei-jokes.json')` in `loadVreiJokes()` (index.html only).
+Plain JS files loaded via `<script src="...">` / ES module `import` — no bundler:
 
-**Layout (index.html):** Full-screen photo hero (`.hero-photo-wrap`, currently `Photo-22-PKC.jpeg`) at the top with a large gradient headline, then full-screen photo mosaic (`.mosaic-bg`) fixed behind everything, dark overlay (`.mosaic-overlay`), then centered `.main` content floating on top. No white card — glass-morphism countdown tiles and VREI box over the mosaic.
+- `photos.js` — the photo list (fallback array + live GitHub Contents API loader), mosaic crop overrides, gallery captions/featured flags, and an exclusion list for decorative non-photo assets
+- `mosaic.js` — renders the full-bleed photo mosaic background (index.html, stories.html)
+- `gallery.js` — renders the photo grid on gallery.html
+- `firebase-init.js` — shared Firebase app/Firestore init (imported by index.html and stories.html)
 
-**gallery.html:** Same mosaic background treatment as stories.html, but the content area is a responsive photo grid (`.gallery-grid`) showing actual `<img>` thumbnails (not blurred backgrounds) for every mosaic photo plus `Photo-20-PKC.JPG` (the "two men on the beach" photo that used to be the index.html hero). Each thumbnail links to the full-size image in a new tab.
+## Photo pickup system (drop a photo in, it shows up automatically)
 
-**Key JS functions:**
+All trip photos live in `/photos/`. To add one: upload it via GitHub's web/mobile "Add file → Upload files" UI (or `git add`/commit/push) — **no filename convention required, no code changes needed.**
 
-- `refreshVrei()` — called every second via `setInterval`. Calls `updateCountdown()`, then `updateVrei()`. The VREI quote only re-rolls on tier change (`lastVreiTier` guard), not every second.
-- `getVreiTier(daysLeft)` / `getVreiScore(daysLeft)` — VREI logic. Tiers: `simmering` (>15 days), `building` (4–15), `fullSend` (0–3 or negative). Score is linear 5–100 over a 21-day window. `VREI_SCORE_OVERRIDE` (currently `null`) pins the score when set to a number.
+How it works: `photos.js` calls the GitHub Contents API (`api.github.com/repos/acoclr1979/perdido-key-countdown/contents/photos`) at page load, cached in `sessionStorage` for 5 minutes. The gallery grid and mosaic background both render from that list. A hardcoded fallback array in `photos.js` is the safety net if the API call fails (offline, rate-limited) — update it too if you want brand-new photos to show up even when the API is unreachable, though this isn't required for normal operation.
 
-**Mosaic background:** All 20 photos listed explicitly in `.mosaic-bg` as `<img>` tags in a 5×4 CSS grid (4×5 on mobile). Order in HTML = left-to-right, top-to-bottom grid fill.
+**Decorative assets are excluded, not deleted.** `PKC_EXCLUDE` in `photos.js` lists filenames that live in `/photos/` for other purposes (the VREI mascot image, generated art, etc.) and shouldn't be mixed into the candid-photo pool. Add a filename there if you drop in something that isn't a real trip photo.
+
+**Cropping tradeoff:** the original ~20 mosaic photos have hand-tuned crop positions in `PKC_MOSAIC_OVERRIDES` (in `photos.js`). Any newly auto-discovered photo not in that map gets a plain `center center` / `cover` crop — fine by default, hand-tune a specific entry if one looks bad.
+
+**HEIC caveat:** the loader accepts `.heic`, but HEIC doesn't render in an `<img>` tag on Chrome/Firefox/Windows/Android — only Safari displays it. Convert to `.jpg` before uploading if the whole group needs to see it. (`IMG_1350.heic` sits untracked in the repo root for this reason — convert before adding to `/photos/`.)
+
+Non-pooled images stay in the repo root because they're referenced by explicit filename: `beachball.jpeg` (stories.html seed story). A few leftovers from removed features are currently unreferenced anywhere — see "Known cleanup opportunities" below.
 
 ## Important file quirks
 
-- `Photo-7-PKC.JPEG` — uppercase `.JPEG` extension. Do not rename it; it will 404 on case-sensitive hosts (GitHub Pages).
-- `Photo-18-PKC.jpg` — `.jpg` (not `.jpeg`); now a carousel slide (was the tiled background image; background is now a solid gradient).
-- `IMG_1144.jpeg` — carousel image that wasn't renamed to the `Photo-##-PKC` convention; leave as-is.
-- `Photo-20-PKC.JPG` — uppercase `.JPG` extension (uploaded via GitHub web UI, which preserved the original case). Do not rename it; it will 404 on case-sensitive hosts. Was the index.html hero photo; now lives on gallery.html only.
-- `Photo-22-PKC.jpeg` — current index.html hero photo (beach deck couple selfie, landscape orientation). Also the `og:image` used for link-share previews.
+- `photos/Photo-7-PKC.JPEG` and `photos/Photo-20-PKC.JPG` — uppercase extensions preserved from GitHub web-upload. Do not rename; they'll 404 on case-sensitive GitHub Pages hosting.
+- `photos/Photo-18-PKC.jpg` — `.jpg` not `.jpeg`.
+- `photos/IMG_1144.jpeg` — never renamed to the `Photo-##-PKC` convention; leave as-is.
+- `photos/Photo-24-PKC.PNG` and `photos/Photo-30-PKC.PNG` — decorative PNGs (generated art, VREI mascot), excluded from the photo pool via `PKC_EXCLUDE` — see above.
+- `photos/Photo-29-PKC.jpeg` — current index.html hero photo (heron on the shoreline at sunrise) and `og:image`.
+- `photos/Photo-30-PKC.PNG` — "Vacation Rick" mascot avatar shown in the VREI panel.
+- `photos/Photo-25-PKC.jpeg` — hero image on poem.html.
 
 ## Adding content
 
-**New carousel photo:** Add a `<div class="carousel-slide"><img src="./Photo-##-PKC.jpeg" ...></div>` inside `#carousel`. The dot generator counts slide divs automatically.
+**New trip photo:** drop it into `/photos/`. That's it.
 
-**New VREI jokes:** Edit `vrei-jokes.json` only — keep the three keys (`simmering`, `building`, `fullSend`), each an array of strings. No JS changes needed.
+**New VREI jokes:** edit `vrei-jokes.json` only — keep the three keys (`simmering`, `building`, `fullSend`), each an array of strings describing Vacation Rick's energy *level* at that moment, not "days until" framing (the same tier fires on the way up and the way down, so keep jokes direction-agnostic).
 
-**Rotating the Culinary Spotlight:** Swap content inside `.spotlight-container`, then move the previous restaurant's link into the "Archived Spotlight" `food-link-container` block near the bottom of the page.
+## Countdown / VREI logic (index.html)
 
-## Countdown target
+These are two independent mechanisms sharing the same visual meter — don't assume they're driven by the same number:
 
-Hardcoded as `"July 11, 2026 00:00:00"` using the visitor's **local timezone** (not US Central). Intentional for this use case.
+- **Countdown tiles** (Days/Hours/Min/Sec): count down to a specific labeled moment — currently "Until We Start Packing · Fri 9PM" (`July 17, 2026 21:00:00`). This target and label get updated by hand as the trip progresses; it isn't meant to be automated.
+- **VREI meter** (bar/score/tier/quote): driven by `VREI_CURVE`, a hardcoded map of each trip date (`YYYY-MM-DD`) to a 0–100 energy score — rising through arrival weekend, peaking Monday (golf day), declining Tue/Wed, dropping hard Thu/Fri, lowest on departure Saturday. Before the trip starts, score ramps up linearly over a 21-day window toward the arrival-day score; after the trip ends, it drops to a flat low value. `getVreiTier(score)` buckets into `simmering` (<30) / `building` (30–79) / `fullSend` (≥80), which selects the joke bank in `vrei-jokes.json`. `VREI_SCORE_OVERRIDE` (currently `null`) pins the score to a fixed number when set, useful for testing/screenshots.
+- The countdown's `diffMs` is still passed into `updateVrei()` for one thing: forcing the tier label to "PACK MODE" once the Friday-9PM packing countdown hits zero, regardless of what the VREI curve says.
+
+## Known cleanup opportunities (not yet acted on)
+
+- `heart-sand.jpeg` and `usa-wins-banner.jpeg` in the repo root are leftover from removed features and currently unreferenced anywhere. Safe to delete if no longer wanted.
+- `trip.html` is an orphaned, unlinked earlier homepage snapshot — see "Pages" above.
+- `IMG_1350.heic` needs conversion to `.jpg` before it can join `/photos/` (see HEIC caveat above).
