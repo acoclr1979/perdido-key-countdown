@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perdido Key — This Is Not A Drill</title>
-    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/Photo-29-PKC.PNG">
-    <meta property="og:title" content="Perdido Key — This Is Not A Drill">
+    <title>Perdido Key — First Full Day On The Beach</title>
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/Photo-29-PKC.jpeg">
+    <meta property="og:title" content="Perdido Key — First Full Day On The Beach">
     <meta property="og:description" content="We are live in Florida! 🏖️ July 11–18, 2026">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,7 +49,7 @@
         .hero-photo-blur-bg {
             position: absolute;
             inset: -30px;
-            background-image: url('./Photo-29-PKC.PNG');
+            background-image: url('./Photo-29-PKC.jpeg');
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -358,8 +358,8 @@
         <div class="hero-photo-blur-bg"></div>
         <div class="hero-photo-overlay"></div>
         <div class="hero-photo-content">
-            <p class="hero-photo-eyebrow">✈️ Wheels Up — Flying In Today</p>
-            <img src="./Photo-29-PKC.PNG" alt="Top Gun 3: Perdido Patrol — the ladies flying the jets, the guys riding shotgun" class="hero-photo-img" fetchpriority="high">
+            <p class="hero-photo-eyebrow">🌅 Calm Morning on the Key</p>
+            <img src="./Photo-29-PKC.jpeg" alt="A heron stands watch on the shoreline at sunrise, American flag waving beside a beach umbrella, storm clouds building over the Gulf" class="hero-photo-img" fetchpriority="high">
         </div>
     </div>
 
@@ -395,10 +395,11 @@
             <!-- ===== HERO (countdown / VREI) ===== -->
             <div class="hero-wrap" id="countdown">
                 <div class="main">
-                    <p class="hero-eyebrow">🚨 Perdido Key</p>
-                    <div class="hero-t2">This Is Not A Drill.</div>
-                    <p class="hero-weeks">We Are Live In Florida</p>
-                    <p class="hero-dates">July 11 &ndash; 18, 2026</p>
+                    <p class="hero-eyebrow">🏖️ Perdido Key</p>
+                    <div class="hero-t2">Prime Beach Time.</div>
+                    <p class="hero-weeks">Soak It All In</p>
+                    <p class="hero-dates" style="margin-bottom:10px;">July 11 &ndash; 18, 2026</p>
+                    <p style="font-size:0.72em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:42px;">⏳ Until We Start Packing · Fri 9PM</p>
 
                     <div class="countdown">
                         <div class="countdown-item">
@@ -555,7 +556,7 @@
                     <p class="panel-sub">July 11–18, 2026 · Perdido Key, FL</p>
                     <div style="display:flex; gap:24px; margin-bottom:18px;">
                         <div style="text-align:center;">
-                            <div style="font-size:2em; font-weight:800; color:#7eeaa0;">29</div>
+                            <div style="font-size:2em; font-weight:800; color:#7eeaa0;">27</div>
                             <div style="font-size:0.75em; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:.05em;">Confirmed</div>
                         </div>
                     </div>
@@ -584,8 +585,6 @@
                         <span class="cobalt-pill in">Parker</span>
                         <span class="cobalt-pill in">Dane</span>
                         <span class="cobalt-pill in">Brady</span>
-                        <span class="cobalt-pill in">Grace</span>
-                        <span class="cobalt-pill in">Grace's Friend</span>
                         <span class="cobalt-pill in">Jennifer J</span>
                         <span class="cobalt-pill in">JJ</span>
                         <span class="cobalt-pill in">Cam</span>
@@ -622,7 +621,7 @@
     <!-- Countdown + VREI (no Firebase needed) -->
     <script>
         function updateCountdown() {
-            const diff = new Date("July 11, 2026 00:00:00").getTime() - new Date().getTime();
+            const diff = new Date("July 17, 2026 21:00:00").getTime() - new Date().getTime();
             const daysLeft = Math.floor(diff / (1000 * 60 * 60 * 24));
             document.getElementById("days").textContent = Math.max(daysLeft, 0);
             document.getElementById("hours").textContent = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
@@ -632,6 +631,8 @@
         }
 
         const VREI_SCORE_OVERRIDE = null;
+        const VREI_TRIP_START = new Date("July 11, 2026 00:00:00").getTime();
+        const VREI_PACK_TIME = new Date("July 17, 2026 21:00:00").getTime();
         let vreiJokes = null;
 
         async function loadVreiJokes() {
@@ -647,27 +648,27 @@
             }
         }
 
-        function getVreiTier(daysLeft) {
-            if (daysLeft > 15) return 'simmering';
-            if (daysLeft >= 4) return 'building';
-            return 'fullSend';
+        function getVreiScore(diffMs) {
+            if (VREI_SCORE_OVERRIDE !== null) return VREI_SCORE_OVERRIDE;
+            const totalWindow = VREI_PACK_TIME - VREI_TRIP_START;
+            const clamped = Math.max(0, Math.min(totalWindow, diffMs));
+            return Math.round((clamped / totalWindow) * 100);
         }
 
-        function getVreiScore(daysLeft) {
-            if (VREI_SCORE_OVERRIDE !== null) return VREI_SCORE_OVERRIDE;
-            const maxDays = 21;
-            const clamped = Math.max(0, Math.min(maxDays, daysLeft));
-            return Math.max(5, Math.round(100 - (clamped / maxDays) * 100));
+        function getVreiTier(score) {
+            if (score > 60) return 'fullSend';
+            if (score > 20) return 'building';
+            return 'simmering';
         }
 
         function updateVrei(diffMs) {
-            const daysLeft = diffMs / (1000 * 60 * 60 * 24);
-            const tier = getVreiTier(daysLeft);
-            const score = getVreiScore(daysLeft);
+            const score = getVreiScore(diffMs);
+            const tier = getVreiTier(score);
             const tierLabels = { simmering: 'SIMMERING', building: 'BUILDING', fullSend: 'FULL SEND' };
+            const tierLabel = diffMs <= 0 ? 'PACK MODE' : tierLabels[tier];
             document.getElementById('vreiBarFill').style.width = score + '%';
             document.getElementById('vreiScore').textContent = score;
-            document.getElementById('vreiTier').textContent = tierLabels[tier];
+            document.getElementById('vreiTier').textContent = tierLabel;
             return tier;
         }
 
