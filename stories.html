@@ -179,6 +179,53 @@
         .cs-photo { margin-top: 14px; }
         .cs-photo img { width: 100%; height: auto; border-radius: 10px; display: block; max-height: 340px; object-fit: cover; }
 
+        .bracket-round { margin-bottom: 16px; }
+        .bracket-round:last-child { margin-bottom: 0; }
+        .bracket-round-label {
+            font-size: 0.68em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,180,70,0.6);
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+        .bracket-match {
+            font-size: 0.88em;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.6);
+        }
+        .bracket-match strong { color: rgba(255,255,255,0.94); font-weight: 600; }
+
+        .standings-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 9px 0;
+            font-size: 0.92em;
+        }
+        .standings-row + .standings-row { border-top: 1px solid rgba(255,255,255,0.08); }
+        .standings-row span:first-child { color: rgba(255,255,255,0.9); }
+        .standings-row span:last-child { color: rgba(255,255,255,0.4); font-size: 0.85em; }
+
+        .notable-list { list-style: none; padding: 0; margin: 0; }
+        .notable-list li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 9px;
+            font-size: 0.88em;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.75);
+        }
+        .notable-list li:last-child { margin-bottom: 0; }
+        .notable-list li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: rgba(255,180,70,0.5);
+            font-size: 0.7em;
+            top: 6px;
+        }
+
         .empty-state {
             text-align: center;
             padding: 22px 0 8px;
@@ -299,6 +346,65 @@
                                filter: saturate(1.15);">
                 </div>
                 <p style="font-size:0.7em; color:rgba(255,180,70,0.5); text-align:center; margin-top:10px; letter-spacing:1.5px; text-transform:uppercase;">Actual size. We are not exaggerating.</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Cornhole tournament -->
+            <div class="featured-story">
+                <div class="featured-badge">🌽 Tournament</div>
+                <div class="story-title">Perdido Cornhole Championship</div>
+                <div class="story-meta">Champions: <strong>Greg &amp; Jack Crane</strong> &nbsp;·&nbsp; <strong>2026</strong></div>
+                <div class="story-body">
+                    <p>What started as a carefully balanced nine-team tournament ended with an unforgettable family showdown. The field was seeded to even out skill levels, a play-in game set the final bracket spot, and eight teams moved into single elimination.</p>
+
+                    <div class="bracket-round">
+                        <div class="bracket-round-label">Play-In</div>
+                        <div class="bracket-match"><strong>Parker &amp; Dane</strong> defeated Brady &amp; Carey to earn the final quarterfinal spot.</div>
+                    </div>
+
+                    <div class="bracket-round">
+                        <div class="bracket-round-label">Quarterfinals</div>
+                        <div class="bracket-match"><strong>Aidan O. &amp; Cam</strong> defeated Aiden &amp; Kasey</div>
+                        <div class="bracket-match"><strong>Grayson &amp; Ella Crane</strong> defeated Parker &amp; Dane</div>
+                        <div class="bracket-match"><strong>Greg &amp; Jack</strong> defeated Rick &amp; Jennifer J.K.</div>
+                        <div class="bracket-match"><strong>Bill &amp; Amalia</strong> defeated JJ &amp; Adam</div>
+                    </div>
+
+                    <div class="bracket-round">
+                        <div class="bracket-round-label">Semifinals</div>
+                        <div class="bracket-match"><strong>Grayson &amp; Ella Crane</strong> defeated Aidan O. &amp; Cam</div>
+                        <div class="bracket-match"><strong>Greg &amp; Jack</strong> defeated Bill &amp; Amalia</div>
+                    </div>
+
+                    <div class="bracket-round">
+                        <div class="bracket-round-label">Championship</div>
+                        <div class="bracket-match"><strong>Greg &amp; Jack</strong> defeated Grayson &amp; Ella Crane to capture the title.</div>
+                    </div>
+
+                    <p style="margin-top:22px;"><em>The story everyone will remember:</em> the championship turned into an unexpected Crane family showdown. On one side stood Greg &amp; Jack Crane. On the other was Ella Crane, partnered with Grayson — widely regarded as the tournament favorite, a player who competes at an extremely high level. Most expected Grayson to finish the job. Instead, Greg &amp; Jack played lights out, pulled off the biggest upset of the day, and walked away with the title.</p>
+                    <p>Sometimes cornhole reminds us why we play the games. Seedings matter. Experience matters. But on any given afternoon, great teamwork, clutch shots, and a little momentum can rewrite the script.</p>
+                </div>
+
+                <div style="margin-top:24px; border-radius:12px; overflow:hidden;">
+                    <img src="./cornhole.jpeg" alt="Cornhole on the beach" style="width:100%; height:auto; display:block; object-fit:cover; max-height:420px;">
+                </div>
+
+                <div class="story-body" style="margin-top:24px;">
+                    <div class="standings-row"><span>🥇 Champions</span><span>Greg &amp; Jack Crane</span></div>
+                    <div class="standings-row"><span>🥈 Runners-Up</span><span>Grayson &amp; Ella Crane</span></div>
+                </div>
+
+                <p style="font-size:0.7em; color:rgba(255,180,70,0.6); text-transform:uppercase; letter-spacing:2px; margin:24px 0 10px;">Notable Moments</p>
+                <ul class="notable-list">
+                    <li>Nine balanced teams created one of the most competitive brackets we've had.</li>
+                    <li>Parker &amp; Dane battled through the play-in to reach the quarterfinals.</li>
+                    <li>Aidan O. &amp; Cam made a strong semifinal run.</li>
+                    <li>Greg &amp; Jack eliminated the #3 seed, defeated the #2 seed in the semifinals, and then knocked off the tournament favorite in the championship.</li>
+                    <li>The tournament ended with the Cranes celebrating together — just on opposite sides of the scoreboard.</li>
+                </ul>
+
+                <p style="text-align:center; font-size:0.85em; color:rgba(255,255,255,0.4); margin-top:22px;">Until next year… 🌽🏆</p>
             </div>
 
             <div class="divider"></div>
