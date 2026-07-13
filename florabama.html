@@ -338,9 +338,50 @@
         const FLORABAMA_REPO = 'acoclr1979/perdido-key-countdown';
         const FLORABAMA_PATH = 'photos/florabama';
         const FLORABAMA_IMAGE_EXT_RE = /\.(jpe?g|png|heic|gif|webp)$/i;
+        const FLORABAMA_CACHE_KEY = 'pkc_florabama_photos_cache_v1';
+        const FLORABAMA_CACHE_TTL_MS = 5 * 60 * 1000;
+
+        // Offline/rate-limit safety net, same role as PKC_FALLBACK_PHOTOS in photos.js.
+        // Update when new Flora-Bama photos are added, though this isn't required for
+        // normal operation — the live API call refreshes over this on every page load.
+        const FLORABAMA_FALLBACK_PHOTOS = [
+            'Photo-1-PKC.jpeg',
+            'Photo-14-PKC.jpeg',
+            'Photo-19-PKC.jpeg',
+            'Photo-2-PKC.jpeg',
+            'Photo-33-PKC.jpeg',
+            'Photo-38-PKC.jpeg',
+            'Photos-37-PKC.jpeg',
+        ];
+
+        function florabamaGetCached() {
+            try {
+                const cached = JSON.parse(sessionStorage.getItem(FLORABAMA_CACHE_KEY) || 'null');
+                if (cached && Array.isArray(cached.files) && (Date.now() - cached.ts) < FLORABAMA_CACHE_TTL_MS) {
+                    return cached.files;
+                }
+            } catch (err) { /* sessionStorage unavailable or corrupt — fall through */ }
+            return null;
+        }
+
+        function renderFlorabamaGrid(files) {
+            const grid = document.getElementById('florabamaGrid');
+            if (!files.length) {
+                grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">No Flora-Bama photos yet — drop one into <code>/photos/florabama/</code> and it\'ll show up here.</div>';
+                return;
+            }
+            grid.innerHTML = files.map(f => `
+                <a class="gallery-item" href="./${FLORABAMA_PATH}/${f}" target="_blank" rel="noopener noreferrer">
+                    <img src="./${FLORABAMA_PATH}/${f}" alt="Flora-Bama Yacht Club" loading="lazy" decoding="async">
+                </a>
+            `).join('');
+        }
 
         async function loadFlorabamaPhotos() {
-            const grid = document.getElementById('florabamaGrid');
+            // Instant first paint from cache (or the fallback list) — no flash, no
+            // empty state while the live call is in flight.
+            renderFlorabamaGrid(florabamaGetCached() || FLORABAMA_FALLBACK_PHOTOS);
+
             try {
                 const res = await fetch(`https://api.github.com/repos/${FLORABAMA_REPO}/contents/${FLORABAMA_PATH}`);
                 if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
@@ -350,19 +391,13 @@
                     .map(entry => entry.name)
                     .sort();
 
-                if (!files.length) {
-                    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">No Flora-Bama photos yet — drop one into <code>/photos/florabama/</code> and it\'ll show up here.</div>';
-                    return;
+                if (files.length) {
+                    try {
+                        sessionStorage.setItem(FLORABAMA_CACHE_KEY, JSON.stringify({ ts: Date.now(), files }));
+                    } catch (err) { /* storage full/unavailable — non-fatal */ }
+                    renderFlorabamaGrid(files);
                 }
-
-                grid.innerHTML = files.map(f => `
-                    <a class="gallery-item" href="./${FLORABAMA_PATH}/${f}" target="_blank" rel="noopener noreferrer">
-                        <img src="./${FLORABAMA_PATH}/${f}" alt="Flora-Bama Yacht Club" loading="lazy" decoding="async">
-                    </a>
-                `).join('');
-            } catch (err) {
-                grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">No Flora-Bama photos yet — drop one into <code>/photos/florabama/</code> and it\'ll show up here.</div>';
-            }
+            } catch (err) { /* network/API error (often rate-limiting on shared wifi) — keep showing cached/fallback list */ }
         }
 
         loadFlorabamaPhotos();

@@ -32,6 +32,8 @@ const PKC_FALLBACK_PHOTOS = [
     'Photo-26-PKC.jpeg',
     'Photo-29-PKC.jpeg',
     'Photo-35-PKC.jpeg',
+    'Photo-36-PKC.jpeg',
+    'IMGJul.jpg',
 ];
 
 // Decorative/non-candid assets that live in /photos for other uses (VREI mascot,
