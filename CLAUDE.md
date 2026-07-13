@@ -59,7 +59,7 @@ Non-pooled images stay in the repo root because they're referenced by explicit f
 - `photos/Photo-18-PKC.jpg` — `.jpg` not `.jpeg`.
 - `photos/IMG_1144.jpeg` — never renamed to the `Photo-##-PKC` convention; leave as-is.
 - `photos/Photo-24-PKC.PNG` and `photos/Photo-30-PKC.PNG` — decorative PNGs (generated art, VREI mascot), excluded from the photo pool via `PKC_EXCLUDE` — see above.
-- `photos/Photo-29-PKC.jpeg` — current index.html hero photo (heron on the shoreline at sunrise) and `og:image`.
+- `photos/Photo-35-PKC.jpeg` — current index.html hero photo (Adam, two-fisted with frozen drinks) and `og:image`. Replaced the Photo-29 heron shot; Photo-29 stays in the regular photo pool.
 - `photos/Photo-30-PKC.PNG` — "Vacation Rick" mascot avatar shown in the VREI panel.
 - `photos/Photo-25-PKC.jpeg` — hero image on poem.html.
 
