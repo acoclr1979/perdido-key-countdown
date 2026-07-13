@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perdido Key — First Full Day On The Beach</title>
+    <title>Perdido Key — Golf Day</title>
     <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/photos/Photo-29-PKC.jpeg">
-    <meta property="og:title" content="Perdido Key — First Full Day On The Beach">
-    <meta property="og:description" content="We are live in Florida! 🏖️ July 11–18, 2026">
+    <meta property="og:title" content="Perdido Key — Golf Day">
+    <meta property="og:description" content="Girls at Becky's, boys at golf, everyone at Flora-Bama tonight. 🏖️ July 11–18, 2026">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -131,21 +131,6 @@
         .hero-t2 { font-size: clamp(2.6rem, 11vw, 5.5rem); font-weight: 900; line-height: 1; letter-spacing: -1px; color: #fff; text-shadow: 0 4px 40px rgba(0,0,0,0.5); }
         .hero-weeks { font-size: clamp(1.4rem, 5vw, 2.8rem); font-weight: 200; letter-spacing: clamp(8px, 2vw, 18px); text-transform: uppercase; color: rgba(255,255,255,0.8); margin-top: 4px; margin-bottom: 8px; }
         .hero-dates { font-size: 0.9em; color: rgba(255,255,255,0.4); letter-spacing: 3px; margin-bottom: 52px; }
-
-        .countdown { display: flex; gap: 16px; justify-content: center; margin-bottom: 40px; }
-        .countdown-item {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.18);
-            padding: 22px 20px 18px;
-            border-radius: 14px;
-            min-width: 88px;
-            flex: 1;
-            max-width: 130px;
-        }
-        .countdown-number { font-size: 2.6em; font-weight: 700; display: block; line-height: 1; margin-bottom: 7px; }
-        .countdown-label { font-size: 0.7em; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; }
 
         .vrei-container {
             max-width: 420px;
@@ -322,9 +307,6 @@
         @media (max-width: 600px) {
             .hero-wrap { padding: 50px 20px 70px; }
             .hero-t2 { letter-spacing: -2px; }
-            .countdown { gap: 10px; }
-            .countdown-item { padding: 16px 10px 14px; min-width: 0; }
-            .countdown-number { font-size: 1.9em; }
             .sections-wrap { padding: 0 16px 80px; gap: 20px; }
             .panel { padding: 20px 18px; }
             .days-grid { grid-template-columns: 1fr; }
@@ -357,29 +339,10 @@
             <div class="hero-wrap" id="countdown">
                 <div class="main">
                     <p class="hero-eyebrow">🏖️ Perdido Key</p>
-                    <div class="hero-t2">Prime Beach Time.</div>
-                    <p class="hero-weeks">Soak It All In</p>
+                    <div class="hero-t2">Golf Day.</div>
+                    <p class="hero-weeks">Girls At Becky's · Boys At Golf</p>
                     <p class="hero-dates" style="margin-bottom:10px;">July 11 &ndash; 18, 2026</p>
-                    <p style="font-size:0.72em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:42px;">⏳ Until We Start Packing · Fri 9PM</p>
-
-                    <div class="countdown">
-                        <div class="countdown-item">
-                            <span class="countdown-number" id="days">0</span>
-                            <span class="countdown-label">Days</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="countdown-number" id="hours">0</span>
-                            <span class="countdown-label">Hours</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="countdown-number" id="minutes">0</span>
-                            <span class="countdown-label">Minutes</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="countdown-number" id="seconds">0</span>
-                            <span class="countdown-label">Seconds</span>
-                        </div>
-                    </div>
+                    <p style="font-size:0.72em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:42px;">🛥️ Tonight: Meet Up At Flora-Bama Yacht Club</p>
 
                     <div class="vrei-container">
                         <div class="vrei-avatar-row">
@@ -564,22 +527,22 @@
                     <span style="margin-left:auto; color:rgba(255,180,70,0.5); font-size:1em; flex-shrink:0;">→</span>
                 </a>
 
+                <a href="./florabama.html" style="display:flex; align-items:center; gap:14px; text-decoration:none; color:white; background:rgba(255,180,70,0.07); border:1px solid rgba(255,180,70,0.2); border-radius:14px; padding:16px 20px; transition:background 0.15s;" onmouseover="this.style.background='rgba(255,180,70,0.14)'" onmouseout="this.style.background='rgba(255,180,70,0.07)'">
+                    <span style="font-size:1.6em; flex-shrink:0;">🛥️</span>
+                    <div>
+                        <div style="font-size:0.72em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#ffb347; margin-bottom:3px;">Side Quest</div>
+                        <div style="font-size:0.95em; font-weight:700;">Flora-Bama Yacht Club</div>
+                        <div style="font-size:0.76em; color:rgba(255,255,255,0.35); margin-top:2px;">Tonight's meetup spot — past photos, menu &amp; drinks worth ordering</div>
+                    </div>
+                    <span style="margin-left:auto; color:rgba(255,180,70,0.5); font-size:1em; flex-shrink:0;">→</span>
+                </a>
+
             </div>
         </div>
     </div>
 
-    <!-- Countdown + VREI (no Firebase needed) -->
+    <!-- VREI (no Firebase needed) -->
     <script>
-        function updateCountdown() {
-            const diff = new Date("July 17, 2026 21:00:00").getTime() - new Date().getTime();
-            const daysLeft = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById("days").textContent = Math.max(daysLeft, 0);
-            document.getElementById("hours").textContent = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
-            document.getElementById("minutes").textContent = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
-            document.getElementById("seconds").textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
-            return diff;
-        }
-
         const VREI_SCORE_OVERRIDE = null;
 
         // In-trip energy curve: peaks Monday (golf day), declines through midweek,
@@ -637,14 +600,13 @@
             return 'simmering';
         }
 
-        function updateVrei(diffMs) {
+        function updateVrei() {
             const score = getVreiScore();
             const tier = getVreiTier(score);
             const tierLabels = { simmering: 'SIMMERING', building: 'BUILDING', fullSend: 'FULL SEND' };
-            const tierLabel = diffMs <= 0 ? 'PACK MODE' : tierLabels[tier];
             document.getElementById('vreiBarFill').style.width = score + '%';
             document.getElementById('vreiScore').textContent = score;
-            document.getElementById('vreiTier').textContent = tierLabel;
+            document.getElementById('vreiTier').textContent = tierLabels[tier];
             return tier;
         }
 
@@ -657,8 +619,7 @@
         let lastVreiTier = null;
 
         function refreshVrei() {
-            const diff = updateCountdown();
-            const tier = updateVrei(diff);
+            const tier = updateVrei();
             if (tier !== lastVreiTier) {
                 displayVreiQuote(tier);
                 lastVreiTier = tier;
@@ -671,13 +632,13 @@
         }
 
         start();
-        let vreiInterval = setInterval(refreshVrei, 1000);
+        let vreiInterval = setInterval(refreshVrei, 60000);
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
                 clearInterval(vreiInterval);
             } else {
                 refreshVrei();
-                vreiInterval = setInterval(refreshVrei, 1000);
+                vreiInterval = setInterval(refreshVrei, 60000);
             }
         });
     </script>

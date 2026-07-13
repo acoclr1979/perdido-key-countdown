@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora-Bama Yacht Club — Perdido Key</title>
+    <meta property="og:title" content="Flora-Bama Yacht Club — Perdido Key">
+    <meta property="og:description" content="Tonight's meetup spot — past photos, the menu, and the drinks worth ordering.">
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/photos/Photo-00-PKC.jpeg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            color: white;
+            background: #0a0528;
+        }
+
+        .mosaic-bg {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            z-index: 0;
+        }
+        .mosaic-bg .mc {
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 200%;
+        }
+        .mosaic-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 4, 35, 0.86);
+            z-index: 1;
+        }
+
+        .page-wrap {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Hero */
+        .hero {
+            width: 100%;
+            max-width: 740px;
+            padding: 72px 30px 52px;
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.35);
+            text-decoration: none;
+            font-size: 0.75em;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 36px;
+            transition: color 0.15s;
+        }
+        .back-link:hover { color: rgba(255,255,255,0.65); }
+
+        .hero-eyebrow {
+            font-size: 0.8em;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 14px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.6rem, 10vw, 4.6rem);
+            font-weight: 900;
+            line-height: 1.02;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+        }
+
+        .hero-sub {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.65;
+        }
+
+        /* Content */
+        .content {
+            width: 100%;
+            max-width: 740px;
+            padding: 0 24px 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .gallery-item {
+            display: block;
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 22px 0 8px;
+            color: rgba(255,255,255,0.35);
+            font-size: 0.85em;
+            line-height: 1.6;
+        }
+
+        /* Panel */
+        .panel {
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.11);
+            border-radius: 18px;
+            padding: 28px 30px;
+        }
+        .panel h2 { font-size: 1.15em; font-weight: 700; margin-bottom: 4px; }
+        .panel-sub { font-size: 0.82em; color: rgba(255,255,255,0.36); margin-bottom: 22px; }
+
+        .menu-group { margin-bottom: 20px; }
+        .menu-group:last-child { margin-bottom: 0; }
+        .menu-group-label {
+            font-size: 0.68em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,180,70,0.65);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .menu-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 8px 0;
+            font-size: 0.9em;
+        }
+        .menu-row + .menu-row { border-top: 1px solid rgba(255,255,255,0.08); }
+        .menu-item-name { color: rgba(255,255,255,0.92); font-weight: 600; }
+        .menu-item-note { color: rgba(255,255,255,0.4); font-size: 0.85em; display: block; margin-top: 2px; font-weight: 400; }
+        .menu-item-price { color: rgba(255,180,70,0.75); white-space: nowrap; font-weight: 600; }
+
+        .drink-list { list-style: none; padding: 0; margin: 0; }
+        .drink-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 11px;
+            font-size: 0.92em;
+            line-height: 1.55;
+            color: rgba(255,255,255,0.82);
+        }
+        .drink-list li:last-child { margin-bottom: 0; }
+        .drink-list li::before {
+            content: '🍹';
+            position: absolute;
+            left: 0;
+            top: 1px;
+            font-size: 0.85em;
+        }
+        .drink-list li strong { color: #fff; }
+
+        .helpful-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 12px 16px;
+            transition: background 0.15s;
+        }
+        .helpful-link:hover { background: rgba(255,255,255,0.09); }
+        .hl-title { font-size: 0.92em; font-weight: 700; }
+        .hl-sub { font-size: 0.76em; color: rgba(255,255,255,0.4); margin-top: 2px; }
+        .hl-arrow { margin-left: auto; color: rgba(255,255,255,0.3); flex-shrink: 0; }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            margin: 2px 0;
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 56px 20px 40px; }
+            .content { padding: 0 16px 80px; }
+            .panel { padding: 22px 20px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 7px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mosaic-bg" id="mosaicBg"></div>
+    <div class="mosaic-overlay"></div>
+    <script src="./photos.js"></script>
+    <script src="./mosaic.js"></script>
+
+    <div class="page-wrap">
+
+        <div class="hero">
+            <a href="./index.html" class="back-link">← Back to Countdown</a>
+            <p class="hero-eyebrow">🏖️ Perdido Key</p>
+            <h1 class="hero-title">Flora-Bama<br>Yacht Club</h1>
+            <p class="hero-sub">Tonight's meetup spot, right on the water at 17350 Perdido Key Dr.<br>Past trips, the menu, and the drinks worth ordering.</p>
+        </div>
+
+        <div class="content">
+
+            <!-- Photo collage -->
+            <div class="panel">
+                <h2>📸 Floribama Nights</h2>
+                <p class="panel-sub">Past trips to the Yacht Club, all in one place</p>
+                <div class="gallery-grid" id="florabamaGrid">
+                    <p style="color:rgba(255,255,255,0.3); font-size:0.85em; grid-column:1/-1;">Loading…</p>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Drinks -->
+            <div class="panel">
+                <h2>🍹 Drinks Worth Ordering</h2>
+                <p class="panel-sub">The signature stuff — order with confidence</p>
+                <ul class="drink-list">
+                    <li><strong>Bushwacker</strong> — the frozen boozy milkshake this whole stretch of coast is famous for.</li>
+                    <li><strong>Signature Bloody Mary</strong> — the move if anyone's feeling rough from last night.</li>
+                    <li><strong>Frozen Strawberry Lemonade</strong> — easy, sweet, dangerously drinkable in the heat.</li>
+                    <li><strong>Watermelon Crawl</strong> — Patron shaken with their margarita blend and sweet watermelon, served on the rocks.</li>
+                    <li><strong>Frozen Mojito</strong> — for whoever wants "refreshing" over "sweet."</li>
+                </ul>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Menu highlights -->
+            <div class="panel">
+                <h2>🍤 Menu Highlights</h2>
+                <p class="panel-sub">Gulf seafood, steaks &amp; the world-famous gumbo</p>
+
+                <div class="menu-group">
+                    <div class="menu-group-label">Appetizers</div>
+                    <div class="menu-row">
+                        <span class="menu-item-name">Yacht Club Char-Grilled Oysters<span class="menu-item-note">Orleans cream &amp; garlic butter</span></span>
+                        <span class="menu-item-price">$17 / $27</span>
+                    </div>
+                    <div class="menu-row">
+                        <span class="menu-item-name">Greek Shrimp Nachos<span class="menu-item-note">on wonton chips</span></span>
+                        <span class="menu-item-price">$17</span>
+                    </div>
+                    <div class="menu-row">
+                        <span class="menu-item-name">Firecracker Calamari<span class="menu-item-note">house aioli &amp; sweet chili</span></span>
+                        <span class="menu-item-price">$15</span>
+                    </div>
+                    <div class="menu-row">
+                        <span class="menu-item-name">World Famous Gumbo</span>
+                        <span class="menu-item-price">$7</span>
+                    </div>
+                </div>
+
+                <div class="menu-group">
+                    <div class="menu-group-label">Seafood</div>
+                    <div class="menu-row">
+                        <span class="menu-item-name">Gulf Coast Crab Cakes<span class="menu-item-note">roasted red pepper aioli</span></span>
+                        <span class="menu-item-price">$32</span>
+                    </div>
+                    <div class="menu-row">
+                        <span class="menu-item-name">Sesame-Wasabi Pea-Crusted Yellowfin Tuna</span>
+                        <span class="menu-item-price">$29</span>
+                    </div>
+                    <div class="menu-row">
+                        <span class="menu-item-name">Blackened Gulf Tripletail<span class="menu-item-note">Orleans sauce</span></span>
+                        <span class="menu-item-price">$26</span>
+                    </div>
+                    <div class="menu-row">
+                        <span class="menu-item-name">Caribbean Jerk Shrimp<span class="menu-item-note">mango slaw</span></span>
+                        <span class="menu-item-price">$23</span>
+                    </div>
+                </div>
+
+                <div class="menu-group">
+                    <div class="menu-group-label">Steaks</div>
+                    <div class="menu-row">
+                        <span class="menu-item-name">Ribeye, 14 oz</span>
+                        <span class="menu-item-price">$44</span>
+                    </div>
+                    <div class="menu-row">
+                        <span class="menu-item-name">Filet Mignon, 8 oz</span>
+                        <span class="menu-item-price">$45</span>
+                    </div>
+                </div>
+
+                <p style="font-size:0.72em; color:rgba(255,255,255,0.3); margin-top:18px; line-height:1.6;">Prices &amp; menu current as of this write-up — check the live menu below for anything that's changed since.</p>
+
+                <div style="margin-top:16px;">
+                    <a href="https://www.florabamayachtclub.com/menu" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                        <span style="font-size:1.3em;">🛥️</span>
+                        <div><div class="hl-title">Full Menu &amp; Hours</div><div class="hl-sub">florabamayachtclub.com · (850) 483-6272</div></div>
+                        <span class="hl-arrow">↗</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Photos dropped into /photos/florabama/ show up here automatically —
+        // same pickup mechanism as the main gallery, pointed at a subfolder.
+        const FLORABAMA_REPO = 'acoclr1979/perdido-key-countdown';
+        const FLORABAMA_PATH = 'photos/florabama';
+        const FLORABAMA_IMAGE_EXT_RE = /\.(jpe?g|png|heic|gif|webp)$/i;
+
+        async function loadFlorabamaPhotos() {
+            const grid = document.getElementById('florabamaGrid');
+            try {
+                const res = await fetch(`https://api.github.com/repos/${FLORABAMA_REPO}/contents/${FLORABAMA_PATH}`);
+                if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
+                const data = await res.json();
+                const files = data
+                    .filter(entry => entry.type === 'file' && FLORABAMA_IMAGE_EXT_RE.test(entry.name))
+                    .map(entry => entry.name)
+                    .sort();
+
+                if (!files.length) {
+                    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">No Flora-Bama photos yet — drop one into <code>/photos/florabama/</code> and it\'ll show up here.</div>';
+                    return;
+                }
+
+                grid.innerHTML = files.map(f => `
+                    <a class="gallery-item" href="./${FLORABAMA_PATH}/${f}" target="_blank" rel="noopener noreferrer">
+                        <img src="./${FLORABAMA_PATH}/${f}" alt="Flora-Bama Yacht Club" loading="lazy" decoding="async">
+                    </a>
+                `).join('');
+            } catch (err) {
+                grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">No Flora-Bama photos yet — drop one into <code>/photos/florabama/</code> and it\'ll show up here.</div>';
+            }
+        }
+
+        loadFlorabamaPhotos();
+    </script>
+
+</body>
+</html>

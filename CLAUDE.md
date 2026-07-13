@@ -22,10 +22,11 @@ To deploy: `git add . && git commit -m "..." && git push` — GitHub Pages goes 
 
 ## Pages
 
-- `index.html` — homepage: hero photo, countdown, VREI meter, trip programming/voting, helpful links, who's coming, links out to the side-quest pages
+- `index.html` — homepage: hero photo, VREI meter, trip programming/voting, helpful links, who's coming, links out to the side-quest pages
 - `gallery.html` — "The Photo Dump," a grid of every photo in `/photos/`
 - `stories.html` — "Tales from the Shore," trip legends/nostalgia + a community story submission form
 - `poem.html` — "The Night Before Perdido," a one-off "Twas the Night Before Christmas" parody poem page (side quest, linked from index.html)
+- `florabama.html` — "Flora-Bama Yacht Club," side quest page: a photo collage of past trips to the Yacht Club (auto-loaded from `/photos/florabama/`), plus a menu/drinks feature for the meetup spot
 
 ## Shared infrastructure
 
@@ -50,6 +51,8 @@ How it works: `photos.js` calls the GitHub Contents API (`api.github.com/repos/a
 
 Non-pooled images stay in the repo root because they're referenced by explicit filename: `beachball.jpeg` (stories.html seed story).
 
+**Flora-Bama photo collage:** `photos/florabama/` is a separate subfolder with its own pickup mechanism (inline script in `florabama.html`, hitting the GitHub Contents API at that subpath) — it does not feed the main mosaic/gallery pool and isn't affected by `PKC_EXCLUDE`. Drop photos of past Flora-Bama Yacht Club trips in there and they show up on `florabama.html` automatically; empty folder renders a friendly empty state.
+
 ## Important file quirks
 
 - `photos/Photo-7-PKC.JPEG` and `photos/Photo-20-PKC.JPG` — uppercase extensions preserved from GitHub web-upload. Do not rename; they'll 404 on case-sensitive GitHub Pages hosting.
@@ -66,13 +69,11 @@ Non-pooled images stay in the repo root because they're referenced by explicit f
 
 **New VREI jokes:** edit `vrei-jokes.json` only — keep the three keys (`simmering`, `building`, `fullSend`), each an array of strings describing Vacation Rick's energy *level* at that moment, not "days until" framing (the same tier fires on the way up and the way down, so keep jokes direction-agnostic).
 
-## Countdown / VREI logic (index.html)
+## VREI logic (index.html)
 
-These are two independent mechanisms sharing the same visual meter — don't assume they're driven by the same number:
+There is no countdown to the end of the trip anymore — the old "Days/Hours/Min/Sec until packing" tiles and the "PACK MODE" tier override were removed (they read as counting down to the trip being over, which wasn't the vibe). The only mechanism left:
 
-- **Countdown tiles** (Days/Hours/Min/Sec): count down to a specific labeled moment — currently "Until We Start Packing · Fri 9PM" (`July 17, 2026 21:00:00`). This target and label get updated by hand as the trip progresses; it isn't meant to be automated.
-- **VREI meter** (bar/score/tier/quote): driven by `VREI_CURVE`, a hardcoded map of each trip date (`YYYY-MM-DD`) to a 0–100 energy score — rising through arrival weekend, peaking Monday (golf day), declining Tue/Wed, dropping hard Thu/Fri, lowest on departure Saturday. Before the trip starts, score ramps up linearly over a 21-day window toward the arrival-day score; after the trip ends, it drops to a flat low value. `getVreiTier(score)` buckets into `simmering` (<30) / `building` (30–79) / `fullSend` (≥80), which selects the joke bank in `vrei-jokes.json`. `VREI_SCORE_OVERRIDE` (currently `null`) pins the score to a fixed number when set, useful for testing/screenshots.
-- The countdown's `diffMs` is still passed into `updateVrei()` for one thing: forcing the tier label to "PACK MODE" once the Friday-9PM packing countdown hits zero, regardless of what the VREI curve says.
+- **VREI meter** (bar/score/tier/quote): driven by `VREI_CURVE`, a hardcoded map of each trip date (`YYYY-MM-DD`) to a 0–100 energy score — rising through arrival weekend, peaking Monday (golf day), declining Tue/Wed, dropping hard Thu/Fri, lowest on departure Saturday. Before the trip starts, score ramps up linearly over a 21-day window toward the arrival-day score; after the trip ends, it drops to a flat low value. `getVreiTier(score)` buckets into `simmering` (<30) / `building` (30–79) / `fullSend` (≥80), which selects the joke bank in `vrei-jokes.json`. `VREI_SCORE_OVERRIDE` (currently `null`) pins the score to a fixed number when set, useful for testing/screenshots. Refreshes every 60s (no longer needs per-second ticks now that there's no clock to animate).
 
 ## Known cleanup opportunities (not yet acted on)
 
