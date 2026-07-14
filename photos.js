@@ -76,7 +76,7 @@ const PKC_GALLERY_OVERRIDES = {
 
 const PKC_GITHUB_REPO = 'acoclr1979/perdido-key-countdown';
 const PKC_PHOTO_CACHE_KEY = 'pkc_photos_cache_v1';
-const PKC_PHOTO_CACHE_TTL_MS = 5 * 60 * 1000;
+const PKC_PHOTO_CACHE_TTL_MS = 60 * 1000;
 const PKC_IMAGE_EXT_RE = /\.(jpe?g|png|heic|gif|webp)$/i;
 
 // Synchronous best-guess list for an instant first paint — no network wait, no flash.
