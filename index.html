@@ -88,9 +88,13 @@
         }
 
         .hero-photo-img {
-            width: 100%;
-            max-width: 900px;
-            height: 60vh;
+            /* Sized to whichever is tightest: full width, the 900px cap, or the
+               width that keeps height under 60vh — combined with the matching
+               aspect-ratio below, this shows the full photo with no side-crop.
+               Update the aspect-ratio (and this calc's ratio) if the hero photo
+               changes shape, or a wide group shot will get cropped on the sides. */
+            width: min(100%, 900px, calc(60vh * 2425 / 1997));
+            aspect-ratio: 2425 / 1997;
             object-fit: cover;
             object-position: center;
             display: block;
