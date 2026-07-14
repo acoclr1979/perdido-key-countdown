@@ -27,6 +27,7 @@ To deploy: `git add . && git commit -m "..." && git push` — GitHub Pages goes 
 - `stories.html` — "Tales from the Shore," trip legends/nostalgia + a community story submission form
 - `poem.html` — "The Night Before Perdido," a one-off "Twas the Night Before Christmas" parody poem page (side quest, linked from index.html)
 - `florabama.html` — "Flora-Bama Yacht Club," side quest page: a photo collage of past trips to the Yacht Club (auto-loaded from `/photos/florabama/`), plus a menu/drinks feature for the meetup spot
+- `cobalt.html` — "Cobalt, The Restaurant," side quest page: a photo collage (auto-loaded from `/photos/cobalt/`, starts empty) plus menu highlights for the restaurant, same pattern as `florabama.html`
 
 ## Shared infrastructure
 
@@ -51,7 +52,7 @@ How it works: `photos.js` calls the GitHub Contents API (`api.github.com/repos/a
 
 Non-pooled images stay in the repo root because they're referenced by explicit filename: `beachball.jpeg` (stories.html seed story).
 
-**Flora-Bama photo collage:** `photos/florabama/` is a separate subfolder with its own pickup mechanism (inline script in `florabama.html`, hitting the GitHub Contents API at that subpath) — it does not feed the main mosaic/gallery pool and isn't affected by `PKC_EXCLUDE`. Drop photos of past Flora-Bama Yacht Club trips in there and they show up on `florabama.html` automatically; empty folder renders a friendly empty state.
+**Flora-Bama photo collage:** `photos/florabama/` is a separate subfolder with its own pickup mechanism (inline script in `florabama.html`, hitting the GitHub Contents API at that subpath) — it does not feed the main mosaic/gallery pool and isn't affected by `PKC_EXCLUDE`. Drop photos of past Flora-Bama Yacht Club trips in there and they show up on `florabama.html` automatically; empty folder renders a friendly empty state. `photos/cobalt/` works the same way for `cobalt.html`, with its own `sessionStorage` cache key (`pkc_cobalt_photos_cache_v1`) — both subfolder pages cache + fall back independently of `photos.js` and of each other.
 
 ## Important file quirks
 
