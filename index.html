@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perdido Key — Recovery Day</title>
-    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/photos/Photos-37-PKC.jpeg">
-    <meta property="og:title" content="Perdido Key — Recovery Day">
-    <meta property="og:description" content="Recovery day — hangover cures on standby, everyone at Cobalt tonight. 🏖️ July 11–18, 2026">
+    <title>Perdido Key — Hump Day</title>
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/blue-angels-pensacola-beach.jpg">
+    <meta property="og:title" content="Perdido Key — Hump Day">
+    <meta property="og:description" content="Midway through the week and making memories — plus the Blue Angels are practicing over Pensacola Beach before this weekend's airshow. 🏖️ July 11–18, 2026">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -31,75 +31,6 @@
             overflow-x: hidden;
             color: white;
             background: #0a0528;
-        }
-
-        /* ================= HERO PHOTO ================= */
-        .hero-photo-wrap {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 70px 20px 60px;
-        }
-
-        .hero-photo-blur-bg {
-            position: absolute;
-            inset: -30px;
-            background-image: url('./photos/Photo-29-PKC.jpeg');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            filter: blur(55px) brightness(0.5) saturate(1.15);
-            transform: scale(1.15);
-            z-index: 0;
-        }
-
-        .hero-photo-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg,
-                rgba(10,5,40,0.35) 0%,
-                rgba(10,5,40,0.15) 30%,
-                rgba(10,5,40,0.15) 60%,
-                rgba(10,5,40,0.75) 100%);
-            z-index: 1;
-        }
-
-        .hero-photo-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 22px;
-            width: 100%;
-            max-width: 920px;
-        }
-
-        .hero-photo-eyebrow {
-            font-size: 0.85em;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.6);
-        }
-
-        .hero-photo-img {
-            /* Sized to whichever is tightest: full width, the 900px cap, or the
-               width that keeps height under 60vh — combined with the matching
-               aspect-ratio below, this shows the full photo with no side-crop.
-               Update the aspect-ratio (and this calc's ratio) if the hero photo
-               changes shape, or a wide group shot will get cropped on the sides. */
-            width: min(100%, 900px, calc(60vh * 2425 / 1997));
-            aspect-ratio: 2425 / 1997;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-            border-radius: 14px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
 
         /* ================= EXISTING SITE (unchanged) ================= */
@@ -194,25 +125,22 @@
 
         .sections-wrap { width: 100%; max-width: 780px; padding: 0 24px 100px; display: flex; flex-direction: column; gap: 28px; }
 
-        .name-bar {
-            display: flex; align-items: center; gap: 10px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.11);
-            border-radius: 10px; padding: 12px 18px; font-size: 0.88em; flex-wrap: wrap;
+        .hub-box {
+            max-width: 440px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 14px;
+            padding: 22px 24px 20px;
+            text-align: left;
         }
-        .name-input-group { display: flex; gap: 8px; }
-        .name-input-group input {
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
-            padding: 7px 12px; color: white; font-family: inherit; font-size: 0.95em; outline: none; width: 160px;
-        }
-        .name-input-group input::placeholder { color: rgba(255,255,255,0.3); }
-        .name-input-group input:focus { border-color: rgba(255,255,255,0.4); }
-        .name-input-group button, .change-name-btn {
-            background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;
-            color: white; padding: 7px 14px; cursor: pointer; font-family: inherit; font-size: 0.88em; transition: background 0.15s;
-        }
-        .name-input-group button:hover, .change-name-btn:hover { background: rgba(255,255,255,0.22); }
-        .change-name-btn { padding: 4px 10px; font-size: 0.8em; color: rgba(255,255,255,0.45); border-color: transparent; background: none; }
+        .hub-label { font-size: 0.72em; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; text-align: center; }
+        .hub-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .hub-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88em; line-height: 1.45; color: rgba(255,255,255,0.82); }
+        .hub-list .hub-emoji { font-size: 1.15em; flex-shrink: 0; line-height: 1.3; }
+        .hub-list strong { color: white; }
 
         .panel {
             background: rgba(255,255,255,0.07);
@@ -226,43 +154,6 @@
         .panel h2 { font-size: 1.2em; font-weight: 700; margin-bottom: 4px; }
         .panel-sub { font-size: 0.82em; color: rgba(255,255,255,0.38); margin-bottom: 20px; }
 
-        .days-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .day-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; padding: 14px 14px 12px; }
-        .day-header {
-            font-size: 0.68em; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.45);
-            margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.07);
-        }
-        .day-note { color: #ffb347; font-weight: 500; margin-left: 5px; }
-        .proposals-list { list-style: none; margin-bottom: 10px; min-height: 16px; }
-        .proposal-item { display: flex; align-items: flex-start; gap: 8px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85em; }
-        .proposal-text { flex: 1; color: rgba(255,255,255,0.88); line-height: 1.35; }
-        .proposal-author { font-size: 0.75em; color: rgba(255,255,255,0.3); margin-top: 2px; }
-        .vote-group { display: flex; gap: 5px; flex-shrink: 0; margin-top: 1px; }
-        .vote-btn {
-            display: flex; align-items: center; gap: 3px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11);
-            border-radius: 6px; color: white; font-size: 0.78em; padding: 3px 7px; cursor: pointer; transition: background 0.15s; font-family: inherit;
-        }
-        .vote-btn:hover { background: rgba(255,255,255,0.16); }
-        .vote-btn.voted-up { background: rgba(100,210,120,0.22); border-color: rgba(100,210,120,0.38); }
-        .vote-btn.voted-down { background: rgba(210,80,80,0.22); border-color: rgba(210,80,80,0.38); }
-        .add-proposal { display: flex; gap: 7px; margin-top: 8px; }
-        .add-proposal input {
-            flex: 1; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13); border-radius: 8px;
-            padding: 7px 10px; color: white; font-size: 0.8em; font-family: inherit; outline: none; min-width: 0;
-        }
-        .add-proposal input::placeholder { color: rgba(255,255,255,0.25); }
-        .add-proposal input:focus { border-color: rgba(255,255,255,0.32); }
-        .add-proposal button {
-            background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; color: white;
-            font-size: 0.8em; padding: 7px 11px; cursor: pointer; white-space: nowrap; font-family: inherit; transition: background 0.15s;
-        }
-        .add-proposal button:hover { background: rgba(255,255,255,0.22); }
-        .empty-proposals { font-size: 0.78em; color: rgba(255,255,255,0.22); padding: 4px 0 6px; }
-        .delete-btn {
-            background: none; border: none; color: rgba(255,255,255,0.2); cursor: pointer; font-size: 0.85em; padding: 2px 4px;
-            border-radius: 4px; line-height: 1; transition: color 0.15s, background 0.15s; flex-shrink: 0; align-self: center;
-        }
-        .delete-btn:hover { color: #f09090; background: rgba(200,70,70,0.15); }
         .cobalt-pill { display: inline-flex; align-items: center; gap: 5px; border-radius: 20px; padding: 5px 13px; font-size: 0.83em; }
         .cobalt-pill.in { background: rgba(80,200,110,0.15); border: 1px solid rgba(80,200,110,0.28); color: #7eeaa0; }
 
@@ -277,22 +168,6 @@
         .hl-sub { font-size: 0.74em; color: rgba(255,255,255,0.38); margin-top: 1px; }
         .hl-arrow { margin-left: auto; color: rgba(255,255,255,0.3); font-size: 0.8em; flex-shrink: 0; }
         .hl-group-label { font-size: 0.68em; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 4px 2px 0; }
-
-        .hangover-options { display: flex; flex-direction: column; gap: 10px; }
-        .hangover-option {
-            display: block; width: 100%; text-align: left; font-family: inherit; font-size: 0.86em; line-height: 1.5;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px;
-            padding: 14px 16px; color: white; cursor: pointer; transition: background 0.15s, border-color 0.15s;
-        }
-        .hangover-option:hover:not(:disabled) { background: rgba(255,255,255,0.1); }
-        .hangover-option:disabled { cursor: default; }
-        .hangover-option.reveal-true { background: rgba(80,200,110,0.12); border-color: rgba(80,200,110,0.35); }
-        .hangover-option.reveal-lie { background: rgba(210,80,80,0.14); border-color: rgba(230,100,100,0.45); }
-        .hangover-tag { display: block; font-size: 0.72em; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 8px; }
-        .hangover-option.reveal-true .hangover-tag { color: #7eeaa0; }
-        .hangover-option.reveal-lie .hangover-tag { color: #f09090; }
-        .hangover-result { margin-top: 14px; font-size: 0.85em; color: rgba(255,255,255,0.7); line-height: 1.5; }
-
 
         .photo-dump-card {
             display: block; text-decoration: none; color: white; background: rgba(120,170,255,0.09);
@@ -310,6 +185,14 @@
         .photo-dump-card:hover .photo-dump-track { animation-play-state: paused; }
         .photo-dump-track img { width: 84px; height: 84px; object-fit: cover; border-radius: 10px; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         @keyframes photo-dump-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* ===== Feature Story ===== */
+        .feature-photo-wrap { border-radius: 12px; overflow: hidden; margin: 4px 0 6px; box-shadow: 0 8px 26px rgba(0,0,0,0.35); }
+        .feature-photo-wrap img { width: 100%; height: auto; display: block; }
+        .feature-photo-credit { font-size: 0.66em; color: rgba(255,255,255,0.28); margin-bottom: 16px; text-align: right; }
+        .feature-tips { margin-top: 4px; padding-left: 20px; }
+        .feature-tips li { font-size: 0.87em; line-height: 1.55; color: rgba(255,255,255,0.82); margin-bottom: 9px; }
+        .feature-tips li strong { color: #ffb347; }
 
         /* ===== Poem (bonus scene) ===== */
         .poem-photo-wrap { position: relative; width: 100%; border-radius: 14px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 14px 40px rgba(0,0,0,0.4); }
@@ -334,16 +217,6 @@
 </head>
 <body>
 
-    <!-- ================= HERO PHOTO ================= -->
-    <div class="hero-photo-wrap">
-        <div class="hero-photo-blur-bg"></div>
-        <div class="hero-photo-overlay"></div>
-        <div class="hero-photo-content">
-            <p class="hero-photo-eyebrow">🎉 The Whole Crew, Flora-Bama Style</p>
-            <img src="./photos/Photos-37-PKC.jpeg" alt="The entire group poses together on the beach at Flora-Bama Yacht Club under a red sail shade strung with lights, at dusk" class="hero-photo-img" fetchpriority="high">
-        </div>
-    </div>
-
     <!-- ================= EXISTING SITE ================= -->
     <div class="content-bg-wrap">
 
@@ -354,54 +227,29 @@
 
         <div class="page-wrap">
 
-            <!-- ===== HERO (countdown / VREI) ===== -->
+            <!-- ===== HERO (headline / site hub) ===== -->
             <div class="hero-wrap" id="countdown">
                 <div class="main">
                     <p class="hero-eyebrow">🏖️ Perdido Key</p>
-                    <div class="hero-t2">Recovery Day.</div>
-                    <p class="hero-weeks">Hangover Cures On Standby · Cobalt Tonight</p>
-                    <p class="hero-dates" style="margin-bottom:10px;">July 11 &ndash; 18, 2026</p>
-                    <p style="font-size:0.72em; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:42px;">🍽️ Tonight: Meet Up At Cobalt</p>
+                    <div class="hero-t2">Hump Day.</div>
+                    <p class="hero-weeks">Midway Through The Week &middot; Making Memories</p>
+                    <p class="hero-dates" style="margin-bottom:42px;">July 11 &ndash; 18, 2026</p>
 
-                    <a href="./cobalt.html" style="display:flex; align-items:center; gap:14px; text-decoration:none; color:white; background:rgba(255,180,70,0.07); border:1px solid rgba(255,180,70,0.2); border-radius:14px; padding:16px 20px; max-width:420px; margin:0 auto 24px; transition:background 0.15s;" onmouseover="this.style.background='rgba(255,180,70,0.14)'" onmouseout="this.style.background='rgba(255,180,70,0.07)'">
-                        <span style="font-size:1.6em; flex-shrink:0;">🍽️</span>
-                        <div style="text-align:left;">
-                            <div style="font-size:0.72em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#ffb347; margin-bottom:3px;">Side Quest</div>
-                            <div style="font-size:0.95em; font-weight:700;">Cobalt, The Restaurant</div>
-                            <div style="font-size:0.76em; color:rgba(255,255,255,0.35); margin-top:2px;">Waterfront seafood under the Perdido Pass Bridge — tonight's spot</div>
-                        </div>
-                        <span style="margin-left:auto; color:rgba(255,180,70,0.5); font-size:1em; flex-shrink:0;">→</span>
-                    </a>
-
-                    <div class="vrei-container">
-                        <div class="vrei-avatar-row">
-                            <img src="./photos/Photo-30-PKC.PNG" alt="Vacation Rick outside the VREI 5000">
-                        </div>
-                        <p class="vrei-avatar-caption">Vacation Rick, live at the VREI 5000</p>
-                        <p class="vrei-label">📈 Vacation Rick Energy Index</p>
-                        <div class="vrei-meter-row">
-                            <div class="vrei-bar-track">
-                                <div class="vrei-bar-fill" id="vreiBarFill"></div>
-                            </div>
-                            <div class="vrei-score" id="vreiScore">0</div>
-                        </div>
-                        <div class="vrei-tier" id="vreiTier">BUILDING</div>
-                        <div class="vrei-quote-box">
-                            <span id="vreiQuote">Loading Rick wisdom...</span>
-                            <span class="vrei-quote-attribution">— Vacation Rick</span>
-                        </div>
+                    <div class="hub-box">
+                        <p class="hub-label">🗺️ Site Hub</p>
+                        <ul class="hub-list">
+                            <li><span class="hub-emoji">📸</span><span><strong>The Photo Dump</strong> — every trip pic, sorted into Beach, Flora-Bama, Cobalt &amp; Past Trips</span></li>
+                            <li><span class="hub-emoji">✈️</span><span><strong>Feature Story</strong> — what's worth looking up at today</span></li>
+                            <li><span class="hub-emoji">🍽️🛥️</span><span><strong>Side Quests</strong> — Cobalt, Flora-Bama, Tales from the Shore &amp; the bonus poem</span></li>
+                            <li><span class="hub-emoji">📈</span><span><strong>Vacation Rick</strong> — his energy index</span></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="scroll-cue">↓ &nbsp; Trip Plans</div>
+                <div class="scroll-cue">↓ &nbsp; Look Around</div>
             </div>
 
             <!-- ===== SECTIONS ===== -->
             <div class="sections-wrap">
-
-                <!-- Who are you -->
-                <div class="name-bar" id="nameBar">
-                    <!-- populated by JS -->
-                </div>
 
                 <!-- Gallery -->
                 <a href="./gallery.html" class="photo-dump-card">
@@ -432,27 +280,22 @@
                     </div>
                 </a>
 
-                <!-- Tuesday Hangover Therapy -->
+                <!-- Feature Story -->
                 <div class="panel">
-                    <h2>🍹 Tuesday Hangover Therapy</h2>
-                    <p class="panel-sub">Two truths and a lie — tap the one you think is fake</p>
-                    <div class="hangover-options" id="hangoverOptions">
-                        <button class="hangover-option" type="button" data-lie="false">Prickly pear extract taken before you start drinking can cut hangover severity nearly in half — a real clinical trial found it measurably reduced nausea and appetite loss.</button>
-                        <button class="hangover-option" type="button" data-lie="false">Korean pear juice speeds up how fast your body clears acetaldehyde, the alcohol byproduct that actually causes most hangover symptoms.</button>
-                        <button class="hangover-option" type="button" data-lie="true">Humming loudly for 30 seconds stimulates your vagus nerve enough to flush leftover acetaldehyde out of your bloodstream faster.</button>
+                    <h2>✈️ Spotting the Blue Angels</h2>
+                    <p class="panel-sub">Practice rounds are underway before this weekend's airshow</p>
+                    <div class="feature-photo-wrap">
+                        <img src="./blue-angels-pensacola-beach.jpg" alt="Six Blue Angels jets in tight delta formation, banked upside-down, flying over the Pensacola Beach coastline" loading="lazy">
                     </div>
-                    <p class="hangover-result" id="hangoverResult"></p>
-                </div>
-
-                <div class="section-divider"></div>
-
-                <!-- Daily Programming -->
-                <div class="panel">
-                    <h2>📅 Trip Programming</h2>
-                    <p class="panel-sub">Propose activities for each day · vote to lock in the schedule</p>
-                    <div class="days-grid" id="scheduleGrid">
-                        <p style="color:rgba(255,255,255,0.3);font-size:0.85em;">Connecting…</p>
-                    </div>
+                    <p class="feature-photo-credit">U.S. Navy photo by MC2 Crayton Agnew, DVIDS</p>
+                    <p style="font-size:0.87em; line-height:1.6; color:rgba(255,255,255,0.82);">The Blue Angels are home at NAS Pensacola and running practice rounds ahead of this weekend's airshow — worth a glance skyward while we're this close.</p>
+                    <ul class="feature-tips">
+                        <li><strong>When:</strong> practices typically run Tuesday &amp; Wednesday mornings, starting around 10:30am, weather permitting.</li>
+                        <li><strong>How you'll know:</strong> you'll hear the rumble before you see them — look toward the Gulf when it hits.</li>
+                        <li><strong>From Perdido Key:</strong> any open beach or gulf-facing view gives a clear sightline back toward Pensacola Beach/NAS Pensacola.</li>
+                        <li><strong>Up close:</strong> Fort Pickens on Pensacola Beach is the go-to public viewing spot if anyone wants to make the drive.</li>
+                        <li><strong>Heads up:</strong> practice schedules shift with weather and Navy ops — check the official Blue Angels or Visit Pensacola site day-of.</li>
+                    </ul>
                 </div>
 
                 <div class="section-divider"></div>
@@ -580,38 +423,41 @@
                     <span style="margin-left:auto; color:rgba(255,180,70,0.5); font-size:1em; flex-shrink:0;">→</span>
                 </a>
 
+                <a href="./cobalt.html" style="display:flex; align-items:center; gap:14px; text-decoration:none; color:white; background:rgba(255,180,70,0.07); border:1px solid rgba(255,180,70,0.2); border-radius:14px; padding:16px 20px; transition:background 0.15s;" onmouseover="this.style.background='rgba(255,180,70,0.14)'" onmouseout="this.style.background='rgba(255,180,70,0.07)'">
+                    <span style="font-size:1.6em; flex-shrink:0;">🍽️</span>
+                    <div>
+                        <div style="font-size:0.72em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#ffb347; margin-bottom:3px;">Side Quest</div>
+                        <div style="font-size:0.95em; font-weight:700;">Cobalt, The Restaurant</div>
+                        <div style="font-size:0.76em; color:rgba(255,255,255,0.35); margin-top:2px;">Waterfront seafood under the Perdido Pass Bridge</div>
+                    </div>
+                    <span style="margin-left:auto; color:rgba(255,180,70,0.5); font-size:1em; flex-shrink:0;">→</span>
+                </a>
+
+                <div class="section-divider"></div>
+
+                <!-- VREI meter (declining at this point in the trip — parked at the bottom) -->
+                <div class="vrei-container">
+                    <div class="vrei-avatar-row">
+                        <img src="./photos/Photo-30-PKC.PNG" alt="Vacation Rick, the trip's energy mascot">
+                    </div>
+                    <p class="vrei-avatar-caption">A SiGnAl of the current trip's delight trajectory</p>
+                    <p class="vrei-label">📈 Vacation Rick Energy Index</p>
+                    <div class="vrei-meter-row">
+                        <div class="vrei-bar-track">
+                            <div class="vrei-bar-fill" id="vreiBarFill"></div>
+                        </div>
+                        <div class="vrei-score" id="vreiScore">0</div>
+                    </div>
+                    <div class="vrei-tier" id="vreiTier">BUILDING</div>
+                    <div class="vrei-quote-box">
+                        <span id="vreiQuote">Loading Rick wisdom...</span>
+                        <span class="vrei-quote-attribution">— Vacation Rick</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-
-    <!-- Tuesday Hangover Therapy: two truths and a lie, no Firebase needed -->
-    <script>
-        (function () {
-            const options = document.querySelectorAll('#hangoverOptions .hangover-option');
-            const result = document.getElementById('hangoverResult');
-            if (!options.length) return;
-            let answered = false;
-            options.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    if (answered) return;
-                    answered = true;
-                    const pickedLie = btn.dataset.lie === 'true';
-                    options.forEach(b => {
-                        b.disabled = true;
-                        const isLie = b.dataset.lie === 'true';
-                        b.classList.add(isLie ? 'reveal-lie' : 'reveal-true');
-                        const tag = document.createElement('span');
-                        tag.className = 'hangover-tag';
-                        tag.textContent = isLie ? '🤥 The Lie' : '✅ True';
-                        b.appendChild(tag);
-                    });
-                    result.textContent = pickedLie
-                        ? "Nice catch — that one's made up. The other two are real."
-                        : "Nope, that one's actually true. The lie was the vagus-nerve humming claim.";
-                });
-            });
-        })();
-    </script>
 
     <!-- VREI (no Firebase needed) -->
     <script>
@@ -715,189 +561,6 @@
         });
     </script>
 
-    <!-- Firebase: schedule voting -->
-    <script type="module">
-        import {
-            collection, addDoc, onSnapshot,
-            doc, updateDoc, deleteDoc, query, orderBy,
-            increment, serverTimestamp
-        } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-        import { db } from './firebase-init.js';
-
-        const DAYS = [
-            { id: '2026-07-11', dow: 'SAT', date: 'Jul 11', note: 'Arrival' },
-            { id: '2026-07-12', dow: 'SUN', date: 'Jul 12', note: '' },
-            { id: '2026-07-13', dow: 'MON', date: 'Jul 13', note: '' },
-            { id: '2026-07-14', dow: 'TUE', date: 'Jul 14', note: '' },
-            { id: '2026-07-15', dow: 'WED', date: 'Jul 15', note: '' },
-            { id: '2026-07-16', dow: 'THU', date: 'Jul 16', note: '' },
-            { id: '2026-07-17', dow: 'FRI', date: 'Jul 17', note: '' },
-            { id: '2026-07-18', dow: 'SAT', date: 'Jul 18', note: 'Departure' },
-        ];
-
-        function esc(str) {
-            return String(str)
-                .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-                .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-        }
-
-        // ===== Name bar =====
-        let currentUser = localStorage.getItem('pkc_user') || '';
-        let latestProposals = [];
-
-        function renderNameBar() {
-            const bar = document.getElementById('nameBar');
-            if (currentUser) {
-                bar.innerHTML = `
-                    <span style="color:rgba(255,255,255,0.4)">Voting as:</span>
-                    <strong style="color:white">${esc(currentUser)}</strong>
-                    <button class="change-name-btn" id="changeNameBtn">change</button>`;
-                document.getElementById('changeNameBtn').addEventListener('click', () => {
-                    currentUser = '';
-                    localStorage.removeItem('pkc_user');
-                    renderNameBar();
-                });
-            } else {
-                bar.innerHTML = `
-                    <span style="color:rgba(255,255,255,0.4)">Your name:</span>
-                    <div class="name-input-group">
-                        <input id="nameInput" placeholder="e.g. Adam" maxlength="30" autocomplete="off">
-                        <button id="saveNameBtn">Save</button>
-                    </div>`;
-                const input = document.getElementById('nameInput');
-                const btn = document.getElementById('saveNameBtn');
-                input.focus();
-                function saveName() {
-                    const val = input.value.trim();
-                    if (!val) return;
-                    currentUser = val;
-                    localStorage.setItem('pkc_user', val);
-                    renderNameBar();
-                    if (latestProposals.length) renderSchedule(latestProposals);
-                }
-                btn.addEventListener('click', saveName);
-                input.addEventListener('keydown', e => { if (e.key === 'Enter') saveName(); });
-            }
-        }
-
-        // ===== Schedule =====
-        function renderSchedule(proposals) {
-            const byDay = {};
-            DAYS.forEach(d => byDay[d.id] = []);
-            proposals.forEach(p => { if (byDay[p.day] !== undefined) byDay[p.day].push(p); });
-
-            const grid = document.getElementById('scheduleGrid');
-            grid.innerHTML = DAYS.map(day => {
-                const items = byDay[day.id];
-                const listHtml = items.length === 0
-                    ? `<p class="empty-proposals">No proposals yet — be first!</p>`
-                    : `<ul class="proposals-list">${items.map(p => {
-                        const myVote = localStorage.getItem('vote_' + p.id);
-                        const isOwn = currentUser && p.author === currentUser;
-                        return `<li class="proposal-item">
-                            <div style="flex:1">
-                                <div class="proposal-text">${esc(p.text)}</div>
-                                <div class="proposal-author">— ${esc(p.author || 'someone')}</div>
-                            </div>
-                            <div class="vote-group">
-                                <button class="vote-btn ${myVote === 'up' ? 'voted-up' : ''}"
-                                    data-id="${p.id}" data-dir="up">👍 <span>${p.thumbsUp || 0}</span></button>
-                                <button class="vote-btn ${myVote === 'down' ? 'voted-down' : ''}"
-                                    data-id="${p.id}" data-dir="down">👎 <span>${p.thumbsDown || 0}</span></button>
-                                ${isOwn ? `<button class="delete-btn" data-id="${p.id}" title="Delete your proposal">✕</button>` : ''}
-                            </div>
-                        </li>`;
-                    }).join('')}</ul>`;
-
-                return `<div class="day-card">
-                    <div class="day-header">
-                        ${day.dow} · ${day.date}${day.note ? `<span class="day-note">· ${day.note}</span>` : ''}
-                    </div>
-                    ${listHtml}
-                    <div class="add-proposal">
-                        <input class="propose-input" data-day="${day.id}"
-                            placeholder="Propose an activity…" maxlength="80" autocomplete="off">
-                        <button class="propose-btn" data-day="${day.id}">+ Add</button>
-                    </div>
-                </div>`;
-            }).join('');
-
-            grid.querySelectorAll('.vote-btn').forEach(btn => {
-                btn.addEventListener('click', async () => {
-                    if (!currentUser) { alert('Enter your name first.'); return; }
-                    const id = btn.dataset.id;
-                    const dir = btn.dataset.dir;
-                    const existing = localStorage.getItem('vote_' + id);
-                    if (existing === dir) return;
-                    const updates = {};
-                    if (dir === 'up') {
-                        updates.thumbsUp = increment(1);
-                        if (existing === 'down') updates.thumbsDown = increment(-1);
-                    } else {
-                        updates.thumbsDown = increment(1);
-                        if (existing === 'up') updates.thumbsUp = increment(-1);
-                    }
-                    await updateDoc(doc(db, 'proposals', id), updates);
-                    localStorage.setItem('vote_' + id, dir);
-                });
-            });
-
-            grid.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', async () => {
-                    if (!confirm('Remove your proposal?')) return;
-                    await deleteDoc(doc(db, 'proposals', btn.dataset.id));
-                });
-            });
-
-            grid.querySelectorAll('.propose-btn').forEach(btn => {
-                btn.addEventListener('click', () => submitProposal(btn.dataset.day, btn));
-            });
-            grid.querySelectorAll('.propose-input').forEach(input => {
-                input.addEventListener('keydown', e => {
-                    if (e.key === 'Enter') submitProposal(input.dataset.day, input);
-                });
-            });
-        }
-
-        async function submitProposal(dayId, triggerEl) {
-            if (!currentUser) {
-                const n = prompt('What\'s your name?');
-                if (!n || !n.trim()) return;
-                currentUser = n.trim();
-                localStorage.setItem('pkc_user', currentUser);
-                renderNameBar();
-            }
-            const card = triggerEl.closest('.day-card');
-            const input = card.querySelector('.propose-input');
-            const text = input.value.trim();
-            if (!text) return;
-            input.value = '';
-            await addDoc(collection(db, 'proposals'), {
-                day: dayId,
-                text,
-                author: currentUser,
-                thumbsUp: 0,
-                thumbsDown: 0,
-                createdAt: serverTimestamp()
-            });
-        }
-
-        // ===== Proposals real-time listener =====
-        function listenProposals() {
-            const q = query(collection(db, 'proposals'), orderBy('createdAt'));
-            onSnapshot(q, snapshot => {
-                latestProposals = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-                renderSchedule(latestProposals);
-            }, err => {
-                document.getElementById('scheduleGrid').innerHTML =
-                    `<p style="color:#f09090;font-size:0.85em;">Could not load schedule — check your connection.</p>`;
-            });
-        }
-
-        // ===== Init =====
-        renderNameBar();
-        listenProposals();
-    </script>
 
 </body>
 </html>

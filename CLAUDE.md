@@ -22,8 +22,8 @@ To deploy: `git add . && git commit -m "..." && git push` — GitHub Pages goes 
 
 ## Pages
 
-- `index.html` — homepage: hero photo, VREI meter, trip programming/voting, helpful links, who's coming, links out to the side-quest pages
-- `gallery.html` — "The Photo Dump," a grid of every photo in `/photos/`
+- `index.html` — homepage: headline, site hub summary, feature story, helpful links, who's coming, links out to the side-quest pages (Cobalt last), VREI meter at the very bottom. No hero photo — the headline is the top of the page.
+- `gallery.html` — "The Photo Dump," every photo in `/photos/` plus `/photos/florabama/` and `/photos/cobalt/`, sectioned into Beach / Flora-Bama / Cobalt / Past Trips
 - `stories.html` — "Tales from the Shore," trip legends/nostalgia + a community story submission form
 - `poem.html` — "The Night Before Perdido," a one-off "Twas the Night Before Christmas" parody poem page (side quest, linked from index.html)
 - `florabama.html` — "Flora-Bama Yacht Club," side quest page: a photo collage of past trips to the Yacht Club (auto-loaded from `/photos/florabama/`), plus a menu/drinks feature for the meetup spot
@@ -33,7 +33,7 @@ To deploy: `git add . && git commit -m "..." && git push` — GitHub Pages goes 
 
 Plain JS files loaded via `<script src="...">` / ES module `import` — no bundler:
 
-- `photos.js` — the photo list (fallback array + live GitHub Contents API loader), mosaic crop overrides, gallery captions/featured flags, and an exclusion list for decorative non-photo assets
+- `photos.js` — the photo list (fallback array + live GitHub Contents API loader), mosaic crop overrides, gallery captions/featured flags, an exclusion list for decorative non-photo assets, a one-time Beach-vs-Past-Trips classification (`PKC_PAST_TRIP_PHOTOS`, derived from git history — see below), and a generic subfolder loader (`pkcLoadSubfolderPhotos`) gallery.html uses to pull in Flora-Bama/Cobalt photos
 - `mosaic.js` — renders the full-bleed photo mosaic background (index.html, stories.html)
 - `gallery.js` — renders the photo grid on gallery.html
 - `firebase-init.js` — shared Firebase app/Firestore init (imported by index.html and stories.html)
@@ -51,6 +51,8 @@ How it works: `photos.js` calls the GitHub Contents API (`api.github.com/repos/a
 **HEIC caveat:** the loader accepts `.heic`, but HEIC doesn't render in an `<img>` tag on Chrome/Firefox/Windows/Android — only Safari displays it. Convert to `.jpg` before uploading if the whole group needs to see it. (`IMG_1350.heic` sits untracked in the repo root for this reason — convert before adding to `/photos/`.)
 
 Non-pooled images stay in the repo root because they're referenced by explicit filename: `beachball.jpeg` (stories.html seed story).
+
+**Beach vs. Past Trips split (gallery.html only):** root photos are sectioned into "Beach" (this trip) vs. "Past Trips" (pre-trip throwbacks) using `PKC_PAST_TRIP_PHOTOS` in `photos.js` — a frozen set of filenames whose first git commit predates trip start (2026-07-11), worked out once from `git log` on 2026-07-15. This is intentionally a one-time snapshot, not live logic: any new root photo dropped in for the rest of the trip is *not* in that set, so it defaults into "Beach" automatically — no code changes needed going forward, same as the rest of the pickup system. Only re-derive the set if a genuine pre-trip throwback photo gets added late and needs to land in "Past Trips" instead.
 
 **Flora-Bama photo collage:** `photos/florabama/` is a separate subfolder with its own pickup mechanism (inline script in `florabama.html`, hitting the GitHub Contents API at that subpath) — it does not feed the main mosaic/gallery pool and isn't affected by `PKC_EXCLUDE`. Drop photos of past Flora-Bama Yacht Club trips in there and they show up on `florabama.html` automatically; empty folder renders a friendly empty state. `photos/cobalt/` works the same way for `cobalt.html`, with its own `sessionStorage` cache key (`pkc_cobalt_photos_cache_v1`) — both subfolder pages cache + fall back independently of `photos.js` and of each other.
 
@@ -74,8 +76,9 @@ Non-pooled images stay in the repo root because they're referenced by explicit f
 
 There is no countdown to the end of the trip anymore — the old "Days/Hours/Min/Sec until packing" tiles and the "PACK MODE" tier override were removed (they read as counting down to the trip being over, which wasn't the vibe). The only mechanism left:
 
-- **VREI meter** (bar/score/tier/quote): driven by `VREI_CURVE`, a hardcoded map of each trip date (`YYYY-MM-DD`) to a 0–100 energy score — rising through arrival weekend, peaking Monday (golf day), declining Tue/Wed, dropping hard Thu/Fri, lowest on departure Saturday. Before the trip starts, score ramps up linearly over a 21-day window toward the arrival-day score; after the trip ends, it drops to a flat low value. `getVreiTier(score)` buckets into `simmering` (<30) / `building` (30–79) / `fullSend` (≥80), which selects the joke bank in `vrei-jokes.json`. `VREI_SCORE_OVERRIDE` (currently `null`) pins the score to a fixed number when set, useful for testing/screenshots. Refreshes every 60s (no longer needs per-second ticks now that there's no clock to animate).
+- **VREI meter** (bar/score/tier/quote): driven by `VREI_CURVE`, a hardcoded map of each trip date (`YYYY-MM-DD`) to a 0–100 energy score — rising through arrival weekend, peaking Monday (golf day), declining Tue/Wed, dropping hard Thu/Fri, lowest on departure Saturday. Before the trip starts, score ramps up linearly over a 21-day window toward the arrival-day score; after the trip ends, it drops to a flat low value. `getVreiTier(score)` buckets into `simmering` (<30) / `building` (30–79) / `fullSend` (≥80), which selects the joke bank in `vrei-jokes.json`. `VREI_SCORE_OVERRIDE` (currently `null`) pins the score to a fixed number when set, useful for testing/screenshots. Refreshes every 60s (no longer needs per-second ticks now that there's no clock to animate). The meter's markup lives at the very bottom of `index.html` (moved down from the top hero once mid-trip energy started declining) — the JS itself doesn't care where in the DOM it sits, it just targets the same element IDs.
 
 ## Known cleanup opportunities (not yet acted on)
 
 - `IMG_1350.heic` needs conversion to `.jpg` before it can join `/photos/` (see HEIC caveat above).
+- `photos/IMGJul` (no file extension — distinct from `photos/IMGJul.jpg`, which is fine) is silently skipped by every pickup mechanism since they all require an image extension. Rename it with an extension if it should actually show up somewhere.

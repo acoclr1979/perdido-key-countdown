@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Photo Dump — Perdido Key</title>
     <meta property="og:title" content="The Photo Dump — Perdido Key">
-    <meta property="og:description" content="Every trip photo, unsorted and unfiltered.">
+    <meta property="og:description" content="Every trip photo, sorted by where it happened.">
     <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/photos/Photo-00-PKC.jpeg">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -99,6 +99,18 @@
             padding: 0 24px 100px;
         }
 
+        .gallery-section { width: 100%; margin-bottom: 44px; }
+        .gallery-section:last-child { margin-bottom: 0; }
+        .section-title {
+            font-size: 1.05em;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .gallery-empty { font-size: 0.85em; color: rgba(255,255,255,0.3); padding: 6px 2px; }
+
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -158,11 +170,26 @@
             <a href="./index.html" class="back-link">← Back to Countdown</a>
             <p class="hero-eyebrow">🏖️ Perdido Key</p>
             <h1 class="hero-title">The Photo Dump</h1>
-            <p class="hero-sub">Every trip photo, unsorted and unfiltered.<br>Tap any image to see it full size.</p>
+            <p class="hero-sub">Every trip photo, sorted by where it happened.<br>Tap any image to see it full size.</p>
         </div>
 
         <div class="content">
-            <div class="gallery-grid" id="galleryGrid"></div>
+            <div class="gallery-section">
+                <h2 class="section-title">🏖️ Beach</h2>
+                <div class="gallery-grid" id="galleryGridBeach"></div>
+            </div>
+            <div class="gallery-section">
+                <h2 class="section-title">🛥️ Flora-Bama</h2>
+                <div class="gallery-grid" id="galleryGridFlorabama"></div>
+            </div>
+            <div class="gallery-section">
+                <h2 class="section-title">🍽️ Cobalt</h2>
+                <div class="gallery-grid" id="galleryGridCobalt"></div>
+            </div>
+            <div class="gallery-section">
+                <h2 class="section-title">📼 Past Trips</h2>
+                <div class="gallery-grid" id="galleryGridPast"></div>
+            </div>
         </div>
     </div>
 
