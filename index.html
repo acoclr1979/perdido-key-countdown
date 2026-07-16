@@ -63,8 +63,8 @@
         .main { width: 100%; text-align: center; }
 
         .hero-eyebrow { font-size: 0.85em; letter-spacing: 5px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 12px; }
-        .hero-t2 { font-size: clamp(2.6rem, 11vw, 5.5rem); font-weight: 900; line-height: 1; letter-spacing: -1px; color: #fff; text-shadow: 0 4px 40px rgba(0,0,0,0.5); }
-        .hero-weeks { font-size: clamp(1.4rem, 5vw, 2.8rem); font-weight: 200; letter-spacing: clamp(8px, 2vw, 18px); text-transform: uppercase; color: rgba(255,255,255,0.8); margin-top: 4px; margin-bottom: 8px; }
+        .hero-t2 { font-size: clamp(1.9rem, 8vw, 3.6rem); font-weight: 900; line-height: 1; letter-spacing: 1px; color: #fff; text-shadow: 0 4px 40px rgba(0,0,0,0.5); white-space: nowrap; }
+        .hero-weeks { font-size: clamp(1rem, 3.4vw, 1.8rem); font-weight: 200; letter-spacing: clamp(4px, 0.9vw, 7px); text-transform: uppercase; color: rgba(255,255,255,0.8); margin-top: 4px; margin-bottom: 8px; }
         .hero-dates { font-size: 0.9em; color: rgba(255,255,255,0.4); letter-spacing: 3px; margin-bottom: 52px; }
 
         .vrei-container {
@@ -156,6 +156,7 @@
 
         .cobalt-pill { display: inline-flex; align-items: center; gap: 5px; border-radius: 20px; padding: 5px 13px; font-size: 0.83em; }
         .cobalt-pill.in { background: rgba(80,200,110,0.15); border: 1px solid rgba(80,200,110,0.28); color: #7eeaa0; }
+        .cobalt-pill.left { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.13); color: rgba(255,255,255,0.35); }
 
         .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); margin: 4px 0; }
 
@@ -283,7 +284,6 @@
 
         @media (max-width: 600px) {
             .hero-wrap { padding: 50px 20px 70px; }
-            .hero-t2 { letter-spacing: -2px; }
             .sections-wrap { padding: 0 16px 80px; gap: 20px; }
             .panel { padding: 20px 18px; }
             .days-grid { grid-template-columns: 1fr; }
@@ -307,7 +307,7 @@
                 <div class="main">
                     <p class="hero-eyebrow">🏖️ Perdido Key</p>
                     <div class="hero-t2">Thirsty Thursday.</div>
-                    <p class="hero-weeks">Two Days Left On The Key &middot; Making Them Count</p>
+                    <p class="hero-weeks">Two Days Left On The Key<br>Making Them Count</p>
                     <p class="hero-dates" style="margin-bottom:42px;">July 11 &ndash; 18, 2026</p>
 
                     <div class="hub-box">
@@ -381,55 +381,6 @@
 
                 <div class="section-divider"></div>
 
-                <!-- Helpful Links -->
-                <div class="panel">
-                    <h2>🔗 Helpful Links</h2>
-                    <div style="display:flex; flex-direction:column; gap:10px; margin-top:4px;">
-                        <a href="https://www.ikesbeachservice.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                            <span style="font-size:1.3em;">🏖️</span>
-                            <div><div class="hl-title">Ike's Beach Service</div><div class="hl-sub">Chair &amp; umbrella rentals on the beach</div></div>
-                            <span class="hl-arrow">↗</span>
-                        </a>
-                        <a href="https://www.florabama.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                            <span style="font-size:1.3em;">🎵</span>
-                            <div><div class="hl-title">Flora-Bama</div><div class="hl-sub">Legendary bar, live music &amp; Sunday church service on the state line</div></div>
-                            <span class="hl-arrow">↗</span>
-                        </a>
-                        <div class="hl-group-label">🛒 Stock Up</div>
-                        <a href="https://maps.apple.com/?address=13390%20Perdido%20Key%20Dr,%20Pensacola,%20FL%2032507" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                            <span style="font-size:1.3em;">🥑</span>
-                            <div><div class="hl-title">Publix</div><div class="hl-sub">13390 Perdido Key Dr · closest grocery to Sandy Key condos</div></div>
-                            <span class="hl-arrow">↗</span>
-                        </a>
-                        <a href="https://maps.apple.com/?address=2951%20S%20Blue%20Angel%20Pkwy,%20Pensacola,%20FL%2032506" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                            <span style="font-size:1.3em;">🛒</span>
-                            <div><div class="hl-title">Walmart Supercenter</div><div class="hl-sub">2951 S Blue Angel Pkwy · groceries, beach gear &amp; everything else</div></div>
-                            <span class="hl-arrow">↗</span>
-                        </a>
-                        <a href="https://maps.apple.com/?address=20403%20County%20Road%2068,%20Robertsdale,%20AL%2036567" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                            <span style="font-size:1.3em;">🦫</span>
-                            <div><div class="hl-title">Buc-ee's</div><div class="hl-sub">Loxley, AL · worth the drive for snacks, jerky &amp; gas</div></div>
-                            <span class="hl-arrow">↗</span>
-                        </a>
-                        <div class="hl-group-label">⛳ Golf</div>
-                        <a href="https://www.kivadunes.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                            <span style="font-size:1.3em;">🏌️</span>
-                            <div><div class="hl-title">Kiva Dunes</div><div class="hl-sub">Gulf Shores · Alabama's only beachfront course · Jerry Pate design</div></div>
-                            <span class="hl-arrow">↗</span>
-                        </a>
-                        <a href="https://www.perdidobaygolf.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                            <span style="font-size:1.3em;">🏌️</span>
-                            <div><div class="hl-title">Perdido Bay Golf Club</div><div class="hl-sub">Pensacola · former PGA Tour host, right on Perdido Key</div></div>
-                            <span class="hl-arrow">↗</span>
-                        </a>
-                        <a href="https://craftfarms.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
-                            <span style="font-size:1.3em;">🏌️</span>
-                            <div><div class="hl-title">Craft Farms</div><div class="hl-sub">Gulf Shores · Arnold Palmer Signature Design · Cotton Creek &amp; Cypress Bend</div></div>
-                            <span class="hl-arrow">↗</span>
-                        </a>
-                    </div>
-                </div>
-
                 <!-- Who's Coming -->
                 <div class="panel">
                     <h2>🏖️ Who's Coming</h2>
@@ -458,8 +409,8 @@
                         <span class="cobalt-pill in">Carey</span>
                         <span class="cobalt-pill in">Kat</span>
                         <span class="cobalt-pill in">Jennifer</span>
-                        <span class="cobalt-pill in">Grayson</span>
-                        <span class="cobalt-pill in">Amalia</span>
+                        <span class="cobalt-pill left">Grayson</span>
+                        <span class="cobalt-pill left">Amalia</span>
                         <span class="cobalt-pill in">Becky</span>
                         <span class="cobalt-pill in">Bill</span>
                         <span class="cobalt-pill in">Parker</span>
@@ -513,6 +464,57 @@
                     </div>
                     <span style="margin-left:auto; color:rgba(255,180,70,0.5); font-size:1em; flex-shrink:0;">→</span>
                 </a>
+
+                <div class="section-divider"></div>
+
+                <!-- Helpful Links -->
+                <div class="panel">
+                    <h2>🔗 Helpful Links</h2>
+                    <div style="display:flex; flex-direction:column; gap:10px; margin-top:4px;">
+                        <a href="https://www.ikesbeachservice.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🏖️</span>
+                            <div><div class="hl-title">Ike's Beach Service</div><div class="hl-sub">Chair &amp; umbrella rentals on the beach</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                        <a href="https://www.florabama.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🎵</span>
+                            <div><div class="hl-title">Flora-Bama</div><div class="hl-sub">Legendary bar, live music &amp; Sunday church service on the state line</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                        <div class="hl-group-label">🛒 Stock Up</div>
+                        <a href="https://maps.apple.com/?address=13390%20Perdido%20Key%20Dr,%20Pensacola,%20FL%2032507" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🥑</span>
+                            <div><div class="hl-title">Publix</div><div class="hl-sub">13390 Perdido Key Dr · closest grocery to Sandy Key condos</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                        <a href="https://maps.apple.com/?address=2951%20S%20Blue%20Angel%20Pkwy,%20Pensacola,%20FL%2032506" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🛒</span>
+                            <div><div class="hl-title">Walmart Supercenter</div><div class="hl-sub">2951 S Blue Angel Pkwy · groceries, beach gear &amp; everything else</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                        <a href="https://maps.apple.com/?address=20403%20County%20Road%2068,%20Robertsdale,%20AL%2036567" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🦫</span>
+                            <div><div class="hl-title">Buc-ee's</div><div class="hl-sub">Loxley, AL · worth the drive for snacks, jerky &amp; gas</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                        <div class="hl-group-label">⛳ Golf</div>
+                        <a href="https://www.kivadunes.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🏌️</span>
+                            <div><div class="hl-title">Kiva Dunes</div><div class="hl-sub">Gulf Shores · Alabama's only beachfront course · Jerry Pate design</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                        <a href="https://www.perdidobaygolf.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🏌️</span>
+                            <div><div class="hl-title">Perdido Bay Golf Club</div><div class="hl-sub">Pensacola · former PGA Tour host, right on Perdido Key</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                        <a href="https://craftfarms.com" target="_blank" rel="noopener noreferrer" class="helpful-link">
+                            <span style="font-size:1.3em;">🏌️</span>
+                            <div><div class="hl-title">Craft Farms</div><div class="hl-sub">Gulf Shores · Arnold Palmer Signature Design · Cotton Creek &amp; Cypress Bend</div></div>
+                            <span class="hl-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
 
                 <div class="section-divider"></div>
 
