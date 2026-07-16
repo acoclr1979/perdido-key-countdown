@@ -50,7 +50,7 @@ How it works: `photos.js` calls the GitHub Contents API (`api.github.com/repos/a
 
 **HEIC caveat:** the loader accepts `.heic`, but HEIC doesn't render in an `<img>` tag on Chrome/Firefox/Windows/Android — only Safari displays it. Convert to `.jpg` before uploading if the whole group needs to see it. (`IMG_1350.heic` sits untracked in the repo root for this reason — convert before adding to `/photos/`.)
 
-Non-pooled images stay in the repo root because they're referenced by explicit filename: `beachball.jpeg` (stories.html seed story).
+Non-pooled images stay in the repo root because they're referenced by explicit filename: `beachball.jpeg` (stories.html seed story), `blue-angels-pensacola-beach.jpg` (stories.html Blue Angels story), `california-bill.jpg` (index.html feature story — cropped/toned portrait for the Dos Equis-parody "Most Interesting Man" panel).
 
 **Beach vs. Past Trips split (gallery.html only):** root photos are sectioned into "Beach" (this trip) vs. "Past Trips" (pre-trip throwbacks) using `PKC_PAST_TRIP_PHOTOS` in `photos.js` — a frozen set of filenames whose first git commit predates trip start (2026-07-11), worked out once from `git log` on 2026-07-15. This is intentionally a one-time snapshot, not live logic: any new root photo dropped in for the rest of the trip is *not* in that set, so it defaults into "Beach" automatically — no code changes needed going forward, same as the rest of the pickup system. Only re-derive the set if a genuine pre-trip throwback photo gets added late and needs to land in "Past Trips" instead.
 

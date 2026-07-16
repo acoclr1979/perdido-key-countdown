@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perdido Key — Hump Day</title>
-    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/blue-angels-pensacola-beach.jpg">
-    <meta property="og:title" content="Perdido Key — Hump Day">
-    <meta property="og:description" content="Midway through the week and making memories — plus the Blue Angels are practicing over Pensacola Beach before this weekend's airshow. 🏖️ July 11–18, 2026">
+    <title>Perdido Key — Thirsty Thursday</title>
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/california-bill.jpg">
+    <meta property="og:title" content="Perdido Key — Thirsty Thursday">
+    <meta property="og:description" content="Two days left on the Key and making them count — plus meet California Bill, the most interesting man at Perdido Key. 🏖️ July 11–18, 2026">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -187,12 +187,87 @@
         @keyframes photo-dump-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* ===== Feature Story ===== */
-        .feature-photo-wrap { border-radius: 12px; overflow: hidden; margin: 4px 0 6px; box-shadow: 0 8px 26px rgba(0,0,0,0.35); }
-        .feature-photo-wrap img { width: 100%; height: auto; display: block; }
-        .feature-photo-credit { font-size: 0.66em; color: rgba(255,255,255,0.28); margin-bottom: 16px; text-align: right; }
         .feature-tips { margin-top: 4px; padding-left: 20px; }
         .feature-tips li { font-size: 0.87em; line-height: 1.55; color: rgba(255,255,255,0.82); margin-bottom: 9px; }
         .feature-tips li strong { color: #ffb347; }
+
+        /* ===== Bill Poster (Dos Equis parody) ===== */
+        .bill-poster-wrap {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 4px 0 18px;
+            box-shadow: 0 10px 34px rgba(0,0,0,0.5);
+            border: 1px solid rgba(212,175,106,0.4);
+        }
+        .bill-poster-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(0.88) sepia(0.4) contrast(1.3) brightness(0.9) saturate(1.15);
+        }
+        .bill-poster-vignette {
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 90px 20px rgba(0,0,0,0.65);
+            pointer-events: none;
+        }
+        .bill-poster-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(10,5,2,0.5) 0%, rgba(10,5,2,0) 22%, rgba(10,5,2,0) 55%, rgba(8,4,2,0.65) 78%, rgba(6,3,1,0.95) 100%);
+            pointer-events: none;
+        }
+        .bill-poster-title {
+            position: absolute;
+            top: 14px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            font-size: clamp(0.85rem, 4.2vw, 1.15rem);
+            color: #f0d9a8;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+            line-height: 1.35;
+            text-transform: uppercase;
+            padding: 0 14px;
+        }
+        .bill-poster-quote {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 42px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            font-size: clamp(0.82rem, 3.4vw, 1em);
+            line-height: 1.5;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.95);
+            text-align: center;
+        }
+        .bill-poster-sign {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 14px;
+            text-align: center;
+            font-size: 0.68em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #d4af6a;
+            font-weight: 700;
+        }
+        .bill-close {
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            color: #d4af6a;
+            font-size: 0.95em;
+            margin-top: 18px;
+            letter-spacing: 0.5px;
+        }
 
         /* ===== Poem (bonus scene) ===== */
         .poem-photo-wrap { position: relative; width: 100%; border-radius: 14px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 14px 40px rgba(0,0,0,0.4); }
@@ -231,15 +306,15 @@
             <div class="hero-wrap" id="countdown">
                 <div class="main">
                     <p class="hero-eyebrow">🏖️ Perdido Key</p>
-                    <div class="hero-t2">Hump Day.</div>
-                    <p class="hero-weeks">Midway Through The Week &middot; Making Memories</p>
+                    <div class="hero-t2">Thirsty Thursday.</div>
+                    <p class="hero-weeks">Two Days Left On The Key &middot; Making Them Count</p>
                     <p class="hero-dates" style="margin-bottom:42px;">July 11 &ndash; 18, 2026</p>
 
                     <div class="hub-box">
                         <p class="hub-label">🗺️ Site Hub</p>
                         <ul class="hub-list">
                             <li><span class="hub-emoji">📸</span><span><strong>The Photo Dump</strong> — every trip pic, sorted into Beach, Flora-Bama, Cobalt &amp; Past Trips</span></li>
-                            <li><span class="hub-emoji">✈️</span><span><strong>Feature Story</strong> — what's worth looking up at today</span></li>
+                            <li><span class="hub-emoji">🥂</span><span><strong>Feature Story</strong> — meet California Bill, the most interesting man at Perdido Key</span></li>
                             <li><span class="hub-emoji">🍽️🛥️</span><span><strong>Side Quests</strong> — Cobalt, Flora-Bama, Tales from the Shore &amp; the bonus poem</span></li>
                             <li><span class="hub-emoji">📈</span><span><strong>Vacation Rick</strong> — his energy index</span></li>
                         </ul>
@@ -281,21 +356,27 @@
                 </a>
 
                 <!-- Feature Story -->
-                <div class="panel">
-                    <h2>✈️ Spotting the Blue Angels</h2>
-                    <p class="panel-sub">Practice rounds are underway before this weekend's airshow</p>
-                    <div class="feature-photo-wrap">
-                        <img src="./blue-angels-pensacola-beach.jpg" alt="Six Blue Angels jets in tight delta formation, banked upside-down, flying over the Pensacola Beach coastline" loading="lazy">
+                <div class="panel" id="california-bill">
+                    <h2>🥂 California Bill</h2>
+                    <p class="panel-sub">The Most Interesting Man at Perdido Key</p>
+
+                    <div class="bill-poster-wrap">
+                        <img src="./california-bill.jpg" alt="California Bill, portrait at the marina, dramatically toned like a vintage ad campaign" class="bill-poster-img">
+                        <div class="bill-poster-vignette"></div>
+                        <div class="bill-poster-gradient"></div>
+                        <div class="bill-poster-title">The Most Interesting<br>Man at Perdido Key</div>
+                        <div class="bill-poster-quote">"I don't always win the golf tournament. But when I do, I still make time to dance."</div>
+                        <div class="bill-poster-sign">— California Bill</div>
                     </div>
-                    <p class="feature-photo-credit">U.S. Navy photo by MC2 Crayton Agnew, DVIDS</p>
-                    <p style="font-size:0.87em; line-height:1.6; color:rgba(255,255,255,0.82);">The Blue Angels are home at NAS Pensacola and running practice rounds ahead of this weekend's airshow — worth a glance skyward while we're this close.</p>
+
                     <ul class="feature-tips">
-                        <li><strong>When:</strong> practices typically run Tuesday &amp; Wednesday mornings, starting around 10:30am, weather permitting.</li>
-                        <li><strong>How you'll know:</strong> you'll hear the rumble before you see them — look toward the Gulf when it hits.</li>
-                        <li><strong>From Perdido Key:</strong> any open beach or gulf-facing view gives a clear sightline back toward Pensacola Beach/NAS Pensacola.</li>
-                        <li><strong>Up close:</strong> Fort Pickens on Pensacola Beach is the go-to public viewing spot if anyone wants to make the drive.</li>
-                        <li><strong>Heads up:</strong> practice schedules shift with weather and Navy ops — check the official Blue Angels or Visit Pensacola site day-of.</li>
+                        <li><strong>On the course:</strong> He doesn't chase the pin. The pin waits patiently, hoping he'll notice it.</li>
+                        <li><strong>On the pickleball court:</strong> His dink shot has been quietly banned in four leagues for being unfair.</li>
+                        <li><strong>On the dance floor:</strong> He doesn't learn the steps. The steps learn him.</li>
+                        <li><strong>On the wine list:</strong> He's never once had to ask what pairs well. The bottle already knew.</li>
+                        <li><strong>The smile:</strong> Scientists remain unable to explain it. The rest of us just enjoy it.</li>
                     </ul>
+                    <p class="bill-close">Stay legendary, Perdido Key.</p>
                 </div>
 
                 <div class="section-divider"></div>
