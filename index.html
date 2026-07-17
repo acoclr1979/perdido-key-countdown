@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perdido Key — Thirsty Thursday</title>
-    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/california-bill.jpg">
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/bushwacker.jpg">
     <meta property="og:title" content="Perdido Key — Thirsty Thursday">
-    <meta property="og:description" content="Two days left on the Key and making them count — plus meet California Bill, the most interesting man at Perdido Key. 🏖️ July 11–18, 2026">
+    <meta property="og:description" content="Last full day on the Key — plus the recipe and lore behind the Bushwacker, the Gulf Coast's official frozen drink. 🏖️ July 11–18, 2026">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -105,6 +105,15 @@
         .vrei-tier { text-align: center; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.75em; color: #ffb347; margin-bottom: 12px; }
         .vrei-quote-box { background: rgba(0,0,0,0.25); border-radius: 8px; padding: 12px 14px; font-style: italic; color: rgba(255,255,255,0.82); font-size: 0.9em; line-height: 1.55; }
         .vrei-quote-attribution { display: block; margin-top: 6px; font-style: normal; font-weight: 700; font-size: 0.8em; letter-spacing: 1px; color: #ffb347; }
+        .vrei-evidence-row { text-align: center; margin-top: 16px; }
+        .vrei-evidence-row img {
+            width: 100%;
+            max-width: 220px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,94,98,0.4);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+        .vrei-evidence-caption { font-size: 0.7em; letter-spacing: 1px; color: rgba(255,255,255,0.35); font-style: italic; margin-top: 8px; }
 
         .scroll-cue {
             position: absolute;
@@ -270,6 +279,56 @@
             letter-spacing: 0.5px;
         }
 
+        /* ===== Bushwacker Poster (same layout as Bill Poster, warm tiki-bar tone instead of vintage sepia) ===== */
+        .bw-poster-wrap {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 4px 0 18px;
+            box-shadow: 0 10px 34px rgba(0,0,0,0.5);
+            border: 1px solid rgba(140,100,60,0.4);
+        }
+        .bw-poster-img { width: 100%; height: auto; display: block; }
+        .bw-poster-vignette {
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 90px 20px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+        .bw-poster-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(20,10,2,0.45) 0%, rgba(20,10,2,0) 22%, rgba(20,10,2,0) 55%, rgba(15,7,2,0.6) 78%, rgba(10,5,1,0.92) 100%);
+            pointer-events: none;
+        }
+        .bw-poster-title {
+            position: absolute;
+            top: 14px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-size: clamp(0.85rem, 4.2vw, 1.15rem);
+            color: #ffdca8;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+            line-height: 1.35;
+            text-transform: uppercase;
+            padding: 0 14px;
+        }
+        .bw-poster-quote {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 14px;
+            font-style: italic;
+            font-size: clamp(0.82rem, 3.4vw, 1em);
+            line-height: 1.5;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.95);
+            text-align: center;
+        }
+
         /* ===== Poem (bonus scene) ===== */
         .poem-photo-wrap { position: relative; width: 100%; border-radius: 14px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 14px 40px rgba(0,0,0,0.4); }
         .poem-photo-blur-bg {
@@ -306,16 +365,16 @@
             <div class="hero-wrap" id="countdown">
                 <div class="main">
                     <p class="hero-eyebrow">🏖️ Perdido Key</p>
-                    <div class="hero-t2">Thirsty Thursday.</div>
-                    <p class="hero-weeks">Two Days Left On The Key<br>Making Them Count</p>
+                    <div class="hero-t2">Last Beach Day.</div>
+                    <p class="hero-weeks">Soak Up Every Minute<br>Tomorrow's A Travel Day</p>
                     <p class="hero-dates" style="margin-bottom:42px;">July 11 &ndash; 18, 2026</p>
 
                     <div class="hub-box">
                         <p class="hub-label">🗺️ Site Hub</p>
                         <ul class="hub-list">
                             <li><span class="hub-emoji">📸</span><span><strong>The Photo Dump</strong> — every trip pic, sorted into Beach, Flora-Bama, Cobalt &amp; Past Trips</span></li>
-                            <li><span class="hub-emoji">🥂</span><span><strong>Feature Story</strong> — meet California Bill, the most interesting man at Perdido Key</span></li>
-                            <li><span class="hub-emoji">🍽️🛥️</span><span><strong>Side Quests</strong> — Cobalt, Flora-Bama, Tales from the Shore &amp; the bonus poem</span></li>
+                            <li><span class="hub-emoji">🥥</span><span><strong>Feature Story</strong> — the Bushwacker, recipe and lore behind the Gulf Coast's favorite frozen drink</span></li>
+                            <li><span class="hub-emoji">🍽️🛥️</span><span><strong>Side Quests</strong> — Cobalt, Flora-Bama, California Bill, Tales from the Shore &amp; the bonus poem</span></li>
                             <li><span class="hub-emoji">📈</span><span><strong>Vacation Rick</strong> — his energy index</span></li>
                         </ul>
                     </div>
@@ -355,28 +414,29 @@
                     </div>
                 </a>
 
-                <!-- Feature Story -->
-                <div class="panel" id="california-bill">
-                    <h2>🥂 California Bill</h2>
-                    <p class="panel-sub">The Most Interesting Man at Perdido Key</p>
+                <div class="section-divider"></div>
 
-                    <div class="bill-poster-wrap">
-                        <img src="./california-bill.jpg" alt="California Bill, portrait at the marina, dramatically toned like a vintage ad campaign" class="bill-poster-img">
-                        <div class="bill-poster-vignette"></div>
-                        <div class="bill-poster-gradient"></div>
-                        <div class="bill-poster-title">The Most Interesting<br>Man at Perdido Key</div>
-                        <div class="bill-poster-quote">"I don't always win the golf tournament. But when I do, I still make time to dance."</div>
-                        <div class="bill-poster-sign">— California Bill</div>
+                <!-- Feature Story -->
+                <div class="panel" id="bushwacker">
+                    <h2>🥥 The Bushwacker</h2>
+                    <p class="panel-sub">The Gulf Coast's Official Frozen Milkshake (With A Kick)</p>
+
+                    <div class="bw-poster-wrap">
+                        <img src="./bushwacker.jpg" alt="A frozen Bushwacker cocktail in a plastic cup, drizzled with chocolate syrup" class="bw-poster-img">
+                        <div class="bw-poster-vignette"></div>
+                        <div class="bw-poster-gradient"></div>
+                        <div class="bw-poster-title">The Official Drink<br>Of The Gulf Coast</div>
+                        <div class="bw-poster-quote">Tastes like a chocolate milkshake. Hits like a Tuesday you didn't see coming.</div>
                     </div>
 
                     <ul class="feature-tips">
-                        <li><strong>On the course:</strong> He doesn't chase the pin. The pin waits patiently, hoping he'll notice it.</li>
-                        <li><strong>On the pickleball court:</strong> His dink shot has been quietly banned in four leagues for being unfair.</li>
-                        <li><strong>On the dance floor:</strong> He doesn't learn the steps. The steps learn him.</li>
-                        <li><strong>On the wine list:</strong> He's never once had to ask what pairs well. The bottle already knew.</li>
-                        <li><strong>The smile:</strong> Scientists remain unable to explain it. The rest of us just enjoy it.</li>
+                        <li><strong>The recipe:</strong> dark rum, coconut rum, coffee liqueur, cream of coconut &amp; milk, blended with ice until it's basically a boozy milkshake — chocolate syrup drizzle non-negotiable.</li>
+                        <li><strong>The origin story:</strong> most accounts trace it to 1975 at the Sandshaker Lounge on Pensacola Beach — twenty minutes up the road from where we're sitting.</li>
+                        <li><strong>The rivalry:</strong> a beach bar on St. Croix claims to have invented it the same year. Neither side has backed down in 50 years.</li>
+                        <li><strong>The proof it stuck:</strong> Pensacola Beach throws an actual Bushwacker Festival every Memorial Day weekend in its honor.</li>
+                        <li><strong>The catch:</strong> it drinks like dessert, not like four rums and a liqueur — which is exactly how the legend keeps getting made.</li>
                     </ul>
-                    <p class="bill-close">Stay legendary, Perdido Key.</p>
+                    <p class="bill-close">Drink responsibly. Refill irresponsibly.</p>
                 </div>
 
                 <div class="section-divider"></div>
@@ -467,6 +527,32 @@
 
                 <div class="section-divider"></div>
 
+                <!-- Side Quest (former top feature story, moved down to make room for the Bushwacker) -->
+                <div class="panel" id="california-bill">
+                    <h2>🥂 California Bill</h2>
+                    <p class="panel-sub">The Most Interesting Man at Perdido Key</p>
+
+                    <div class="bill-poster-wrap">
+                        <img src="./california-bill.jpg" alt="California Bill, portrait at the marina, dramatically toned like a vintage ad campaign" class="bill-poster-img">
+                        <div class="bill-poster-vignette"></div>
+                        <div class="bill-poster-gradient"></div>
+                        <div class="bill-poster-title">The Most Interesting<br>Man at Perdido Key</div>
+                        <div class="bill-poster-quote">"I don't always win the golf tournament. But when I do, I still make time to dance."</div>
+                        <div class="bill-poster-sign">— California Bill</div>
+                    </div>
+
+                    <ul class="feature-tips">
+                        <li><strong>On the course:</strong> He doesn't chase the pin. The pin waits patiently, hoping he'll notice it.</li>
+                        <li><strong>On the pickleball court:</strong> His dink shot has been quietly banned in four leagues for being unfair.</li>
+                        <li><strong>On the dance floor:</strong> He doesn't learn the steps. The steps learn him.</li>
+                        <li><strong>On the wine list:</strong> He's never once had to ask what pairs well. The bottle already knew.</li>
+                        <li><strong>The smile:</strong> Scientists remain unable to explain it. The rest of us just enjoy it.</li>
+                    </ul>
+                    <p class="bill-close">Stay legendary, Perdido Key.</p>
+                </div>
+
+                <div class="section-divider"></div>
+
                 <!-- Helpful Links -->
                 <div class="panel">
                     <h2>🔗 Helpful Links</h2>
@@ -535,6 +621,10 @@
                     <div class="vrei-quote-box">
                         <span id="vreiQuote">Loading Rick wisdom...</span>
                         <span class="vrei-quote-attribution">— Vacation Rick</span>
+                    </div>
+                    <div class="vrei-evidence-row">
+                        <img src="./vacation-rick-depleted.png" alt="Vacation Rick, sitting in the sand, visibly out of VREI, beer cans scattered nearby">
+                        <p class="vrei-evidence-caption">Field evidence. VREI: critically low.</p>
                     </div>
                 </div>
 
