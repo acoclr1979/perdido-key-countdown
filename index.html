@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perdido Key — Last Beach Day</title>
-    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/bushwacker.jpg">
-    <meta property="og:title" content="Perdido Key — Last Beach Day">
-    <meta property="og:description" content="Last full day on the Key — plus the recipe and lore behind the Bushwacker, the Gulf Coast's official frozen drink. 🏖️ July 11–18, 2026">
+    <title>Perdido Key — That's A Wrap</title>
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/sunset-last-night.jpg">
+    <meta property="og:title" content="Perdido Key — That's A Wrap">
+    <meta property="og:description" content="The week in review, day by day — plus vote on what's next: same place or somewhere new. 🌅 July 11–18, 2026">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -169,6 +169,87 @@
 
         .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); margin: 4px 0; }
 
+        /* ===== Next Trip vote ===== */
+        .empty-state { text-align: center; padding: 22px 0 8px; color: rgba(255,255,255,0.22); font-size: 0.85em; font-style: italic; }
+
+        .tally-group-label { font-size: 0.7em; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-bottom: 10px; }
+        .tally-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+        .tally-label { width: 108px; flex-shrink: 0; font-size: 0.85em; color: rgba(255,255,255,0.75); }
+        .tally-bar-track { flex: 1; height: 9px; background: rgba(255,255,255,0.09); border-radius: 5px; overflow: hidden; }
+        .tally-bar-fill { height: 100%; border-radius: 5px; background: linear-gradient(90deg, #78aaff 0%, #7eeaa0 100%); transition: width 0.6s ease-in-out; }
+        .tally-count { width: 22px; flex-shrink: 0; text-align: right; font-weight: 700; font-size: 0.85em; color: rgba(255,255,255,0.55); }
+        .tally-total { margin-top: 12px; font-size: 0.72em; color: rgba(255,255,255,0.3); text-align: center; letter-spacing: 1px; }
+
+        .form-group { margin-bottom: 16px; }
+        .form-label { display: block; font-size: 0.7em; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-bottom: 7px; }
+        .form-input { width: 100%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 9px; padding: 10px 13px; color: white; font-family: inherit; font-size: 0.9em; outline: none; transition: border-color 0.15s; }
+        .form-input:focus { border-color: rgba(255,255,255,0.34); }
+        .form-input::placeholder { color: rgba(255,255,255,0.2); }
+
+        .vote-choice-row { display: flex; gap: 10px; }
+        .vote-choice-btn {
+            flex: 1;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 9px;
+            padding: 11px 10px;
+            color: rgba(255,255,255,0.75);
+            font-family: inherit;
+            font-size: 0.87em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+        }
+        .vote-choice-btn:hover { background: rgba(255,255,255,0.12); }
+        .vote-choice-btn.selected { background: rgba(80,200,110,0.16); border-color: rgba(80,200,110,0.5); color: #7eeaa0; }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-family: inherit;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.15s;
+            margin-top: 4px;
+        }
+        .btn-submit:hover { opacity: 0.85; }
+        .btn-submit:disabled { opacity: 0.4; cursor: default; }
+        .submit-note { font-size: 0.74em; color: rgba(255,255,255,0.28); text-align: center; margin-top: 10px; min-height: 18px; }
+
+        /* ===== Week In Review ===== */
+        .recap-timeline { position: relative; padding-left: 22px; }
+        .recap-timeline::before {
+            content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px;
+            background: linear-gradient(180deg, rgba(255,180,71,0.55), rgba(255,255,255,0.06));
+        }
+        .recap-day { position: relative; padding-bottom: 26px; }
+        .recap-day:last-child { padding-bottom: 0; }
+        .recap-day::before {
+            content: ''; position: absolute; left: -22px; top: 4px; width: 10px; height: 10px;
+            border-radius: 50%; background: #ffb347; box-shadow: 0 0 0 4px rgba(255,180,71,0.15);
+        }
+        .recap-day-label { font-size: 0.7em; letter-spacing: 2px; text-transform: uppercase; color: #ffb347; font-weight: 700; margin-bottom: 3px; }
+        .recap-day-title { font-size: 1em; font-weight: 700; margin-bottom: 6px; }
+        .recap-day-body { font-size: 0.87em; line-height: 1.6; color: rgba(255,255,255,0.75); }
+        .recap-day-photo { width: 100%; height: auto; max-height: 340px; object-fit: cover; border-radius: 12px; margin-top: 12px; display: block; }
+        .recap-day-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin-top: 12px; }
+        .recap-day-photos .recap-day-photo-tile { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; display: block; }
+        .recap-day-photo-wide { width: 100%; height: auto; border-radius: 12px; margin-top: 8px; display: block; }
+
+        .sunset-close-wrap { position: relative; border-radius: 18px; overflow: hidden; }
+        .sunset-close-wrap img { width: 100%; height: auto; max-height: 60vh; object-fit: cover; display: block; }
+        .sunset-close-caption {
+            position: absolute; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(0deg, rgba(10,5,40,0.85), transparent);
+            padding: 30px 24px 18px; text-align: center;
+            font-size: 0.95em; font-style: italic; color: rgba(255,255,255,0.85);
+        }
+
         .helpful-link {
             display: flex; align-items: center; gap: 10px; color: white; text-decoration: none;
             background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 12px 14px; transition: background 0.15s;
@@ -195,71 +276,6 @@
         .photo-dump-card:hover .photo-dump-track { animation-play-state: paused; }
         .photo-dump-track img { width: 84px; height: 84px; object-fit: cover; border-radius: 10px; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         @keyframes photo-dump-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* ===== Feature Story ===== */
-        .feature-tips { margin-top: 4px; padding-left: 20px; }
-        .feature-tips li { font-size: 0.87em; line-height: 1.55; color: rgba(255,255,255,0.82); margin-bottom: 9px; }
-        .feature-tips li strong { color: #ffb347; }
-
-        .bill-close {
-            text-align: center;
-            font-family: Georgia, 'Times New Roman', serif;
-            font-style: italic;
-            color: #d4af6a;
-            font-size: 0.95em;
-            margin-top: 18px;
-            letter-spacing: 0.5px;
-        }
-
-        /* ===== Bushwacker Poster (same layout as Bill Poster, warm tiki-bar tone instead of vintage sepia) ===== */
-        .bw-poster-wrap {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 4px 0 18px;
-            box-shadow: 0 10px 34px rgba(0,0,0,0.5);
-            border: 1px solid rgba(140,100,60,0.4);
-        }
-        .bw-poster-img { width: 100%; height: auto; display: block; }
-        .bw-poster-vignette {
-            position: absolute;
-            inset: 0;
-            box-shadow: inset 0 0 90px 20px rgba(0,0,0,0.5);
-            pointer-events: none;
-        }
-        .bw-poster-gradient {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(20,10,2,0.45) 0%, rgba(20,10,2,0) 22%, rgba(20,10,2,0) 55%, rgba(15,7,2,0.6) 78%, rgba(10,5,1,0.92) 100%);
-            pointer-events: none;
-        }
-        .bw-poster-title {
-            position: absolute;
-            top: 14px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-weight: 800;
-            letter-spacing: 2px;
-            font-size: clamp(0.85rem, 4.2vw, 1.15rem);
-            color: #ffdca8;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
-            line-height: 1.35;
-            text-transform: uppercase;
-            padding: 0 14px;
-        }
-        .bw-poster-quote {
-            position: absolute;
-            left: 18px;
-            right: 18px;
-            bottom: 14px;
-            font-style: italic;
-            font-size: clamp(0.82rem, 3.4vw, 1em);
-            line-height: 1.5;
-            color: #fff;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.95);
-            text-align: center;
-        }
 
         /* ===== Poem (bonus scene) ===== */
         .poem-photo-wrap { position: relative; width: 100%; border-radius: 14px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 14px 40px rgba(0,0,0,0.4); }
@@ -297,16 +313,17 @@
             <div class="hero-wrap" id="countdown">
                 <div class="main">
                     <p class="hero-eyebrow">🏖️ Perdido Key</p>
-                    <div class="hero-t2">Last Beach Day.</div>
-                    <p class="hero-weeks">Soak Up Every Minute<br>Tomorrow's A Travel Day</p>
+                    <div class="hero-t2">That's A Wrap.</div>
+                    <p class="hero-weeks">The Week In Review<br>Vote For Next Time Below</p>
                     <p class="hero-dates" style="margin-bottom:42px;">July 11 &ndash; 18, 2026</p>
 
                     <div class="hub-box">
                         <p class="hub-label">🗺️ Site Hub</p>
                         <ul class="hub-list">
+                            <li><span class="hub-emoji">📆</span><span><strong>Week In Review</strong> — how it actually went down, day by day</span></li>
                             <li><span class="hub-emoji">📸</span><span><strong>The Photo Dump</strong> — every trip pic, sorted into Beach, Flora-Bama, Cobalt &amp; Past Trips</span></li>
-                            <li><span class="hub-emoji">🥥</span><span><strong>Feature Story</strong> — the Bushwacker, recipe and lore behind the Gulf Coast's favorite frozen drink</span></li>
-                            <li><span class="hub-emoji">🍽️🛥️</span><span><strong>Side Quests</strong> — Cobalt, Flora-Bama, California Bill, Tales from the Shore &amp; the bonus poem</span></li>
+                            <li><span class="hub-emoji">🍽️🛥️</span><span><strong>Side Quests</strong> — the Bushwacker, Cobalt, Flora-Bama, California Bill, Tales from the Shore &amp; the bonus poem</span></li>
+                            <li><span class="hub-emoji">🗳️</span><span><strong>Same Time Next Year?</strong> — vote on when and where</span></li>
                             <li><span class="hub-emoji">📈</span><span><strong>Vacation Rick</strong> — his energy index</span></li>
                         </ul>
                     </div>
@@ -316,6 +333,110 @@
 
             <!-- ===== SECTIONS ===== -->
             <div class="sections-wrap">
+
+                <!-- Week In Review -->
+                <div class="panel">
+                    <h2>📆 Week In Review</h2>
+                    <p class="panel-sub">July 10&ndash;18, 2026 · how it actually went down</p>
+
+                    <div class="recap-timeline">
+                        <div class="recap-day">
+                            <div class="recap-day-label">Fri, Jul 10</div>
+                            <div class="recap-day-title">Travel Day (Driving Group)</div>
+                            <p class="recap-day-body">The Cranes, O'Haires &amp; Rodells raced down to the Renaissance Mobile, AL a day early — dinner and a nightly stroll through Downtown Mobile, right into the Mobile Music Festival.</p>
+                            <img class="recap-day-photo" src="./mobile-music-festival.jpg" alt="Group selfie at the Mobile Music Festival in Downtown Mobile, AL">
+                        </div>
+
+                        <div class="recap-day">
+                            <div class="recap-day-label">Sat, Jul 11</div>
+                            <div class="recap-day-title">Wheels Down</div>
+                            <p class="recap-day-body">Early check-in wins across the board. Flights landed for the Merzlickers, Brownes, Jenkins &amp; the young adults. First pool session of the week — capped by an actual "drink a beer" moment. You had to be there.</p>
+                            <img class="recap-day-photo" src="./arrival-welcome-sign.jpg" alt="Group photo at the Welcome to Perdido Key, Florida sign on arrival day">
+                        </div>
+
+                        <div class="recap-day">
+                            <div class="recap-day-label">Sun, Jul 12</div>
+                            <div class="recap-day-title">Beach Day, Rain Included</div>
+                            <p class="recap-day-body">Mother Nature tested the group early — Adam's tent didn't survive the first 15 minutes. Recovered with a Cornhole Tournament and Pedro's Tacos to close it out. After dinner, someone found the pickleball court — we may have lost Crane into the pickleball vortex for good if it hadn't closed at a premature 10pm.</p>
+                            <img class="recap-day-photo" src="./pedros-tacos.jpg" alt="The whole group at a long table for dinner at Pedro's Tacos">
+                        </div>
+
+                        <div class="recap-day">
+                            <div class="recap-day-label">Mon, Jul 13</div>
+                            <div class="recap-day-title">Golf Day / Flora-Bama Yacht Club</div>
+                            <p class="recap-day-body">Peak Vacation Rick Energy — golf in the morning, Flora-Bama Yacht Club by evening. (The VREI meter agrees.)</p>
+                            <img class="recap-day-photo" src="./florabama-group.jpg" alt="Whole group photo on the beach at Flora-Bama Yacht Club under a red sail shade">
+                        </div>
+
+                        <div class="recap-day">
+                            <div class="recap-day-label">Tue, Jul 14</div>
+                            <div class="recap-day-title">Beach Day / Cobalt</div>
+                            <p class="recap-day-body">Back to the sand, then a waterfront dinner at Cobalt under the Perdido Pass Bridge.</p>
+                            <div class="recap-day-photos">
+                                <img class="recap-day-photo-tile" src="./cobalt-1.jpg" alt="Two family members sitting together on a bench at Cobalt restaurant">
+                                <img class="recap-day-photo-tile" src="./cobalt-2.jpg" alt="A couple dancing at Cobalt's tiki hut">
+                                <img class="recap-day-photo-tile" src="./cobalt-3.jpg" alt="A milkshake-style drink with chocolate drizzle at Cobalt">
+                                <img class="recap-day-photo-tile" src="./cobalt-4.jpg" alt="Sunset over the water at Cobalt with a dolphin tour boat docked">
+                            </div>
+                        </div>
+
+                        <div class="recap-day">
+                            <div class="recap-day-label">Wed, Jul 15</div>
+                            <div class="recap-day-title">Golf Day / The Gulf</div>
+                            <p class="recap-day-body">Round two of golf. The O'Haires and Cranes hit up The Gulf.</p>
+                            <div class="recap-day-photos">
+                                <img class="recap-day-photo-tile" src="./the-gulf-1.jpg" alt="Group photo in The Gulf's photo frame in Orange Beach, AL">
+                                <img class="recap-day-photo-tile" src="./the-gulf-2.jpg" alt="Second group photo in The Gulf's photo frame in Orange Beach, AL">
+                            </div>
+                        </div>
+
+                        <div class="recap-day">
+                            <div class="recap-day-label">Thu, Jul 16</div>
+                            <div class="recap-day-title">Crab Trap, Blue Angels &amp; Fishing</div>
+                            <p class="recap-day-body">Crab Trap delivered the best Bushwackers — and the biggest bill — of the week. The Merzlickers broke off to catch the Blue Angels instead, while JJ, Cam, Jack &amp; Brady went fishing.</p>
+                            <div class="recap-day-photos">
+                                <img class="recap-day-photo-tile" src="./crabtrap-1.jpg" alt="A plate of crab legs, corn on the cob and potatoes at Crab Trap">
+                                <img class="recap-day-photo-tile" src="./crabtrap-2.jpg" alt="The whole group seated at a long table at Crab Trap">
+                                <img class="recap-day-photo-tile" src="./crabtrap-3.jpg" alt="Smiling in front of the seafood menu chalkboard at Crab Trap">
+                            </div>
+                            <div class="recap-day-photos" style="margin-top:8px;">
+                                <img class="recap-day-photo-tile" src="./photos/IMG-20260716-170739-1.jpg" alt="One of the fishing crew holding their catch on the boat">
+                                <img class="recap-day-photo-tile" src="./photos/IMG-20260716-170755-1.jpg" alt="Another of the fishing crew holding their catch on the boat">
+                                <img class="recap-day-photo-tile" src="./photos/IMG-20260716-170819-1.jpg" alt="A third member of the fishing crew holding their catch on the boat">
+                            </div>
+                        </div>
+
+                        <div class="recap-day">
+                            <div class="recap-day-label">Fri, Jul 17</div>
+                            <div class="recap-day-title">Last Beach Day</div>
+                            <p class="recap-day-body">VREI never declined all week — no scuffles, no drama, just a beach day. The O'Haires squeezed in one more stop each at Sunset Grill and the Crab Trap before it was over.</p>
+                            <div class="recap-day-photos">
+                                <img class="recap-day-photo-tile" src="./last-beach-day-1.jpg" alt="The group gathered under a beach canopy on the last beach day">
+                                <img class="recap-day-photo-tile" src="./last-beach-day-2.jpg" alt="A couple sitting under a beach umbrella by the water">
+                                <img class="recap-day-photo-tile" src="./last-beach-day-3.jpg" alt="Two guys playing cornhole on the beach">
+                            </div>
+                            <img class="recap-day-photo-wide" src="./last-beach-day-4.jpg" alt="Wide panorama of the empty white-sand beach and dunes">
+                        </div>
+
+                        <div class="recap-day">
+                            <div class="recap-day-label">Farewell Friday</div>
+                            <div class="recap-day-title">Wheels Up</div>
+                            <p class="recap-day-body">One last sunset, a stop at the Florida state line, and a final dockside photo before the long drive home. Trip's officially in the books.</p>
+                            <div class="recap-day-photos">
+                                <img class="recap-day-photo-tile" src="./goodbye-florida-1.jpg" alt="Sunset over the treeline from the balcony on the last night">
+                                <img class="recap-day-photo-tile" src="./goodbye-florida-2.jpg" alt="The Florida state line sign at the Ship Store, Holiday Harbor">
+                                <img class="recap-day-photo-tile" src="./goodbye-florida-3.jpg" alt="Family group photo on the dock at sunset before heading home">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sunset-close-wrap" style="margin-top:24px;">
+                        <img src="./sunset-last-night.jpg" alt="Sunset over the treeline on the last night of the trip">
+                        <div class="sunset-close-caption">And that's how the sun set on Perdido Key 2026.</div>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
 
                 <!-- Gallery -->
                 <a href="./gallery.html" class="photo-dump-card">
@@ -348,28 +469,16 @@
 
                 <div class="section-divider"></div>
 
-                <!-- Feature Story -->
-                <div class="panel" id="bushwacker">
-                    <h2>🥥 The Bushwacker</h2>
-                    <p class="panel-sub">The Gulf Coast's Official Frozen Milkshake (With A Kick)</p>
-
-                    <div class="bw-poster-wrap">
-                        <img src="./bushwacker.jpg" alt="A frozen Bushwacker cocktail in a plastic cup, drizzled with chocolate syrup" class="bw-poster-img">
-                        <div class="bw-poster-vignette"></div>
-                        <div class="bw-poster-gradient"></div>
-                        <div class="bw-poster-title">The Official Drink<br>Of The Gulf Coast</div>
-                        <div class="bw-poster-quote">Tastes like a chocolate milkshake. Hits like a Tuesday you didn't see coming.</div>
+                <!-- Side Quest -->
+                <a href="./bushwacker.html" style="display:flex; align-items:center; gap:14px; text-decoration:none; color:white; background:rgba(255,180,70,0.07); border:1px solid rgba(255,180,70,0.2); border-radius:14px; padding:16px 20px; transition:background 0.15s;" onmouseover="this.style.background='rgba(255,180,70,0.14)'" onmouseout="this.style.background='rgba(255,180,70,0.07)'">
+                    <span style="font-size:1.6em; flex-shrink:0;">🥥</span>
+                    <div>
+                        <div style="font-size:0.72em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#ffb347; margin-bottom:3px;">Side Quest</div>
+                        <div style="font-size:0.95em; font-weight:700;">The Bushwacker</div>
+                        <div style="font-size:0.76em; color:rgba(255,255,255,0.35); margin-top:2px;">Recipe and lore behind the Gulf Coast's favorite frozen drink</div>
                     </div>
-
-                    <ul class="feature-tips">
-                        <li><strong>The recipe:</strong> dark rum, coconut rum, coffee liqueur, cream of coconut &amp; milk, blended with ice until it's basically a boozy milkshake — chocolate syrup drizzle non-negotiable.</li>
-                        <li><strong>The origin story:</strong> most accounts trace it to 1975 at the Sandshaker Lounge on Pensacola Beach — twenty minutes up the road from where we're sitting.</li>
-                        <li><strong>The rivalry:</strong> a beach bar on St. Croix claims to have invented it the same year. Neither side has backed down in 50 years.</li>
-                        <li><strong>The proof it stuck:</strong> Pensacola Beach throws an actual Bushwacker Festival every Memorial Day weekend in its honor.</li>
-                        <li><strong>The catch:</strong> it drinks like dessert, not like four rums and a liqueur — which is exactly how the legend keeps getting made.</li>
-                    </ul>
-                    <p class="bill-close">Drink responsibly. Refill irresponsibly.</p>
-                </div>
+                    <span style="margin-left:auto; color:rgba(255,180,70,0.5); font-size:1em; flex-shrink:0;">→</span>
+                </a>
 
                 <div class="section-divider"></div>
 
@@ -412,6 +521,43 @@
                         <span class="cobalt-pill in">JJ</span>
                         <span class="cobalt-pill in">Cam</span>
                     </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Next Trip Vote -->
+                <div class="panel">
+                    <h2>🗳️ Same Time Next Year?</h2>
+                    <p class="panel-sub">Cast your vote for the next one — results update live</p>
+
+                    <div id="voteResults">
+                        <div class="empty-state">Loading votes…</div>
+                    </div>
+
+                    <div class="form-group" style="margin-top:24px;">
+                        <label class="form-label">Your Name</label>
+                        <input class="form-input" id="vName" placeholder="So we know it's you" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">When?</label>
+                        <div class="vote-choice-row">
+                            <button type="button" class="vote-choice-btn" data-group="timing" data-value="next-year">Next Year</button>
+                            <button type="button" class="vote-choice-btn" data-group="timing" data-value="two-years">In Two Years</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Where?</label>
+                        <div class="vote-choice-row">
+                            <button type="button" class="vote-choice-btn" data-group="location" data-value="same">Same Place</button>
+                            <button type="button" class="vote-choice-btn" data-group="location" data-value="new">Somewhere New</button>
+                        </div>
+                        <input class="form-input" id="vNewPlace" placeholder="Where to? (optional)" autocomplete="off" style="margin-top:10px; display:none;">
+                    </div>
+
+                    <button class="btn-submit" id="submitVoteBtn">Cast Your Vote →</button>
+                    <p class="submit-note" id="voteNote"></p>
                 </div>
 
                 <div class="section-divider"></div>
@@ -650,6 +796,126 @@
         });
     </script>
 
+    <!-- Next Trip vote (Firebase) -->
+    <script type="module">
+        import {
+            collection, addDoc, onSnapshot,
+            query, orderBy, serverTimestamp
+        } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+        import { db } from './firebase-init.js';
+
+        function esc(str) {
+            return String(str)
+                .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+                .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        function tallyBar(label, count, total) {
+            const pct = total ? Math.round((count / total) * 100) : 0;
+            return `
+                <div class="tally-row">
+                    <div class="tally-label">${label}</div>
+                    <div class="tally-bar-track"><div class="tally-bar-fill" style="width:${pct}%"></div></div>
+                    <div class="tally-count">${count}</div>
+                </div>`;
+        }
+
+        function renderVoteResults(votes) {
+            const el = document.getElementById('voteResults');
+            const total = votes.length;
+
+            if (total === 0) {
+                el.innerHTML = '<div class="empty-state">No votes yet — be the first.</div>';
+                return;
+            }
+
+            const nextYear = votes.filter(v => v.timing === 'next-year').length;
+            const twoYears = votes.filter(v => v.timing === 'two-years').length;
+            const same = votes.filter(v => v.location === 'same').length;
+            const newPlace = votes.filter(v => v.location === 'new').length;
+            const suggestions = votes
+                .filter(v => v.location === 'new' && v.newPlace)
+                .map(v => v.newPlace);
+
+            el.innerHTML = `
+                <div class="tally-group-label">When</div>
+                ${tallyBar('Next Year', nextYear, total)}
+                ${tallyBar('In Two Years', twoYears, total)}
+                <div class="tally-group-label" style="margin-top:16px;">Where</div>
+                ${tallyBar('Same Place', same, total)}
+                ${tallyBar('Somewhere New', newPlace, total)}
+                ${suggestions.length ? `
+                <div class="tally-group-label" style="margin-top:16px;">New Place Ideas</div>
+                <div style="display:flex; flex-wrap:wrap; gap:7px;">
+                    ${suggestions.map(s => `<span class="cobalt-pill left">${esc(s)}</span>`).join('')}
+                </div>` : ''}
+                <div class="tally-total">${total} vote${total === 1 ? '' : 's'} cast</div>
+            `;
+        }
+
+        const voteQuery = query(collection(db, 'nextTripVotes'), orderBy('createdAt', 'desc'));
+        onSnapshot(voteQuery, snapshot => {
+            renderVoteResults(snapshot.docs.map(d => d.data()));
+        }, () => {
+            document.getElementById('voteResults').innerHTML =
+                '<div class="empty-state">Couldn\'t load votes right now.</div>';
+        });
+
+        let selectedTiming = null;
+        let selectedLocation = null;
+
+        document.querySelectorAll('.vote-choice-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const group = btn.dataset.group;
+                document.querySelectorAll(`.vote-choice-btn[data-group="${group}"]`)
+                    .forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+
+                if (group === 'timing') {
+                    selectedTiming = btn.dataset.value;
+                } else {
+                    selectedLocation = btn.dataset.value;
+                    document.getElementById('vNewPlace').style.display =
+                        selectedLocation === 'new' ? 'block' : 'none';
+                }
+            });
+        });
+
+        document.getElementById('submitVoteBtn').addEventListener('click', async () => {
+            const name = document.getElementById('vName').value.trim();
+            const newPlace = document.getElementById('vNewPlace').value.trim();
+            const note = document.getElementById('voteNote');
+            const btn = document.getElementById('submitVoteBtn');
+
+            if (!name || !selectedTiming || !selectedLocation) {
+                note.style.color = '#f09090';
+                note.textContent = 'Name, when, and where are all required.';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Voting…';
+            note.textContent = '';
+
+            try {
+                await addDoc(collection(db, 'nextTripVotes'), {
+                    name,
+                    timing: selectedTiming,
+                    location: selectedLocation,
+                    newPlace: selectedLocation === 'new' && newPlace ? newPlace : null,
+                    createdAt: serverTimestamp()
+                });
+                note.style.color = '#7eeaa0';
+                note.textContent = 'Vote cast — see you out there.';
+                btn.textContent = 'Cast Your Vote →';
+            } catch {
+                note.style.color = '#f09090';
+                note.textContent = 'Something went wrong — try again.';
+                btn.disabled = false;
+                btn.textContent = 'Cast Your Vote →';
+            }
+        });
+    </script>
 
 </body>
 </html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bushwacker — Perdido Key</title>
+    <meta property="og:title" content="The Bushwacker — Perdido Key">
+    <meta property="og:description" content="The recipe and lore behind the Bushwacker, the Gulf Coast's official frozen drink.">
+    <meta property="og:image" content="https://acoclr1979.github.io/perdido-key-countdown/bushwacker.jpg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            color: white;
+            background: #0a0528;
+        }
+
+        .mosaic-bg { position: fixed; inset: 0; display: grid; z-index: 0; }
+        .mosaic-bg .mc { background-repeat: no-repeat; background-position: center center; background-size: 200%; }
+        .mosaic-overlay { position: fixed; inset: 0; background: rgba(8, 4, 35, 0.86); z-index: 1; }
+
+        .page-wrap { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; align-items: center; }
+
+        /* Hero */
+        .hero { width: 100%; max-width: 740px; padding: 72px 30px 52px; text-align: center; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.35);
+            text-decoration: none;
+            font-size: 0.75em;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 36px;
+            transition: color 0.15s;
+        }
+        .back-link:hover { color: rgba(255,255,255,0.65); }
+
+        .hero-eyebrow { font-size: 0.8em; letter-spacing: 5px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+        .hero-title { font-size: clamp(2.6rem, 10vw, 4.6rem); font-weight: 900; line-height: 1.02; letter-spacing: -2px; margin-bottom: 16px; }
+        .hero-sub { font-size: 0.9em; color: rgba(255,255,255,0.4); line-height: 1.65; }
+
+        /* Content */
+        .content { width: 100%; max-width: 740px; padding: 0 24px 100px; display: flex; flex-direction: column; gap: 26px; }
+
+        .panel {
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.11);
+            border-radius: 18px;
+            padding: 28px 30px;
+        }
+        .panel h2 { font-size: 1.15em; font-weight: 700; margin-bottom: 4px; }
+        .panel-sub { font-size: 0.82em; color: rgba(255,255,255,0.36); margin-bottom: 22px; }
+
+        .feature-tips { margin-top: 4px; padding-left: 20px; }
+        .feature-tips li { font-size: 0.87em; line-height: 1.55; color: rgba(255,255,255,0.82); margin-bottom: 9px; }
+        .feature-tips li strong { color: #ffb347; }
+
+        .bill-close {
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            color: #d4af6a;
+            font-size: 0.95em;
+            margin-top: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Bushwacker Poster (same layout as Bill Poster, warm tiki-bar tone instead of vintage sepia) */
+        .bw-poster-wrap {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 4px 0 18px;
+            box-shadow: 0 10px 34px rgba(0,0,0,0.5);
+            border: 1px solid rgba(140,100,60,0.4);
+        }
+        .bw-poster-img { width: 100%; height: auto; display: block; }
+        .bw-poster-vignette {
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 90px 20px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+        .bw-poster-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(20,10,2,0.45) 0%, rgba(20,10,2,0) 22%, rgba(20,10,2,0) 55%, rgba(15,7,2,0.6) 78%, rgba(10,5,1,0.92) 100%);
+            pointer-events: none;
+        }
+        .bw-poster-title {
+            position: absolute;
+            top: 14px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-size: clamp(0.85rem, 4.2vw, 1.15rem);
+            color: #ffdca8;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+            line-height: 1.35;
+            text-transform: uppercase;
+            padding: 0 14px;
+        }
+        .bw-poster-quote {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 14px;
+            font-style: italic;
+            font-size: clamp(0.82rem, 3.4vw, 1em);
+            line-height: 1.5;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.95);
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 56px 20px 40px; }
+            .content { padding: 0 16px 80px; }
+            .panel { padding: 22px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mosaic-bg" id="mosaicBg"></div>
+    <div class="mosaic-overlay"></div>
+    <script src="./photos.js"></script>
+    <script src="./mosaic.js"></script>
+
+    <div class="page-wrap">
+
+        <div class="hero">
+            <a href="./index.html" class="back-link">← Back to Countdown</a>
+            <p class="hero-eyebrow">🥥 Side Quest</p>
+            <h1 class="hero-title">The Bushwacker</h1>
+            <p class="hero-sub">The Gulf Coast's Official Frozen Milkshake (With A Kick)</p>
+        </div>
+
+        <div class="content">
+            <div class="panel" id="bushwacker">
+                <h2>🥥 The Bushwacker</h2>
+                <p class="panel-sub">The Gulf Coast's Official Frozen Milkshake (With A Kick)</p>
+
+                <div class="bw-poster-wrap">
+                    <img src="./bushwacker.jpg" alt="A frozen Bushwacker cocktail in a plastic cup, drizzled with chocolate syrup" class="bw-poster-img">
+                    <div class="bw-poster-vignette"></div>
+                    <div class="bw-poster-gradient"></div>
+                    <div class="bw-poster-title">The Official Drink<br>Of The Gulf Coast</div>
+                    <div class="bw-poster-quote">Tastes like a chocolate milkshake. Hits like a Tuesday you didn't see coming.</div>
+                </div>
+
+                <ul class="feature-tips">
+                    <li><strong>The recipe:</strong> dark rum, coconut rum, coffee liqueur, cream of coconut &amp; milk, blended with ice until it's basically a boozy milkshake — chocolate syrup drizzle non-negotiable.</li>
+                    <li><strong>The origin story:</strong> most accounts trace it to 1975 at the Sandshaker Lounge on Pensacola Beach — twenty minutes up the road from where we're sitting.</li>
+                    <li><strong>The rivalry:</strong> a beach bar on St. Croix claims to have invented it the same year. Neither side has backed down in 50 years.</li>
+                    <li><strong>The proof it stuck:</strong> Pensacola Beach throws an actual Bushwacker Festival every Memorial Day weekend in its honor.</li>
+                    <li><strong>The catch:</strong> it drinks like dessert, not like four rums and a liqueur — which is exactly how the legend keeps getting made.</li>
+                </ul>
+                <p class="bill-close">Drink responsibly. Refill irresponsibly.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
